@@ -1,6 +1,9 @@
 import main
-# Le code suivant n'est pas complet tant que les DICOS ne sont pas prêts
-# Calculation of the perfect solution, knowing the answer
+
+# Ain't working no more since changes have been made to the representation of the grids and the purpose of the code
+# This was supposed to find the perfect solution but it is mostly impossible since words in the answers are not always
+# in a dictionary => Probabilistic Solving.
+
 
 def bruteforcer(grid):
     # We only answer the across clues as they should (if the puzzle is well designed) cover the whole grid
