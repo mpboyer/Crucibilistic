@@ -5,17 +5,32 @@ class Clue:  # Representation of a clue
 
 
 CWDB = []
-with open(r'C:\Users\mb692\PycharmProjects\Crucibilistic\cwdb.txt', encoding = "utf-8") as f :
+with open(r'C:\Users\mb692\PycharmProjects\Crucibilistic\cwdb.txt', encoding = "utf-8") as f:
     lines = f.readlines()
 
 clues = []
 
-for line in lines :
+for line in lines:
     l = line.split("\t")
     clues.append((l[2], l[3]))
 
+
 for clue in clues:
-    CWDB.append(Clue(clue[0], clue[1]))
+    if not "crosswordgiant" in clue[0] and not "crosswordgiant" in clue[1]:
+        CWDB.append(Clue(clue[0], clue[1]))
+
+
+def ramette(c):
+    return len(c.Word), c.Word
+
+
+CWDB.sort(key = ramette)
+
+
+CWDB_ =  [(CWDB[i].Clue, CWDB[i].Word) for i in range(len(CWDB))]
+print(CWDB_)
+
+
 
 a = "across"
 d = "down"
@@ -42,7 +57,8 @@ class Grid:  # Representation of a grid
         self.Size = (p, q)  # Dimensions of the grid, usually p = q
         self.Grid = [[Tile(i, j) for j in range(p)] for i in range(q)]  # Initialises as empty
         self.AClues = aclues  # List of tuples of the across clues and the tile they start from. First one is the clue.
-        self.Dclues = dclues  # List of the down clues and the tile they start from
+        self.DClues = dclues  # List of the down clues and the tile they start from
+
         for clue in self.AClues:
             (i, j) = clue[1]
             self.Grid[i][j].AClue = clue[0]
@@ -54,6 +70,6 @@ class Grid:  # Representation of a grid
     def copy(self):
         p, q = self.Size
         aclues = self.AClues
-        dclues = self.Dclues
+        dclues = self.DClues
 
         return Grid.__init__(self, p, q, aclues, dclues)
