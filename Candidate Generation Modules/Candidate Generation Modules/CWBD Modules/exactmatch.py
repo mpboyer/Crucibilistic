@@ -1,19 +1,12 @@
-import cwdb
-
-def compatible(word, target):
-    r = True
-    i= 0
-    while r == True and i < len(target):
-        r = target[i] == word[i]
-        i+=1
-    return r
+import main
 
 
 def exactmatch(length, clue):
+    """Given"""
     candidates = []
-    for c in cwdb.clues :
-        if c[0]== clue and len(c[1]) == length :
-            candidates.append(c[1])
+    for c in main.CWDB :
+        if c.Clue == clue and len(c.Word) == length :
+            candidates.append(c.Word)
 
     def weight(c):
         # TODO : Add a weighing function to rate the candidates. Should be almost 1, geometric estimation ?

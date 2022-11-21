@@ -1,4 +1,4 @@
-with open(r'C:\Users\mb692\PycharmProjects\TIPE_2022_2023\cwdb.txt', encoding = "utf-8") as f :
+with open(r'C:\Users\mb692\PycharmProjects\Crucibilistic\cwdb.txt', encoding = "utf-8") as f :
     lines = f.readlines()
 
 clues = []

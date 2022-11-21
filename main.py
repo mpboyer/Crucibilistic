@@ -1,67 +1,53 @@
+import cwdb
+
+
+class Clue:  # Representation of a clue
+    def __init__(self, clue, answer):
+        self.Clue = clue  # Real Clue
+        self.Word = answer  # Solution Word
+
+
+CWDB = []
+for clue in cwdb.clues:
+    CWDB.append(Clue(clue[0], clue[1]))
+
+a = "across"
+d = "down"
+
+
 class Tile:
-    def __init__(self, i, j, aclue = None, dclue = None):
-        self.value = (i, j) # Position of the tile in the grid
-        self.isBlank = True # Initialise as empty
-        self.isBlock = False # Is not a black tile at first
-        self.char = '' # Is empty
-        self.AClue = aclue # Number of the clue going right from this tile : Is None if not the beginning of a
+    def __init__(self, i, j, aclue = None, dclue = None, block = False):
+        self.value = (i, j)  # Position of the tile in the grid
+        self.isBlank = True  # Initialise as empty
+        self.isBlock = block  # Is not a black tile at first
+        self.char = ''  # Initialises as empty
+        self.AClue = aclue  # Clue going right from this tile : Is None if not the beginning of a
         # word across
-        self.DClue = dclue # Same with Down
+        self.DClue = dclue  # Same as with across but with down instead
 
     def modify(self, blank = False, char = '', block = False):
         self.isBlank = blank
         self.char = char
         self.isBlock = block
 
-class Clue :
-    def __init__(self, clue, direction, answer, number, tile):
-        self.Clue = clue # Real Clue
-        self.Direction = direction # Down or Across
-        self.Word = answer # Solution Word
-        self.Number = number # Number of the clue
-        self.Tile = tile.value() # Position of the beginning of the answer in the grid
-        self.Solved = False
 
-
-a = "across"
-d = "down"
-
-
-class Grid:  # Représentation des Grilles en python par des classes.
+class Grid:  # Representation of a grid
     def __init__(self, p, q, aclues, dclues):
-        self.Size = (p, q)  # Dimensions of the grid
+        self.Size = (p, q)  # Dimensions of the grid, usually p = q
         self.Grid = [[Tile(i, j) for j in range(p)] for i in range(q)]  # Initialises as empty
-        self.AClues = aclues  # List of the across clues
-        self.Dclues = dclues  # List of the down clues
-        self.Solved = False
+        self.AClues = aclues  # List of tuples of the across clues and the tile they start from. First one is the clue.
+        self.Dclues = dclues  # List of the down clues and the tile they start from
+        for clue in self.AClues:
+            (i, j) = clue[1]
+            self.Grid[i][j].AClue = clue[0]
 
-    def try_word(self, word, i, j, dir): # Tries to put a word in the grid, starting in [i, j] and going dir.
-        if dir == "across": # We assume the grid is solvable
-            A = self.Grid[i][j].AClue
-            if A.Word == word :
-                A.Solved = True
-                for c in range(len(word)):
-                    self.Grid[i+c][j].modify(char = word[c])
-
-        if dir == "down":
-            D = self.Grid[i][j].DClue
-            if D.Word == word :
-                D.Solved = True
-                for c in range(len(word)) :
-                    self.Grid[i][j+c].modify(char = word[c])
-
-        self.Solved = True
-
-        for clue in self.AClues :
-            self.Solved = self.Solved and clue.Solved
-        for clue in self.Dclues :
-            self.Solved = self.Solved and clue.Solved
-
+        for clue in self.DClues:
+            (i, j) = clue[1]
+            self.Grid[i][j].DClue = clue[0]
 
     def copy(self):
         p, q = self.Size
         aclues = self.AClues
         dclues = self.Dclues
-
 
         return Grid.__init__(self, p, q, aclues, dclues)
