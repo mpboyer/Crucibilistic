@@ -54,8 +54,14 @@ def a_tad_less_exactmatch(length: int, clue: str):
     sorted(candidates)
     d = {}
     for c in candidates :
-        if d[c[0]] == 0 :
-            d[c[0]] = c[1]
+        if c[0] not in d.keys() :
+            d[c[0]] = (c[1],1)
 
         else :
+            w, n = d[c[0]]
+            d[c[0]] = ((n*w + c[1])/(n+1), n+1)
+
+
+
+
 
