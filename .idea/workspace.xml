@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Updates to main.py and the CWDB. Visualisation.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Modifications to exact match using levenshtein distance">
       <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/exactmatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/exactmatch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/wordlistmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/wordlistmodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +177,21 @@
       <option name="project" value="LOCAL" />
       <updated>1669040769979</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Modifications to exact match">
+      <created>1669641520408</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1669641520408</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Modifications to exact match using levenshtein distance">
+      <created>1669641675495</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669641675495</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -201,6 +212,8 @@
     <MESSAGE value="Update to definitions of classes in main.py, change in the shape of the CWDB in main.py and small adjustments to exactmatch.py and wordlistmodule.py. bruteforcermodule.py needs to be revamped." />
     <MESSAGE value="Updates to dico.py. Deletion of cwdb.py to be recreated in main.py. Addition of the weighing function to exactmatch.py. Fixed wordlistmodule.py." />
     <MESSAGE value="Updates to main.py and the CWDB. Visualisation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updates to main.py and the CWDB. Visualisation." />
+    <MESSAGE value="Modifications to exact match" />
+    <MESSAGE value="Modifications to exact match using levenshtein distance" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modifications to exact match using levenshtein distance" />
   </component>
 </project>
