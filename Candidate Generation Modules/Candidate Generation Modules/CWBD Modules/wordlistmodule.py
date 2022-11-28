@@ -28,4 +28,4 @@ def wordlist_module(length):
     return results
 
 
-print(wordlist_module(3))
+print(wordlist_module(3)[:50])

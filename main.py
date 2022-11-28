@@ -27,8 +27,7 @@ def ramette(c):
 CWDB.sort(key = ramette)
 
 
-CWDB_ =  [(CWDB[i].Clue, CWDB[i].Word) for i in range(len(CWDB))]
-print(CWDB_)
+CWDB_ = [(CWDB[i].Clue, CWDB[i].Word) for i in range(len(CWDB))]
 
 
 
