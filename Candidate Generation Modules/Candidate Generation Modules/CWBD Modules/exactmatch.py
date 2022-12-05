@@ -5,7 +5,6 @@ from collections import Counter
 
 
 def exactmatch(length, clue):
-    """Given"""
     candidates = []
     for c in main.CWDB:
         if c.Clue == clue:

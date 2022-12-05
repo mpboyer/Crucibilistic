@@ -1,34 +1,50 @@
+import re
+
+
 class Clue:  # Representation of a clue
     def __init__(self, clue, answer):
         self.Clue = clue  # Real Clue
         self.Word = answer  # Solution Word
 
 
-CWDB = []
-with open(r'C:\Users\mb692\PycharmProjects\Crucibilistic\cwdb.txt', encoding = "utf-8") as f:
-    lines = f.readlines()
-
-clues = []
-
-for line in lines:
-    l = line.split("\t")
-    clues.append((l[2], l[3]))
-
-
-for clue in clues:
-    if not "crosswordgiant" in clue[0] and not "crosswordgiant" in clue[1]:
-        CWDB.append(Clue(clue[0], clue[1]))
-
-
 def ramette(c):
     return len(c.Word), c.Word
 
 
+# Generation of a list of all clues with their answers in CWDB
+CWDB = []
+with open(r'C:\Users\mb692\PycharmProjects\Crucibilistic\cwdb.txt', encoding = "utf-8") as f:
+    lines = f.readlines()
+clues = []
+for line in lines:
+    l = line.split("\t")
+    clues.append((l[2], l[3]))
+for clue in clues:
+    if not "crosswordgiant" in clue[0] and not "crosswordgiant" in clue[1]:
+        CWDB.append(Clue(clue[0], clue[1]))
 CWDB.sort(key = ramette)
-
-
 CWDB_ = [(CWDB[i].Clue, CWDB[i].Word) for i in range(len(CWDB))]
 
+
+# Generation of a list of all words in the dictionary and/or CWBD clues and answers
+with open(r'C:\Users\mb692\PycharmProjects\Crucibilistic\dictionnaire.txt', encoding = "utf-8") as f :
+    lines_1 = f.readlines()
+
+words = {}
+
+for word in lines_1:
+    word = re.sub(r"\n", '', word)
+    words[word] = 1
+
+with open(r'C:\Users\mb692\PycharmProjects\Crucibilistic\cwdb.txt', encoding = "utf-8") as f :
+    lines_2 = f.readlines()
+
+for line in lines_2:
+    li = line.split("\t")
+    words[li[3]] = 1
+    li2 = li[2].split(" ")
+    for w in li2:
+        words[w] = 1
 
 
 a = "across"

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Modifications to exact match using levenshtein distance">
-      <change afterPath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/atadlessexactmatch.py" afterDir="false" />
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Changed the file for a_tad_less_exactmatch to a separate one. Levenshtein distance is not realistically calculable.">
+      <change afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/exactmatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/exactmatch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dico.py" beforeDir="false" afterPath="$PROJECT_DIR$/dico.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +50,7 @@
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.atadlessexactmatch">
+  <component name="RunManager" selected="Python.partialmatchmodule">
     <configuration name="atadlessexactmatch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -62,27 +64,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/atadlessexactmatch.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="dico" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Crucibilistic" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dico.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -133,6 +114,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="partialmatchmodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Crucibilistic" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Candidate Generation Modules/IR Modules" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="wordlistmodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -156,11 +158,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.partialmatchmodule" />
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.atadlessexactmatch" />
         <item itemvalue="Python.exactmatch" />
         <item itemvalue="Python.wordlistmodule" />
-        <item itemvalue="Python.main" />
-        <item itemvalue="Python.dico" />
       </list>
     </recent_temporary>
   </component>
@@ -222,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669642042053</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Changed the file for a_tad_less_exactmatch to a separate one. Levenshtein distance is not realistically calculable.">
+      <created>1669644799536</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1669644799536</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -245,6 +254,7 @@
     <MESSAGE value="Updates to main.py and the CWDB. Visualisation." />
     <MESSAGE value="Modifications to exact match" />
     <MESSAGE value="Modifications to exact match using levenshtein distance" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modifications to exact match using levenshtein distance" />
+    <MESSAGE value="Changed the file for a_tad_less_exactmatch to a separate one. Levenshtein distance is not realistically calculable." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the file for a_tad_less_exactmatch to a separate one. Levenshtein distance is not realistically calculable." />
   </component>
 </project>
