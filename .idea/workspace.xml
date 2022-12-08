@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Changed the file for a_tad_less_exactmatch to a separate one. Levenshtein distance is not realistically calculable.">
-      <change afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/exactmatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/exactmatch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dico.py" beforeDir="false" afterPath="$PROJECT_DIR$/dico.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="A few modifications in main and exactmatch.py, addition of new partialmatchmodule.py" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -231,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669644799536</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="A few modifications in main and exactmatch.py, addition of new partialmatchmodule.py">
+      <created>1670250353284</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1670250353284</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -255,6 +256,7 @@
     <MESSAGE value="Modifications to exact match" />
     <MESSAGE value="Modifications to exact match using levenshtein distance" />
     <MESSAGE value="Changed the file for a_tad_less_exactmatch to a separate one. Levenshtein distance is not realistically calculable." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed the file for a_tad_less_exactmatch to a separate one. Levenshtein distance is not realistically calculable." />
+    <MESSAGE value="A few modifications in main and exactmatch.py, addition of new partialmatchmodule.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="A few modifications in main and exactmatch.py, addition of new partialmatchmodule.py" />
   </component>
 </project>
