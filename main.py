@@ -23,7 +23,7 @@ for clue in clues:
     if not "crosswordgiant" in clue[0] and not "crosswordgiant" in clue[1]:
         CWDB.append(Clue(clue[0], clue[1]))
 CWDB.sort(key = ramette)
-CWDB_ = [(CWDB[i].Clue, CWDB[i].Word) for i in range(len(CWDB))]
+# CWDB_ = [(CWDB[i].Clue, CWDB[i].Word) for i in range(len(CWDB))]  # For presentation purpose
 
 
 # Generation of a list of all words in the dictionary and/or CWBD clues and answers

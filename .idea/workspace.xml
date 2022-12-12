@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="A few modifications in main and exactmatch.py, addition of new partialmatchmodule.py">
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Modifications to partialmatchmodule.py so it doesn't divide by 0 anymore. Still doesn't give pretty results tho. Need to modify line 66's weighing function.">
+      <change afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstracwdb.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstramainmodule.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProVerb_The_Probabilistic_Cruciverbist.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Solving_Crosswords_Puzzles_As_Probabilistic_Constraint_Satisfaction.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,13 +46,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.partialmatchmodule">
+  <component name="RunManager" selected="Python.dijkstracwdb">
     <configuration name="atadlessexactmatch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -69,7 +75,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="exactmatch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="dijkstracwdb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -77,11 +83,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Candidate Generation Modules/IR Modules" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/exactmatch.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstracwdb.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -132,7 +138,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="wordlistmodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="scratch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -140,11 +146,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/wordlistmodule.py" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -155,11 +161,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.dijkstracwdb" />
         <item itemvalue="Python.partialmatchmodule" />
+        <item itemvalue="Python.scratch" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.atadlessexactmatch" />
-        <item itemvalue="Python.exactmatch" />
-        <item itemvalue="Python.wordlistmodule" />
       </list>
     </recent_temporary>
   </component>
@@ -242,7 +248,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670482991854</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Modifications to partialmatchmodule.py so it doesn't divide by 0 anymore. Still doesn't give pretty results tho. Need to modify line 66's weighing function.">
+      <created>1670484620492</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1670484620492</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -267,6 +280,7 @@
     <MESSAGE value="Modifications to exact match using levenshtein distance" />
     <MESSAGE value="Changed the file for a_tad_less_exactmatch to a separate one. Levenshtein distance is not realistically calculable." />
     <MESSAGE value="A few modifications in main and exactmatch.py, addition of new partialmatchmodule.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="A few modifications in main and exactmatch.py, addition of new partialmatchmodule.py" />
+    <MESSAGE value="Modifications to partialmatchmodule.py so it doesn't divide by 0 anymore. Still doesn't give pretty results tho. Need to modify line 66's weighing function." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modifications to partialmatchmodule.py so it doesn't divide by 0 anymore. Still doesn't give pretty results tho. Need to modify line 66's weighing function." />
   </component>
 </project>
