@@ -1,3 +1,5 @@
+from typing import List, Tuple, Union, Any
+
 import numpy as np
 
 import main
@@ -5,12 +7,18 @@ from collections import Counter
 
 
 def exactmatch(length, clue):
+    """
+    :param int length: length of the wanted word
+    :param Clue clue: actual clue we want to solve
+    :return: weighted list of words that have clue for their clue in the CWDB
+    :rtype: tuple(Clue, float) list
+    """
     candidates = []
     for c in main.CWDB:
         if c.Clue == clue:
             candidates.append(c.Word)
 
-    results = []
+    results: list[tuple[str, Union[float, Any]]] = []
     co = 0
     for c in candidates:
         co += len(c) == length

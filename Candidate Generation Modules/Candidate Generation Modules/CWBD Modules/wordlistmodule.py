@@ -2,9 +2,13 @@ import main
 import dico
 
 
-def wordlist_module(length):
-    """Given the length of a word, returns all possible words in the database of adequate length, without caring
-    about the clues """
+def wordlist_module(length: int) -> list[tuple[str, float]]:
+    """
+    :param length: length of the word we solve for
+    :type length: int
+    :return: uniformly weighted list of all the words in the databases of the right length
+    :rtype: list[str, float]
+    """
     candidates = []
 
     for c in main.CWDB:  # Adds candidates based on the cwdb
@@ -28,4 +32,4 @@ def wordlist_module(length):
     return results
 
 
-print(wordlist_module(3)[:50])
+# print(wordlist_module(3)[:50])
