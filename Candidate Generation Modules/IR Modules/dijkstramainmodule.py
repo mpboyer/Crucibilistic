@@ -3,6 +3,12 @@ import numpy as np
 
 
 def words(db):
+    """
+    :param db: Database containing documents
+    :type db: list[str]
+    :return: Dictionary containing the number of occurences of a word and the documents it appears in.
+    :rtype: dict[tuple[int, list[list[str]]]
+    """
     w = {}
     for i in db:
         c = i.split(" ")
@@ -14,11 +20,17 @@ def words(db):
                 w[j_][1].append(c)
             else:
                 w[j_] = [1, [c]]
-    print(w)
     return w
 
 
 def graph_creator(db):
+    """
+    :param db: Database containing all documents
+    :type db: list[str]
+    :return: Graph represented by an adjacency graph
+    with all the words in db as vertices and weighted edges based on the inverse term frequency distribution
+    :rtype: dict[str, dict[str, float]]
+    """
     n_db = len(db)
     w = words(db)
     n_w = len(w)

@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Added many things that work given one or two millenia">
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Added documentation to most of the useful functions as well as a few complexity improvements on atadlessexactmatch.py and dijkstramainmodule.py. Still doesn't run in a capable time.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/atadlessexactmatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/atadlessexactmatch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/exactmatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/exactmatch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/wordlistmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/wordlistmodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstramainmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstramainmodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +257,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670855216868</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added documentation to most of the useful functions as well as a few complexity improvements on atadlessexactmatch.py and dijkstramainmodule.py. Still doesn't run in a capable time.">
+      <created>1671119214096</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1671119214096</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -289,6 +291,7 @@
     <MESSAGE value="A few modifications in main and exactmatch.py, addition of new partialmatchmodule.py" />
     <MESSAGE value="Modifications to partialmatchmodule.py so it doesn't divide by 0 anymore. Still doesn't give pretty results tho. Need to modify line 66's weighing function." />
     <MESSAGE value="Added many things that work given one or two millenia" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added many things that work given one or two millenia" />
+    <MESSAGE value="Added documentation to most of the useful functions as well as a few complexity improvements on atadlessexactmatch.py and dijkstramainmodule.py. Still doesn't run in a capable time." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added documentation to most of the useful functions as well as a few complexity improvements on atadlessexactmatch.py and dijkstramainmodule.py. Still doesn't run in a capable time." />
   </component>
 </project>
