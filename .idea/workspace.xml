@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Added documentation to most of the useful functions as well as a few complexity improvements on atadlessexactmatch.py and dijkstramainmodule.py. Still doesn't run in a capable time.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstracwdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstracwdb.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstramainmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstramainmodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +42,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last.edited.regexp" value="Sample Text\n" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
@@ -112,7 +115,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="partialmatchmodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -120,11 +123,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Candidate Generation Modules/IR Modules" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -158,9 +161,9 @@
       <list>
         <item itemvalue="Python.dijkstracwdb" />
         <item itemvalue="Python.dijkstramainmodule" />
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.atadlessexactmatch" />
         <item itemvalue="Python.wordlistmodule" />
-        <item itemvalue="Python.partialmatchmodule" />
       </list>
     </recent_temporary>
   </component>
@@ -264,7 +267,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671119214096</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added documentation to most of the useful functions as well as a few complexity improvements on atadlessexactmatch.py and dijkstramainmodule.py. Still doesn't run in a capable time.">
+      <created>1673110707855</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1673110707855</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

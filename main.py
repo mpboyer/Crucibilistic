@@ -1,5 +1,5 @@
 import re
-from typing import List, Dict, Tuple
+import random
 
 
 class Clue:  # Representation of a clue
@@ -14,7 +14,8 @@ def ramette(c: Clue) -> tuple[int, str]:
 
 def list_creator():
     """
-    :return: lists containing all the clues in the CWDB and all the words in the CWDB and a dictionary
+    :return: lists containing all the clues in the CWDB and all the words in the CWDB and a dictionary as well as a
+    list of 10 test clues
     :rtype: tuple[list[Clue], dict[str, int]]
     """
     # Generation of a list of all clues with their answers in CWDB
@@ -54,10 +55,15 @@ def list_creator():
         for w in li2:
             allwords[w] = allwords.get(w, 0) + 1
 
-    return database, allwords
+    test_set: list[Clue] = []
+    for i in range(10):
+        n = len(database)
+        test_set.append(database.pop(random.randint(0, n-1)))
+
+    return database, allwords, test_set
 
 
-CWDB, words = list_creator()
+CWDB, words, test_clues = list_creator()
 
 a = "across"
 d = "down"
