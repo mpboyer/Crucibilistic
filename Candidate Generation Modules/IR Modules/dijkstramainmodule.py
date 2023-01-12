@@ -209,10 +209,10 @@ def dijkstra_gen(db : list[str], c : str):
     for i in terms :
         nearest_neighbors[i] = dijkstra(DB, i)
 
-    res = []
+    distances = {}
+    for w in DB.get_vertices():
+        distances[w] = sum([nearest_neighbors[i][w.key] for i in terms])
 
+    res = sorted(distances.items(), key = lambda k : k[1])
     return res
-
-
-
 
