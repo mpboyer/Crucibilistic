@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Added documentation to most of the useful functions as well as a few complexity improvements on atadlessexactmatch.py and dijkstramainmodule.py. Still doesn't run in a capable time.">
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Fixed the implementation for graph_creator in dijkstramainmodule.py, working on the actual dijkstra.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstracwdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstracwdb.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstramainmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstramainmodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +49,7 @@
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.dijkstracwdb">
+  <component name="RunManager" selected="Python.dijkstramainmodule">
     <configuration name="atadlessexactmatch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -159,8 +157,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.dijkstracwdb" />
         <item itemvalue="Python.dijkstramainmodule" />
+        <item itemvalue="Python.dijkstracwdb" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.atadlessexactmatch" />
         <item itemvalue="Python.wordlistmodule" />
@@ -274,7 +272,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673110707855</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fixed the implementation for graph_creator in dijkstramainmodule.py, working on the actual dijkstra.">
+      <created>1673287259380</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1673287259380</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -302,6 +307,7 @@
     <MESSAGE value="Modifications to partialmatchmodule.py so it doesn't divide by 0 anymore. Still doesn't give pretty results tho. Need to modify line 66's weighing function." />
     <MESSAGE value="Added many things that work given one or two millenia" />
     <MESSAGE value="Added documentation to most of the useful functions as well as a few complexity improvements on atadlessexactmatch.py and dijkstramainmodule.py. Still doesn't run in a capable time." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added documentation to most of the useful functions as well as a few complexity improvements on atadlessexactmatch.py and dijkstramainmodule.py. Still doesn't run in a capable time." />
+    <MESSAGE value="Fixed the implementation for graph_creator in dijkstramainmodule.py, working on the actual dijkstra." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the implementation for graph_creator in dijkstramainmodule.py, working on the actual dijkstra." />
   </component>
 </project>

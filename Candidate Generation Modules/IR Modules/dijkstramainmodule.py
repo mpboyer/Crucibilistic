@@ -1,5 +1,6 @@
 import re
 import numpy as np
+from collections import deque
 
 
 class Vertex :
@@ -24,6 +25,9 @@ class Vertex :
 
     def get_connections(self) :
         return self.neighbors.keys()
+
+    def degree(self):
+        return len(self.neighbors.keys())
 
     def get_weight(self, neighbor) :
         """
@@ -91,6 +95,7 @@ class Graph :
             for v in u.get_connections() :
                 print("{} -> {} : {}".format(u.key, v.key, self.get_edge(u.key, v.key)))
 
+
 """
 G = Graph()
 G.un_add_edge(0, 1, 2.3)
@@ -122,43 +127,14 @@ def words(db) :
     return w
 
 
-def graph_creator1(db) :
+def graph_creator(db: list[str]) :
     """
     :param db: Database containing all documents
     :type db: list[str]
-    :return: Graph represented by an adjacency dict
-    with all the words in db as vertices and weighted edges based on the inverse term frequency distribution
-    :rtype: Graph
-    """
-    n_db = len(db)
-    w = words(db)
-    n_w = len(w)
-    graph = Graph.__init__()
-    i = n_w
-    for t in w :  # Checks all words t in the db
-        graph.add_vertex(Vertex(t))
-        d_t = w[t][0]
-        for j in w[t][1] :  # For each document containing the word t
-            for u in j :  # Checks all words u in those documents
-                u = u.lower()
-                if graph :
-                    if u in graph and t in graph[u] :
-                        graph[u][t] - np.log(d_t / w[u][0])
-                    else :
-                        d_ut = 0
-                        for j_ in w[u][1] :
-                            if j_ in w[t][1] :  # Computes all the documents containing both u and t
-                                d_ut += 1
-                        # Adds an edge with weight -log(#docs containing u and t/#docs containing t) to the graph
-                        graph[t][u] = -np.log(d_ut / d_t)
-        i -= 1
-        print(i)
-    return graph, n_db, n_w
-
-
-def graph_creator(db: list[str]) :
-    """
-    :type db: list[str]
+    :return: Graph represented by an adjacency dict (type Graph)
+    with all the words in db as vertices and weighted edges based on the inverse term frequency distribution as well
+    as a graph linking all documents d in the db to all the words w with weight |number of occurences of w in d|
+    :rtype: Graph, Graph
     """
     Omega = Graph()
     # Creation of a not oriented graph linking a document d in db to all the words w in it with
@@ -195,13 +171,48 @@ def graph_creator(db: list[str]) :
             Final.or_add_edge(u1, t1, w_u_t)
     # |documents containing u| is the degree of u in Omega, which is not oriented
     # |documents containing t and u| is the weight of (t,u) in Words, which is not oriented
-    return Final
+    return Omega, Final
 
-# En théorie ça fonctionne, après j'ai pas de preuves, et je sais pas combien de temps ça va prendre...
-# CA MARCHE BORDEL. EN GENRE 1 ou 2 MINUTES
+# Shit it works
 
 
-def dijkstra(G : Graph):
-    return
+def dijkstra(G : Graph, v):
+    if G.get_vertex(v) is None :
+        return "v is not in G"
+
+    queue = deque([v])
+    distance = {v : 0}
+    while queue :
+        t = queue.popleft()
+        for n in G.get_vertex(t).neighbors:
+            queue.append(n.key)
+            n_dist = distance[t] + G.get_edge(t, n.key)
+            if n not in distance or n_dist < distance[n]:
+                distance[n] = n_dist
+    return sorted(distance.items(), key = lambda k : k[1])
+
+
+def weight(db : list[str], c : str, w : str):
+    Omega, DB = graph_creator(db)
+    terms = c.split(" ")
+    r = 0
+    for i in terms :
+        distance = dijkstra(DB, i)
+        r += -np.log(Omega.get_vertex(i).degree) - distance[w]
+    return r
+
+
+def dijkstra_gen(db : list[str], c : str):
+    Omega, DB = graph_creator(db)
+    terms = c.split(" ")
+    nearest_neighbors = {}
+    for i in terms :
+        nearest_neighbors[i] = dijkstra(DB, i)
+
+    res = []
+
+    return res
+
+
 
 
