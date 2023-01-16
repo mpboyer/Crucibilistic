@@ -1,6 +1,6 @@
 import re
 import numpy as np
-from collections import deque
+import heapq
 
 
 class Vertex :
@@ -55,8 +55,8 @@ class Graph :
             return
         self.vertices[vertex.key] = vertex
 
-    def get_vertex(self, vertex) :
-        return self.vertices.get(vertex.key, None)
+    def get_vertex(self, key) :
+        return self.vertices.get(key, None)
 
     def __contains__(self, key) :
         return key in self.vertices
@@ -96,16 +96,6 @@ class Graph :
                 print("{} -> {} : {}".format(u.key, v.key, self.get_edge(u.key, v.key)))
 
 
-"""
-G = Graph()
-G.un_add_edge(0, 1, 2.3)
-G.un_add_edge(0, 2, 1.75)
-G.un_add_edge(1, 2, 2.9)
-G.or_add_edge(0, 3, 2.2)
-G.or_add_edge(3, 1, 2.6)
-G.__str__()"""
-
-
 def words(db) :
     """
     :param db: Database containing documents
@@ -142,6 +132,7 @@ def graph_creator(db: list[str]) :
     Words = Graph()
     # Creation of a not oriented graph linking two words u and v with weight |documents containing both u and v|
     for i in db :
+        i = i.lower()
         Omega.add_vertex(Vertex(i))
         w_i = i.split(" ")
         w_i[-1] = re.sub(r"\n", "", w_i[-1])
@@ -159,37 +150,49 @@ def graph_creator(db: list[str]) :
                         Words.un_add_edge(w, j, 1)
                     else:
                         Words.un_modify_edge(w, j, x_w_j + 1)
+    # Words.__str__()
     Final = Graph()
     # Creation of an oriented graph creating the edge (u,v)
     # with weight log(|documents containing u|)-log(|documents in d containing u and v|)
     for u in Words.get_vertices():
         for t in u.neighbors:
             u1, t1 = u.key, t.key
-            d_t_u = Words.get_edge(u1, t1)
-            d_u = len(Omega.get_vertex(u).get_connections())
+            d_t_u = Words.get_edge(u1, t1)/2
+            d_u = len(Omega.get_vertex(u.key).get_connections())
             w_u_t = -np.log(d_t_u / d_u)
             Final.or_add_edge(u1, t1, w_u_t)
     # |documents containing u| is the degree of u in Omega, which is not oriented
     # |documents containing t and u| is the weight of (t,u) in Words, which is not oriented
-    return Omega, Final
 
-# Shit it works
+    """Clues = Graph()
+    for u in db:
+        u = u.lower()
+        Clues.add_vertex(Vertex(u))
+        w_u = u.split(" ")[:-1]
+               """
+    return Omega, Final
 
 
 def dijkstra(G : Graph, v):
     if G.get_vertex(v) is None :
         return "v is not in G"
 
-    queue = deque([v])
-    distance = {v : 0}
-    while queue :
-        t = queue.popleft()
-        for n in G.get_vertex(t).neighbors:
-            queue.append(n.key)
-            n_dist = distance[t] + G.get_edge(t, n.key)
-            if n not in distance or n_dist < distance[n]:
-                distance[n] = n_dist
-    return sorted(distance.items(), key = lambda k : k[1])
+    prio_queue = []
+    distance = {}
+    for i in G.vertices.keys():
+        distance[i] = float("inf")
+
+    heapq.heappush(prio_queue, (0, v))
+
+    while prio_queue :
+        d, t = heapq.heappop(prio_queue)
+        if distance[t] == float("inf"):
+            distance[t] = d
+            for n in G.get_vertex(t).neighbors :
+                k = n.key
+                heapq.heappush(prio_queue, (d + G.get_edge(t, k), k))
+
+    return distance
 
 
 def weight(db : list[str], c : str, w : str):
@@ -207,12 +210,38 @@ def dijkstra_gen(db : list[str], c : str):
     terms = c.split(" ")
     nearest_neighbors = {}
     for i in terms :
+        i = i.lower()
         nearest_neighbors[i] = dijkstra(DB, i)
 
     distances = {}
     for w in DB.get_vertices():
-        distances[w] = sum([nearest_neighbors[i][w.key] for i in terms])
+        d = 0
+        for i in terms :
+            i = i.lower()
+            d += nearest_neighbors[i][w.key]
+        distances[w.key] = d
 
-    res = sorted(distances.items(), key = lambda k : k[1])
+    res = sorted([(u, distances[u]) for u in distances.keys() if distances[u] != float("inf")], key = lambda t : t[1])
     return res
+
+
+Go = Graph()
+Go.un_add_edge(0, 1, 2.3)
+Go.un_add_edge(0, 2, 1.75)
+Go.un_add_edge(1, 2, 2.9)
+Go.or_add_edge(0, 3, 2.2)
+Go.or_add_edge(3, 1, 2.6)
+
+
+# print(dijkstra(Go, 0))
+
+# base = ["La logique", "Logique", "La France", "France Logique", "France", "La logique France", "France la"]
+# u, v = graph_creator(base)
+# u.__str__()
+# v.__str__()
+# print(dijkstra_gen(base, "La logique"))
+
+# TODO : Change the way distances between documents are calculated so that two similar documents produce the same
+#  list of candidates ? Calculate the distance between two documents answers included and calculate the distance
+#  between the clue without answer and the rest ? Calculate the distance between two clues ?
 

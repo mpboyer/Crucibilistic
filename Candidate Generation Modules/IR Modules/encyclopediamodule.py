@@ -9,7 +9,6 @@ from bs4 import BeautifulSoup
 
 def encyclopedia_disco(query : str):
     Given a query, computes a distribution of close words on the Wikipedia page of the query.
-
     page = requests.get(r"https://en.wikipedia.org/wiki/" + query)
     soup = BeautifulSoup(page.content, "html.parser")
 

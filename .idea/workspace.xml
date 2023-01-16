@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Fixed the implementation for graph_creator in dijkstramainmodule.py, working on the actual dijkstra." />
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Finished all of dijkstramainmodule.py. Graph generator, weighing function for a clue and a word, and candidate generator.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstracwdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstracwdb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstramainmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstramainmodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/encyclopediamodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/encyclopediamodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,8 +51,11 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\Candidate Generation Modules\IR Modules" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.dijkstramainmodule">
+  <component name="RunManager" selected="Python.dijkstracwdb">
     <configuration name="atadlessexactmatch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -131,7 +140,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="wordlistmodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="scratch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -139,11 +148,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/wordlistmodule.py" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -154,11 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.dijkstramainmodule" />
         <item itemvalue="Python.dijkstracwdb" />
+        <item itemvalue="Python.dijkstramainmodule" />
+        <item itemvalue="Python.scratch" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.atadlessexactmatch" />
-        <item itemvalue="Python.wordlistmodule" />
       </list>
     </recent_temporary>
   </component>
@@ -283,7 +292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673508797106</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Finished all of dijkstramainmodule.py. Graph generator, weighing function for a clue and a word, and candidate generator.">
+      <created>1673510011162</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1673510011162</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -312,6 +328,7 @@
     <MESSAGE value="Added many things that work given one or two millenia" />
     <MESSAGE value="Added documentation to most of the useful functions as well as a few complexity improvements on atadlessexactmatch.py and dijkstramainmodule.py. Still doesn't run in a capable time." />
     <MESSAGE value="Fixed the implementation for graph_creator in dijkstramainmodule.py, working on the actual dijkstra." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the implementation for graph_creator in dijkstramainmodule.py, working on the actual dijkstra." />
+    <MESSAGE value="Finished all of dijkstramainmodule.py. Graph generator, weighing function for a clue and a word, and candidate generator." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished all of dijkstramainmodule.py. Graph generator, weighing function for a clue and a word, and candidate generator." />
   </component>
 </project>
