@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Finished all of dijkstramainmodule.py. Graph generator, weighing function for a clue and a word, and candidate generator.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstracwdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstracwdb.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstramainmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstramainmodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/encyclopediamodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/encyclopediamodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" afterDir="false" />
-    </list>
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Added an article to the repo." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
