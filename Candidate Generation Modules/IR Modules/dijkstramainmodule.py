@@ -241,7 +241,9 @@ Go.or_add_edge(3, 1, 2.6)
 # v.__str__()
 # print(dijkstra_gen(base, "La logique"))
 
-# TODO : Change the way distances between documents are calculated so that two similar documents produce the same
-#  list of candidates ? Calculate the distance between two documents answers included and calculate the distance
-#  between the clue without answer and the rest ? Calculate the distance between two clues ?
+# Change the way distances between documents are calculated so that two similar documents produce the same
+# list of candidates ? Calculate the distance between two documents answers included and calculate the distance
+# between the clue without answer and the rest ? Calculate the distance between two clues ?
+
+# Nothing worrying tho, results to be expected according to Keim, Littman, Shazeer
 
