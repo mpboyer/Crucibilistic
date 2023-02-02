@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Re-addition of everything that was modified.">
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Modifications on partialmatchmodule.py and dijkstramainmodule.py to reflect on the few changes in the approach. Added specificdbmodule.py as an empty file, no progress made there.">
+      <change afterPath="$PROJECT_DIR$/cwdb.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstracwdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstracwdb.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstramainmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstramainmodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/specificdbmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/specificdbmodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,28 +55,7 @@
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\Candidate Generation Modules\IR Modules" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.dijkstracwdb">
-    <configuration name="atadlessexactmatch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Crucibilistic" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/atadlessexactmatch.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.partialmatchmodule">
     <configuration name="dijkstracwdb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -140,6 +119,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="partialmatchmodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Crucibilistic" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Candidate Generation Modules/IR Modules" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="scratch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -163,11 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.partialmatchmodule" />
         <item itemvalue="Python.dijkstracwdb" />
         <item itemvalue="Python.dijkstramainmodule" />
         <item itemvalue="Python.scratch" />
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.atadlessexactmatch" />
       </list>
     </recent_temporary>
   </component>
@@ -306,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674480406070</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Modifications on partialmatchmodule.py and dijkstramainmodule.py to reflect on the few changes in the approach. Added specificdbmodule.py as an empty file, no progress made there.">
+      <created>1674484000577</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1674484000577</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -337,6 +344,7 @@
     <MESSAGE value="Fixed the implementation for graph_creator in dijkstramainmodule.py, working on the actual dijkstra." />
     <MESSAGE value="Finished all of dijkstramainmodule.py. Graph generator, weighing function for a clue and a word, and candidate generator." />
     <MESSAGE value="Re-addition of everything that was modified." />
-    <option name="LAST_COMMIT_MESSAGE" value="Re-addition of everything that was modified." />
+    <MESSAGE value="Modifications on partialmatchmodule.py and dijkstramainmodule.py to reflect on the few changes in the approach. Added specificdbmodule.py as an empty file, no progress made there." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modifications on partialmatchmodule.py and dijkstramainmodule.py to reflect on the few changes in the approach. Added specificdbmodule.py as an empty file, no progress made there." />
   </component>
 </project>

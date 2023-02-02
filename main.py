@@ -12,7 +12,7 @@ def ramette(c: Clue) -> tuple[int, str]:
     return len(c.Word), c.Word
 
 
-def list_creator():
+def list_creator_obsolete():
     """
     :return: lists containing all the clues in the CWDB and all the words in the CWDB and a dictionary as well as a
     list of 10 test clues
@@ -63,7 +63,40 @@ def list_creator():
     return database, allwords, test_set
 
 
-CWDB, words, test_clues = list_creator()
+# CWDB, words, test_clues = list_creator_obsolete()
+
+
+def main():
+    with open(r'C:\Users\mb692\PycharmProjects\Crucibilistic\cwdb.txt', encoding = "utf-8") as f :
+        CWDB_raw = f.readlines()
+
+    words = {}
+    CWDB_dict = {}
+    CWDB_clue_list = []
+    for line in CWDB_raw:
+        line_ = line.split("\t")
+        CWDB_dict[line_[2]] = line_[3]
+        CWDB_clue_list.append(Clue(line_[2], line_[3]))
+        for word in line_[2].split(" "):
+            words[word] = words.get(word, 0) + 1
+        words[line_[3]] = words.get(line_[3], 0) + 1
+
+    with open(r'C:\Users\mb692\PycharmProjects\Crucibilistic\dictionnaire.txt', encoding = "utf-8") as f:
+        dictionary_raw = f.readlines()
+
+    for word in dictionary_raw :
+        word = re.sub(r"\n", '', word)
+        words[word] = words.get(word, 0) + 1
+
+    test_set: list[Clue] = []
+    for i in range(10) :
+        n = len(CWDB_clue_list)
+        test_set.append(CWDB_clue_list.pop(random.randint(0, n - 1)))
+
+    return CWDB_dict, CWDB_clue_list, words, test_set
+
+
+clue_table, CWDB, words, test_clues = main()
 
 a = "across"
 d = "down"
@@ -127,7 +160,7 @@ class Grid:  # Representation of a grid
 
     def copy(self):
         p, q = self.Size
-        aclues = self.AClues
-        dclues = self.DClues
+        aclues = [c for c in self.AClues]
+        dclues = [c for c in self.DClues]
 
         return Grid.__init__(self, p, q, aclues, dclues)

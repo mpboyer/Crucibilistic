@@ -9,41 +9,41 @@ class Vertex :
         :type key: depends on your mood UwU
         """
         self.key = key
-        self.neighbors = {}
+        self.neighbours = {}
 
-    def or_add_neighbor(self, neighbor, weight = None):
-        self.neighbors[neighbor] = weight
+    def or_add_neighbour(self, neighbour, weight = None):
+        self.neighbours[neighbour] = weight
 
-    def un_add_neighbor(self, neighbor, weight = None) :
+    def un_add_neighbour(self, neighbour, weight = None) :
         """
-        :param neighbor: Another vertex that is connected to this one in the graph.
-        :type neighbor: Vertex
+        :param neighbour: Another vertex that is connected to this one in the graph.
+        :type neighbour: Vertex
         :type weight: Technically anything that can be compared
         """
-        self.or_add_neighbor(neighbor, weight)
-        neighbor.or_add_neighbor(self, weight)
+        self.or_add_neighbour(neighbour, weight)
+        neighbour.or_add_neighbour(self, weight)
 
     def get_connections(self) :
-        return self.neighbors.keys()
+        return self.neighbours.keys()
 
     def degree(self):
-        return len(self.neighbors.keys())
+        return len(self.neighbours.keys())
 
-    def get_weight(self, neighbor) :
+    def get_weight(self, neighbour) :
         """
-        :type neighbor: Vertex
+        :type neighbour: Vertex
         """
-        return self.neighbors.get(neighbor, None)
+        return self.neighbours.get(neighbour, None)
 
-    def or_modify_weight(self, neighbor, new_weight):
-        self.neighbors[neighbor] = new_weight
+    def or_modify_weight(self, neighbour, new_weight):
+        self.neighbours[neighbour] = new_weight
 
-    def un_modify_weight(self, neighbor, new_weight) :
-        self.neighbors[neighbor] = new_weight
-        neighbor.neighbors[self] = new_weight
+    def un_modify_weight(self, neighbour, new_weight) :
+        self.neighbours[neighbour] = new_weight
+        neighbour.neighbours[self] = new_weight
 
     def __str__(self) :
-        return '{} neighbors : {}'.format(self.key, [x.key for x in self.neighbors])
+        return '{} neighbours : {}'.format(self.key, [x.key for x in self.neighbours])
 
 
 class Graph :
@@ -66,14 +66,14 @@ class Graph :
             self.add_vertex(Vertex(from_key))
         if not self.__contains__(to_key) :
             self.add_vertex(Vertex(to_key))
-        self.vertices[from_key].or_add_neighbor(self.vertices[to_key], weight)
+        self.vertices[from_key].or_add_neighbour(self.vertices[to_key], weight)
 
     def un_add_edge(self, from_key, to_key, weight = None) :
         if not self.__contains__(from_key) :
             self.add_vertex(Vertex(from_key))
         if not self.__contains__(to_key) :
             self.add_vertex(Vertex(to_key))
-        self.vertices[from_key].un_add_neighbor(self.vertices[to_key], weight)
+        self.vertices[from_key].un_add_neighbour(self.vertices[to_key], weight)
 
     def get_edge(self, from_key, to_key) :
         return self.vertices.get(from_key, None).get_weight(self.vertices.get(to_key, None))
@@ -128,7 +128,7 @@ def graph_creator(db: list[str]) :
     """
     Omega = Graph()
     # Creation of a not oriented graph linking a document d in db to all the words w in it with
-    # weight |occurences of w in d|
+    # weight |{occurrences of w in d}|
     Words = Graph()
     # Creation of a not oriented graph linking two words u and v with weight |documents containing both u and v|
     for i in db :
@@ -155,7 +155,7 @@ def graph_creator(db: list[str]) :
     # Creation of an oriented graph creating the edge (u,v)
     # with weight log(|documents containing u|)-log(|documents in d containing u and v|)
     for u in Words.get_vertices():
-        for t in u.neighbors:
+        for t in u.neighbours:
             u1, t1 = u.key, t.key
             d_t_u = Words.get_edge(u1, t1)/2
             d_u = len(Omega.get_vertex(u.key).get_connections())
@@ -173,52 +173,52 @@ def graph_creator(db: list[str]) :
     return Omega, Final
 
 
-def dijkstra(G : Graph, v):
-    if G.get_vertex(v) is None :
-        return "v is not in G"
+def dijkstra(graph : Graph, vertex):
+    if graph.get_vertex(vertex) is None :
+        return f"{vertex} is not in G"
 
-    prio_queue = []
+    priority_queue = []
     distance = {}
-    for i in G.vertices.keys():
-        distance[i] = float("inf")
+    for v in graph.vertices.keys():
+        distance[v] = float("inf")
 
-    heapq.heappush(prio_queue, (0, v))
+    heapq.heappush(priority_queue, (0, vertex))
 
-    while prio_queue :
-        d, t = heapq.heappop(prio_queue)
-        if distance[t] == float("inf"):
-            distance[t] = d
-            for n in G.get_vertex(t).neighbors :
-                k = n.key
-                heapq.heappush(prio_queue, (d + G.get_edge(t, k), k))
+    while priority_queue :
+        dist, current_vertex = heapq.heappop(priority_queue)
+        if distance[current_vertex] == float("inf"):
+            distance[current_vertex] = dist
+            for neighbour in graph.get_vertex(current_vertex).neighbors :
+                next_vertex = neighbour.key
+                heapq.heappush(priority_queue, (dist + graph.get_edge(current_vertex, next_vertex), next_vertex))
 
     return distance
 
 
-def weight(db : list[str], c : str, w : str):
+def weight(db : list[str], clue : str, word : str):
     Omega, DB = graph_creator(db)
-    terms = c.split(" ")
+    terms = clue.split(" ")
     r = 0
     for i in terms :
         distance = dijkstra(DB, i)
-        r += -np.log(Omega.get_vertex(i).degree) - distance[w]
+        r += -np.log(Omega.get_vertex(i).degree) - distance[word]
     return r
 
 
-def dijkstra_gen(db : list[str], c : str):
-    Omega, DB = graph_creator(db)
-    terms = c.split(" ")
+def dijkstra_gen(database : list[str], clue : str):
+    Omega, DB = graph_creator(database)
+    clue_terms = clue.split(" ")
     nearest_neighbors = {}
-    for i in terms :
-        i = i.lower()
-        nearest_neighbors[i] = dijkstra(DB, i)
+    for term in clue_terms :
+        term = term.lower()
+        nearest_neighbors[term] = dijkstra(DB, term)
 
     distances = {}
     for w in DB.get_vertices():
         d = 0
-        for i in terms :
-            i = i.lower()
-            d += nearest_neighbors[i][w.key]
+        for term in clue_terms :
+            term = term.lower()
+            d += nearest_neighbors[term][w.key]
         distances[w.key] = d
 
     res = sorted([(u, distances[u]) for u in distances.keys() if distances[u] != float("inf")], key = lambda t : t[1])

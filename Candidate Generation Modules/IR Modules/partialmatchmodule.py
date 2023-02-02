@@ -1,9 +1,5 @@
-from typing import Union, Any
-
 import main
 import numpy as np
-
-db_size = len(main.CWDB)
 
 
 def freq(name: str) :
@@ -33,7 +29,7 @@ class Vector :
         self.coordinates = coords
         self.magnitude = magnitude(self.coordinates)
 
-    def dot__(self, v) :
+    def dot(self, v) :
         if self.coordinates == {} or v.coordinates == {} :
             return 0
         c1 = self.coordinates
@@ -65,6 +61,7 @@ class Vector_Space :
 
         def update_coordinates() :
             for vector in self.vectors :
+                vector = self.vectors[vector]
                 frequencies = vector.frequencies
                 coords = {}
                 for term in frequencies.keys() :
@@ -75,11 +72,14 @@ class Vector_Space :
 
     def add_vector(self, document):
         self.vectors[document] = (Vector(document))
-        vector = self.vectors[-1]
+        vector = self.vectors[document]
         coords = {}
         frequencies = vector.frequencies
         for term in frequencies.keys() :
-            coords[term] = frequencies[term] * np.log10(self.db_size / self.basis[term])
+            if term not in self.basis :
+                self.basis[term] = 1
+            doc_frequency = self.basis.get(term, 1)
+            coords[term] = frequencies[term] * np.log10(self.db_size / doc_frequency)
         vector.update(coords)
 
 
@@ -118,7 +118,10 @@ def initialize(db) :
     return VS
 
 
-def dot(co1: dict[str, float], co2: dict[str, float]) :
+db_size = len(main.CWDB)
+
+
+def dot1(co1: dict[str, float], co2: dict[str, float]) :
     """
     :param dict[str, float] co1: dictionary containing the coordinates in the vsb model of the first clue
     :param dict[str, float] co2: dictionary containing the coordinates in the vsb model of the second clue
@@ -137,38 +140,32 @@ def dot(co1: dict[str, float], co2: dict[str, float]) :
     return s / (n1 * n2)
 
 
-def partial_match(clue: str) :
+def partial_match(db : list[str], clue: str) :
     """
+    :param db: Database of all documents used to
+    :type db:
     :param str clue: Clue that is solved for
     :return: weighted list of words that could match the clue
     :rtype: list[tuple[str, int]]
     """
-    all_words, vs, size_dict = initialize()
-    coordinates_c: dict[str, Union[float, Any]] = {}
-    d_c = clue.split(" ")  # Separation of all words in the clue in elements in vsb
-    length_c = len(d_c)
-    tfd_c = {}
-    for w in d_c :  # Computing a dictionary of frequencies of words in the clue
-        if w not in tfd_c :
-            tfd_c[w] = 1
-        else :
-            tfd_c[w] += 1
-    for w in tfd_c :
-        # Creation of the dictionary containing the coordinates of the clue in vsb
-        # tf-idf weight distribution
-        coordinates_c[w] = tfd_c[w] / length_c * np.log(size_dict / (all_words[w] + tfd_c[w]))
+    VS = initialize(db)
+    VS.add_vector(clue)
 
-    results = []
-    for clue in main.CWDB :
-        k = dot(vs[clue.Clue], coordinates_c)  # Calculates the dot product between the clue and any clue in the CWBD
+    result_clues = []
+    for v in VS.vectors.keys() :
+        k = 0
+        if v != clue :
+            k = VS.vectors[v].dot(VS.vectors[clue])
+            # Calculates the dot product between the clue and any clue in the CWBD
         if k != 0 :
             # TODO : Change the interpolation function so it does a fair interpolation.
             power = 7
             weight = 1 - pow((1 - k), power)  # Interpolates the weight between the dot product and the inverse of the
             # number of all known words
-            results.append((clue.Word, weight))
-    results.sort(key = lambda t : t[1], reverse = True)
-    return results
+            result_clues.append((v, main.clue_table[v], weight))
+    result_clues.sort(key = lambda t : t[1], reverse = True)
+    return result_clues
 
 
-print(partial_match("Infamous Georgian"))
+CWDB = [c.Clue for c in main.CWDB]
+print(main.test_clues[0].Clue, main.test_clues[0].Word, partial_match(CWDB, main.test_clues[0].Clue)[:10])
