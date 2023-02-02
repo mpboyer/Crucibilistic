@@ -11,17 +11,17 @@ class Vertex :
         self.key = key
         self.neighbours = {}
 
-    def or_add_neighbour(self, neighbour, weight = None):
+    def oriented_add_neighbour(self, neighbour, weight = None):
         self.neighbours[neighbour] = weight
 
-    def un_add_neighbour(self, neighbour, weight = None) :
+    def unoriented_add_neighbour(self, neighbour, weight = None) :
         """
         :param neighbour: Another vertex that is connected to this one in the graph.
         :type neighbour: Vertex
         :type weight: Technically anything that can be compared
         """
-        self.or_add_neighbour(neighbour, weight)
-        neighbour.or_add_neighbour(self, weight)
+        self.oriented_add_neighbour(neighbour, weight)
+        neighbour.oriented_add_neighbour(self, weight)
 
     def get_connections(self) :
         return self.neighbours.keys()
@@ -35,10 +35,10 @@ class Vertex :
         """
         return self.neighbours.get(neighbour, None)
 
-    def or_modify_weight(self, neighbour, new_weight):
+    def oriented_modify_weight(self, neighbour, new_weight):
         self.neighbours[neighbour] = new_weight
 
-    def un_modify_weight(self, neighbour, new_weight) :
+    def unoriented_modify_weight(self, neighbour, new_weight) :
         self.neighbours[neighbour] = new_weight
         neighbour.neighbours[self] = new_weight
 
@@ -61,27 +61,27 @@ class Graph :
     def __contains__(self, key) :
         return key in self.vertices
 
-    def or_add_edge(self, from_key, to_key, weight = None):
+    def oriented_add_edge(self, from_key, to_key, weight = None):
         if not self.__contains__(from_key) :
             self.add_vertex(Vertex(from_key))
         if not self.__contains__(to_key) :
             self.add_vertex(Vertex(to_key))
-        self.vertices[from_key].or_add_neighbour(self.vertices[to_key], weight)
+        self.vertices[from_key].oriented_add_neighbour(self.vertices[to_key], weight)
 
-    def un_add_edge(self, from_key, to_key, weight = None) :
+    def unoriented_add_edge(self, from_key, to_key, weight = None) :
         if not self.__contains__(from_key) :
             self.add_vertex(Vertex(from_key))
         if not self.__contains__(to_key) :
             self.add_vertex(Vertex(to_key))
-        self.vertices[from_key].un_add_neighbour(self.vertices[to_key], weight)
+        self.vertices[from_key].unoriented_add_neighbour(self.vertices[to_key], weight)
 
     def get_edge(self, from_key, to_key) :
         return self.vertices.get(from_key, None).get_weight(self.vertices.get(to_key, None))
 
-    def or_modify_edge(self, from_key, to_key, new_weight) :
+    def oriented_modify_edge(self, from_key, to_key, new_weight) :
         return self.vertices.get(from_key, None).or_modify_weight(self.vertices.get(to_key, None), new_weight)
 
-    def un_modify_edge(self, from_key, to_key, new_weight) :
+    def unoriented_modify_edge(self, from_key, to_key, new_weight) :
         return self.vertices.get(from_key, None).un_modify_weight(self.vertices.get(to_key, None), new_weight)
 
     def get_vertices(self) :
@@ -121,9 +121,8 @@ def graph_creator(db: list[str]) :
     """
     :param db: Database containing all documents
     :type db: list[str]
-    :return: Graph represented by an adjacency dict (type Graph)
-    with all the words in db as vertices and weighted edges based on the inverse term frequency distribution as well
-    as a graph linking all documents d in the db to all the words w with weight |number of occurences of w in d|
+    :return: Graph linking a document to its terms
+    with weight number of occurrences and a graph linking two words with weight tf idf
     :rtype: Graph, Graph
     """
     Omega = Graph()
@@ -139,28 +138,28 @@ def graph_creator(db: list[str]) :
         for w in w_i :
             x_w = Omega.get_edge(i, w)
             if x_w is None :
-                Omega.un_add_edge(i, w, 1)
+                Omega.unoriented_add_edge(i, w, 1)
             else :
-                Omega.un_modify_edge(i, w, x_w + 1)
+                Omega.unoriented_modify_edge(i, w, x_w + 1)
             Words.add_vertex(Vertex(w))
             for j in w_i :
                 if j != w :
                     x_w_j = Words.get_edge(w, j)
                     if x_w_j is None :
-                        Words.un_add_edge(w, j, 1)
+                        Words.unoriented_add_edge(w, j, 1)
                     else:
-                        Words.un_modify_edge(w, j, x_w_j + 1)
+                        Words.unoriented_modify_edge(w, j, x_w_j + 1)
     # Words.__str__()
     Final = Graph()
     # Creation of an oriented graph creating the edge (u,v)
     # with weight log(|documents containing u|)-log(|documents in d containing u and v|)
-    for u in Words.get_vertices():
-        for t in u.neighbours:
-            u1, t1 = u.key, t.key
-            d_t_u = Words.get_edge(u1, t1)/2
-            d_u = len(Omega.get_vertex(u.key).get_connections())
-            w_u_t = -np.log(d_t_u / d_u)
-            Final.or_add_edge(u1, t1, w_u_t)
+    for vertex in Words.get_vertices():
+        for neighbour in vertex.neighbours:
+            vertex_key, neighbour_key = vertex.key, neighbour.key
+            number_of_common_documents_vertex_neighbour = Words.get_edge(vertex_key, neighbour_key) / 2
+            number_of_documents_vertex = len(Omega.get_vertex(vertex.key).get_connections())
+            weight_vertex_neighbour = -np.log(number_of_common_documents_vertex_neighbour / number_of_documents_vertex)
+            Final.oriented_add_edge(vertex_key, neighbour_key, weight_vertex_neighbour)
     # |documents containing u| is the degree of u in Omega, which is not oriented
     # |documents containing t and u| is the weight of (t,u) in Words, which is not oriented
 
@@ -224,22 +223,6 @@ def dijkstra_gen(database : list[str], clue : str):
     res = sorted([(u, distances[u]) for u in distances.keys() if distances[u] != float("inf")], key = lambda t : t[1])
     return res
 
-
-Go = Graph()
-Go.un_add_edge(0, 1, 2.3)
-Go.un_add_edge(0, 2, 1.75)
-Go.un_add_edge(1, 2, 2.9)
-Go.or_add_edge(0, 3, 2.2)
-Go.or_add_edge(3, 1, 2.6)
-
-
-# print(dijkstra(Go, 0))
-
-# base = ["La logique", "Logique", "La France", "France Logique", "France", "La logique France", "France la"]
-# u, v = graph_creator(base)
-# u.__str__()
-# v.__str__()
-# print(dijkstra_gen(base, "La logique"))
 
 # Change the way distances between documents are calculated so that two similar documents produce the same
 # list of candidates ? Calculate the distance between two documents answers included and calculate the distance

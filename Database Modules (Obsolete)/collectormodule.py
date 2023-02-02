@@ -8,6 +8,8 @@ import SQL as SQL
 URLS = url.generator()
 
 print(URLS[0])
+
+
 def DISCOS(URLS) :
     dico = []
     for i in range(1):
