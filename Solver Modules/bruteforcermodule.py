@@ -1,4 +1,4 @@
-import main
+import setup
 
 # Ain't working no more since changes have been made to the representation of the grids and the purpose of the code
 # This was supposed to find the perfect solution but it is mostly impossible since words in the answers are not always

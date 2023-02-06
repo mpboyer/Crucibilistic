@@ -1,4 +1,4 @@
-import main
+import setup
 import numpy as np
 
 
@@ -118,7 +118,7 @@ def initialize(db) :
     return VS
 
 
-db_size = len(main.CWDB)
+db_size = len(setup.CWDB)
 
 
 def dot1(co1: dict[str, float], co2: dict[str, float]) :
@@ -162,10 +162,11 @@ def partial_match(db : list[str], clue: str) :
             power = 7
             weight = 1 - pow((1 - k), power)  # Interpolates the weight between the dot product and the inverse of the
             # number of all known words
-            result_clues.append((v, main.clue_table[v], weight))
+            result_clues.append((v, setup.clue_table[v], weight))
     result_clues.sort(key = lambda t : t[1], reverse = True)
     return result_clues
 
-
-CWDB = [c.Clue for c in main.CWDB]
-print(main.test_clues[0].Clue, main.test_clues[0].Word, partial_match(CWDB, main.test_clues[0].Clue)[:10])
+"""
+CWDB = [c.Clue for c in setup.CWDB]
+print(setup.test_clue.Clue, setup.test_clue.Word, partial_match(CWDB, setup.test_clue.Clue)[:10])
+"""

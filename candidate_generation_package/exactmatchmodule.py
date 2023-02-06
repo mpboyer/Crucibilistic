@@ -1,8 +1,6 @@
-from typing import List, Tuple, Union, Any
-
 import numpy as np
 
-import main
+import setup
 from collections import Counter
 
 
@@ -14,11 +12,11 @@ def exactmatch(length, clue):
     :rtype: tuple(Clue, float) list
     """
     candidates = []
-    for c in main.CWDB:
+    for c in setup.CWDB:
         if c.Clue == clue:
             candidates.append(c.Word)
 
-    results: list[tuple[str, Union[float, Any]]] = []
+    results: list[tuple[str, float]] = []
     co = 0
     for c in candidates:
         co += len(c) == length

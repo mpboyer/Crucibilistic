@@ -79,10 +79,10 @@ class Graph :
         return self.vertices.get(from_key, None).get_weight(self.vertices.get(to_key, None))
 
     def oriented_modify_edge(self, from_key, to_key, new_weight) :
-        return self.vertices.get(from_key, None).or_modify_weight(self.vertices.get(to_key, None), new_weight)
+        return self.vertices.get(from_key, None).oriented_modify_weight(self.vertices.get(to_key, None), new_weight)
 
     def unoriented_modify_edge(self, from_key, to_key, new_weight) :
-        return self.vertices.get(from_key, None).un_modify_weight(self.vertices.get(to_key, None), new_weight)
+        return self.vertices.get(from_key, None).unoriented_modify_weight(self.vertices.get(to_key, None), new_weight)
 
     def get_vertices(self) :
         return [self.vertices[k] for k in self.vertices.keys()]
@@ -187,7 +187,7 @@ def dijkstra(graph : Graph, vertex):
         dist, current_vertex = heapq.heappop(priority_queue)
         if distance[current_vertex] == float("inf"):
             distance[current_vertex] = dist
-            for neighbour in graph.get_vertex(current_vertex).neighbors :
+            for neighbour in graph.get_vertex(current_vertex).neighbours :
                 next_vertex = neighbour.key
                 heapq.heappush(priority_queue, (dist + graph.get_edge(current_vertex, next_vertex), next_vertex))
 

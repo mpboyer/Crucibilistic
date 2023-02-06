@@ -1,8 +1,7 @@
-import main
-import dico
+import setup
 
 
-def wordlist_module(length: int) -> list[tuple[str, float]]:
+def wordlist(length: int) -> list[tuple[str, float]]:
     """
     :param length: length of the word we solve for
     :type length: int
@@ -11,11 +10,11 @@ def wordlist_module(length: int) -> list[tuple[str, float]]:
     """
     candidates = []
 
-    for c in main.CWDB:  # Adds candidates based on the cwdb
+    for c in setup.CWDB:  # Adds candidates based on the cwdb
         if len(c.Word) == length:
             candidates.append(c.Word)
 
-    for word in dico.words:  # Adds candidates based on the dictionary
+    for word in setup.words:  # Adds candidates based on the dictionary
         if len(word) == length:
             candidates.append(word)
 

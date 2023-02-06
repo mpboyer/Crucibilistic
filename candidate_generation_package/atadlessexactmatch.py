@@ -1,5 +1,6 @@
 import numpy as np
-import main
+import setup
+import time
 
 
 def levenshtein(c1, c2, n = 0):
@@ -34,14 +35,16 @@ def a_tad_less_exactmatch(length: int, clue: str):
     :rtype: list[str, float]
     """
     results = []
-
+    new_york_times = [time.time() / 3600]
     candidates = []
-    i = len(main.CWDB)
-    for c in main.CWDB:
+    i = len(setup.CWDB)
+    for c in setup.CWDB:
         n = levenshtein(c.Clue, clue)
         i -= 1
         if i % 100 == 0:
-            print(i)
+            new_york_times.append(time.time() / 3600)
+            los_angeles_times = [new_york_times[i+1] - new_york_times[i] for i in range(len(new_york_times) - 1)]
+            print(f"{i} candidates left, ETA : {(sum(los_angeles_times)/len(los_angeles_times))* i} hours")
         if n <= 10:
             candidates.append((c.Word, n))
 

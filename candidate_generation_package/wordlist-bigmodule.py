@@ -1,4 +1,4 @@
-import main
+import setup
 
 
 def wordlist_bigmodule(length):
