@@ -2,6 +2,8 @@ import re
 import numpy as np
 import heapq
 
+import setup
+
 
 class Vertex :
     def __init__(self, key) :
@@ -11,7 +13,7 @@ class Vertex :
         self.key = key
         self.neighbours = {}
 
-    def oriented_add_neighbour(self, neighbour, weight = None):
+    def oriented_add_neighbour(self, neighbour, weight = None) :
         self.neighbours[neighbour] = weight
 
     def unoriented_add_neighbour(self, neighbour, weight = None) :
@@ -26,7 +28,7 @@ class Vertex :
     def get_connections(self) :
         return self.neighbours.keys()
 
-    def degree(self):
+    def degree(self) :
         return len(self.neighbours.keys())
 
     def get_weight(self, neighbour) :
@@ -35,7 +37,7 @@ class Vertex :
         """
         return self.neighbours.get(neighbour, None)
 
-    def oriented_modify_weight(self, neighbour, new_weight):
+    def oriented_modify_weight(self, neighbour, new_weight) :
         self.neighbours[neighbour] = new_weight
 
     def unoriented_modify_weight(self, neighbour, new_weight) :
@@ -61,7 +63,7 @@ class Graph :
     def __contains__(self, key) :
         return key in self.vertices
 
-    def oriented_add_edge(self, from_key, to_key, weight = None):
+    def oriented_add_edge(self, from_key, to_key, weight = None) :
         if not self.__contains__(from_key) :
             self.add_vertex(Vertex(from_key))
         if not self.__contains__(to_key) :
@@ -125,6 +127,7 @@ def graph_creator(db: list[str]) :
     with weight number of occurrences and a graph linking two words with weight tf idf
     :rtype: Graph, Graph
     """
+
     Omega = Graph()
     # Creation of a not oriented graph linking a document d in db to all the words w in it with
     # weight |{occurrences of w in d}|
@@ -133,28 +136,30 @@ def graph_creator(db: list[str]) :
     for i in db :
         i = i.lower()
         Omega.add_vertex(Vertex(i))
-        w_i = i.split(" ")
-        w_i[-1] = re.sub(r"\n", "", w_i[-1])
-        for w in w_i :
-            x_w = Omega.get_edge(i, w)
+        words_i = i.split(" ")
+        words_i[-1] = re.sub(r"\n", "", words_i[-1])
+
+        for word in words_i :
+            x_w = Omega.get_edge(i, word)
             if x_w is None :
-                Omega.unoriented_add_edge(i, w, 1)
+                Omega.unoriented_add_edge(i, word, 1)
             else :
-                Omega.unoriented_modify_edge(i, w, x_w + 1)
-            Words.add_vertex(Vertex(w))
-            for j in w_i :
-                if j != w :
-                    x_w_j = Words.get_edge(w, j)
+                Omega.unoriented_modify_edge(i, word, x_w + 1)
+            Words.add_vertex(Vertex(word))
+            for j in words_i :
+                if j != word :
+                    x_w_j = Words.get_edge(word, j)
                     if x_w_j is None :
-                        Words.unoriented_add_edge(w, j, 1)
-                    else:
-                        Words.unoriented_modify_edge(w, j, x_w_j + 1)
+                        Words.unoriented_add_edge(word, j, 1)
+                    else :
+                        Words.unoriented_modify_edge(word, j, x_w_j + 1)
     # Words.__str__()
+
     Final = Graph()
     # Creation of an oriented graph creating the edge (u,v)
     # with weight log(|documents containing u|)-log(|documents in d containing u and v|)
-    for vertex in Words.get_vertices():
-        for neighbour in vertex.neighbours:
+    for vertex in Words.get_vertices() :
+        for neighbour in vertex.neighbours :
             vertex_key, neighbour_key = vertex.key, neighbour.key
             number_of_common_documents_vertex_neighbour = Words.get_edge(vertex_key, neighbour_key) / 2
             number_of_documents_vertex = len(Omega.get_vertex(vertex.key).get_connections())
@@ -163,29 +168,23 @@ def graph_creator(db: list[str]) :
     # |documents containing u| is the degree of u in Omega, which is not oriented
     # |documents containing t and u| is the weight of (t,u) in Words, which is not oriented
 
-    """Clues = Graph()
-    for u in db:
-        u = u.lower()
-        Clues.add_vertex(Vertex(u))
-        w_u = u.split(" ")[:-1]
-               """
     return Omega, Final
 
 
-def dijkstra(graph : Graph, vertex):
+def dijkstra(graph: Graph, vertex) :
     if graph.get_vertex(vertex) is None :
         return f"{vertex} is not in G"
 
     priority_queue = []
     distance = {}
-    for v in graph.vertices.keys():
+    for v in graph.vertices.keys() :
         distance[v] = float("inf")
 
     heapq.heappush(priority_queue, (0, vertex))
 
     while priority_queue :
         dist, current_vertex = heapq.heappop(priority_queue)
-        if distance[current_vertex] == float("inf"):
+        if distance[current_vertex] == float("inf") :
             distance[current_vertex] = dist
             for neighbour in graph.get_vertex(current_vertex).neighbours :
                 next_vertex = neighbour.key
@@ -194,39 +193,43 @@ def dijkstra(graph : Graph, vertex):
     return distance
 
 
-def weight(db : list[str], clue : str, word : str):
+"""def weight(db : list[str], clue : str, word : str):
     Omega, DB = graph_creator(db)
     terms = clue.split(" ")
     r = 0
     for i in terms :
         distance = dijkstra(DB, i)
         r += -np.log(Omega.get_vertex(i).degree) - distance[word]
-    return r
+    return r"""
+
+# Added a list of undesirable_words since they don't come often in a grid and they flood the answers of this module.
+undesirable_words = ["and", "or", "for", "to", "than", "on", "at", "of", "from", "into"]
 
 
-def dijkstra_gen(database : list[str], clue : str):
+def dijkstra_gen(database: list[str], clue: str, length: int) :
     Omega, DB = graph_creator(database)
-    clue_terms = clue.split(" ")
-    nearest_neighbors = {}
+    clue_terms = clue.lower().split(" ")
+    distance_to_neighbours = {}
     for term in clue_terms :
-        term = term.lower()
-        nearest_neighbors[term] = dijkstra(DB, term)
+        distance_to_neighbours[term] = dijkstra(DB, term)
 
     distances = {}
-    for w in DB.get_vertices():
-        d = 0
-        for term in clue_terms :
-            term = term.lower()
-            d += nearest_neighbors[term][w.key]
-        distances[w.key] = d
+    for w in DB.get_vertices() :
+        if w not in undesirable_words and len(w) == length:
+            d = 0
+            for term in clue_terms :
+                d += distance_to_neighbours[term].get(w.key, 0)
+            distances[w.key] = d
 
-    res = sorted([(u, distances[u]) for u in distances.keys() if distances[u] != float("inf")], key = lambda t : t[1])
+    def sorting_function(t) :
+        return t[1]
+
+    res = sorted([(setup.clue_table[u], distances[u]) for u in distances.keys() if distances[u] != float("inf")],
+                 key = sorting_function)
     return res
-
 
 # Change the way distances between documents are calculated so that two similar documents produce the same
 # list of candidates ? Calculate the distance between two documents answers included and calculate the distance
 # between the clue without answer and the rest ? Calculate the distance between two clues ?
 
 # Nothing worrying tho, results to be expected according to Keim, Littman, Shazeer
-

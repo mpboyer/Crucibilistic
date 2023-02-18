@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Few improvements in the design of main.py and dijkstramainmodule.py. Nothing remarkable.">
-      <change afterPath="$PROJECT_DIR$/candidate_generation_package/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Changed the architecture of the code. Regrouped all the candidate generation modules into a package. Placed old main.py into setup.py and turned main.py into a centralizer.">
+      <change afterPath="$PROJECT_DIR$/candidate_merging_package/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/candidate_merging_package/simple_mergers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/atadlessexactmatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/atadlessexactmatch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/exactmatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/exactmatchmodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/wordlist-bigmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/wordlist-bigmodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/wordlistmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/wordlistmodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstracwdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/dijkstracwdb.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/dijkstramainmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/encyclopediamodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/encyclopediamodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/partialmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Candidate Generation Modules/IR Modules/specificdbmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/specificdbmodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Solver Modules/bruteforcermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Solver Modules/bruteforcermodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/candidate_generation_package/dijkstracwdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/OBS-dijkstracwdb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/candidate_generation_package/wordlist-bigmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/wordlist-bigmodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +47,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="Python" />
     <property name="last.edited.regexp" value="Sample Text\n" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -67,29 +63,8 @@
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\Candidate Generation Modules\IR Modules" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.dijkstracwdb">
-    <configuration name="atadlessexactmatch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Crucibilistic" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/atadlessexactmatch.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="dijkstracwdb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.scratch_1">
+    <configuration name="OBS-dijkstracwdb (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -101,7 +76,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/candidate_generation_package/dijkstracwdb.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/candidate_generation_package/OBS-dijkstracwdb.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -110,7 +85,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="exactmatch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="OBS-dijkstracwdb" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -118,11 +93,32 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/candidate_generation_package" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/exactmatch.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\mb692\PycharmProjects\Crucibilistic\candidate_generation_package\OBS-dijkstracwdb.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="dijkstramodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Crucibilistic" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/candidate_generation_package" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -152,7 +148,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="wordlistmodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="scratch_1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -160,11 +156,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Candidate Generation Modules/Candidate Generation Modules/CWBD Modules/wordlistmodule.py" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -175,11 +171,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.dijkstracwdb" />
+        <item itemvalue="Python.scratch_1" />
+        <item itemvalue="Python.OBS-dijkstracwdb (1)" />
+        <item itemvalue="Python.dijkstramodule" />
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.atadlessexactmatch" />
-        <item itemvalue="Python.exactmatch" />
-        <item itemvalue="Python.wordlistmodule" />
+        <item itemvalue="Python.OBS-dijkstracwdb" />
       </list>
     </recent_temporary>
   </component>
@@ -339,7 +335,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675325299078</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Changed the architecture of the code. Regrouped all the candidate generation modules into a package. Placed old main.py into setup.py and turned main.py into a centralizer.">
+      <created>1675716457620</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1675716457620</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -372,6 +375,7 @@
     <MESSAGE value="Re-addition of everything that was modified." />
     <MESSAGE value="Modifications on partialmatchmodule.py and dijkstramainmodule.py to reflect on the few changes in the approach. Added specificdbmodule.py as an empty file, no progress made there." />
     <MESSAGE value="Few improvements in the design of main.py and dijkstramainmodule.py. Nothing remarkable." />
-    <option name="LAST_COMMIT_MESSAGE" value="Few improvements in the design of main.py and dijkstramainmodule.py. Nothing remarkable." />
+    <MESSAGE value="Changed the architecture of the code. Regrouped all the candidate generation modules into a package. Placed old main.py into setup.py and turned main.py into a centralizer." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the architecture of the code. Regrouped all the candidate generation modules into a package. Placed old main.py into setup.py and turned main.py into a centralizer." />
   </component>
 </project>

@@ -3,22 +3,37 @@ import candidate_generation_package.dijkstramodule as dijkstra
 from candidate_generation_package.exactmatchmodule import exactmatch
 from candidate_generation_package.partialmatchmodule import partial_match
 from candidate_generation_package.wordlistmodule import wordlist
+import candidate_merging_package.simple_mergers as cmp_sm
 
 # Candidate Generation Part :
 
-clue, length = setup.test_clue.Clue, len(setup.test_clue.Clue)
+clue, word, length = setup.test_clue.Clue, setup.test_clue.Word, len(setup.test_clue.Word)
 
 cwdb_wo_words = [c.Clue.lower() for c in setup.CWDB]
 cwdb_with_words = [c.Clue.lower() + " " + c.Word.lower() for c in setup.CWDB]
-dijkstra_results = dijkstra.dijkstra_gen(cwdb_with_words, clue)
+dijkstra_results = dijkstra.dijkstra_gen(cwdb_with_words, clue, length)
 exactmatch_results = exactmatch(length, clue)
 partialmatch_results = partial_match(cwdb_wo_words, clue)
 wordlist_results = wordlist(length)
 
-full_results = [("dijkstra", dijkstra_results[:10]),
-                ("exact_match", exactmatch_results[:10]),
-                ("partial_match", partialmatch_results[:10]),
-                ("word_list", wordlist_results[:10])]
+raw_results = [dijkstra_results, exactmatch_results, partialmatch_results, wordlist_results]
 
-print(full_results)
+full_results = [("dijkstra", dijkstra_results[:10]), ("exact_match", exactmatch_results[:10]),
+                ("partial_match", partialmatch_results[:10]), ("word_list", wordlist_results[:10])]
+
+# Candidate Merging Part :
+better_results = cmp_sm.better_coeff_merger(raw_results)
+arithmetic_mean_results = cmp_sm.arithmetic_mean_coeff_merger(raw_results)
+geometric_mean_results = cmp_sm.geometric_mean_coeff_merger(raw_results)
+worse_results = cmp_sm.worse_coeff_merger(raw_results)
+
+
+all_results = [better_results, arithmetic_mean_results, geometric_mean_results, worse_results]
+presentable_results = {}
+for res in all_results:
+    for i in range(10):
+        word, weight = res[i]
+        presentable_results[word] = presentable_results.get(word, []).append((f"{res}", weight))
+
+print(presentable_results.__str__())
 

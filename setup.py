@@ -74,7 +74,7 @@ def main():
     CWDB_dict = {}
     CWDB_clue_list = []
     for line in CWDB_raw:
-        line_ = line.split("\t")
+        line_ = (line.lower()).split("\t")
         CWDB_dict[line_[2]] = line_[3]
         CWDB_clue_list.append(Clue(line_[2], line_[3]))
         for word in line_[2].split(" "):

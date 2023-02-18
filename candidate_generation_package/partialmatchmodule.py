@@ -158,8 +158,7 @@ def partial_match(db : list[str], clue: str) :
             k = VS.vectors[v].dot(VS.vectors[clue])
             # Calculates the dot product between the clue and any clue in the CWBD
         if k != 0 :
-            # TODO : Change the interpolation function so it does a fair interpolation.
-            power = 7
+            power = 15
             weight = 1 - pow((1 - k), power)  # Interpolates the weight between the dot product and the inverse of the
             # number of all known words
             result_clues.append((v, setup.clue_table[v], weight))
