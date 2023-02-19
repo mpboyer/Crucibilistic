@@ -94,6 +94,9 @@ def main():
 
 
 clue_table, CWDB, words, test_clue = main()
+# print(clue_table.__str__())
+# print('inits.' in clue_table)
+
 
 a = "across"
 d = "down"

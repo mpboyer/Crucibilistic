@@ -1,5 +1,6 @@
 import setup
 import numpy as np
+import re
 
 
 def freq(name: str) :
@@ -41,6 +42,7 @@ class Vector :
 def base(db) :
     basis = {}
     for document in db :
+        document = re.sub("[^\w\s:À-ÿ]", "", document)
         doc = document.split(" ")
         doc1 = {}
         for term in doc :
@@ -56,6 +58,7 @@ class Vector_Space :
         self.dimension = len(self.basis)
         self.vectors = {}
         for document in db :
+            document = re.sub("[^\w\s:À-ÿ]", "", document)
             self.vectors[document] = Vector(document)
         self.db_size = len(db)
 
@@ -140,10 +143,12 @@ def dot1(co1: dict[str, float], co2: dict[str, float]) :
     return s / (n1 * n2)
 
 
-def partial_match(db : list[str], clue: str) :
+def partial_match(db : list[str], clue : str, length : int) :
     """
+    :param length: length of the word that is solved for
+    :type length: int
     :param db: Database of all documents used to
-    :type db:
+    :type db:list[str]
     :param str clue: Clue that is solved for
     :return: weighted list of words that could match the clue
     :rtype: list[tuple[str, int]]
@@ -154,14 +159,14 @@ def partial_match(db : list[str], clue: str) :
     result_clues = []
     for v in VS.vectors.keys() :
         k = 0
-        if v != clue :
+        if v != clue and len(v) == length:
             k = VS.vectors[v].dot(VS.vectors[clue])
             # Calculates the dot product between the clue and any clue in the CWBD
         if k != 0 :
             power = 15
             weight = 1 - pow((1 - k), power)  # Interpolates the weight between the dot product and the inverse of the
             # number of all known words
-            result_clues.append((v, setup.clue_table[v], weight))
+            result_clues.append((setup.clue_table[v], weight))
     result_clues.sort(key = lambda t : t[1], reverse = True)
     return result_clues
 

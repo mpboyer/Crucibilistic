@@ -6,14 +6,15 @@ from candidate_generation_package.wordlistmodule import wordlist
 import candidate_merging_package.simple_mergers as cmp_sm
 
 # Candidate Generation Part :
-
-clue, word, length = setup.test_clue.Clue, setup.test_clue.Word, len(setup.test_clue.Word)
+clue, length = "Express indirectly", 5
+# These values are part of a test on The Guardian's quick Crosswords No 16,470 from Sat 18/02
+# https://www.theguardian.com/crosswords/quick/16470#19-across
 
 cwdb_wo_words = [c.Clue.lower() for c in setup.CWDB]
 cwdb_with_words = [c.Clue.lower() + " " + c.Word.lower() for c in setup.CWDB]
 dijkstra_results = dijkstra.dijkstra_gen(cwdb_with_words, clue, length)
 exactmatch_results = exactmatch(length, clue)
-partialmatch_results = partial_match(cwdb_wo_words, clue)
+partialmatch_results = partial_match(cwdb_wo_words, clue, length)
 wordlist_results = wordlist(length)
 
 raw_results = [dijkstra_results, exactmatch_results, partialmatch_results, wordlist_results]
@@ -29,11 +30,15 @@ worse_results = cmp_sm.worse_coeff_merger(raw_results)
 
 
 all_results = [better_results, arithmetic_mean_results, geometric_mean_results, worse_results]
-presentable_results = {}
+"""presentable_results = {}
 for res in all_results:
     for i in range(10):
-        word, weight = res[i]
-        presentable_results[word] = presentable_results.get(word, []).append((f"{res}", weight))
+        candidate_word, weight = res[i]
+        prev = presentable_results.get(candidate_word, [])
+        next = prev.append((f"{res}", weight))
+        presentable_results[candidate_word] = next
+"""
 
-print(presentable_results.__str__())
+presentable_results = [method[:10] for method in all_results]
+print(presentable_results)
 

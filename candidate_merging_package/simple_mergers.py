@@ -8,7 +8,7 @@ def better_coeff_merger(each_method_candidates: list[list[tuple[str, float]]]) -
     def sorting_function(t) :
         return t[1]
 
-    merged_candidate_list = sorted(merged_candidate_list, key = sorting_function, reverse = False)
+    merged_candidate_list = sorted(merged_candidate_list, key = sorting_function, reverse = True)
     return merged_candidate_list
 
 
@@ -16,14 +16,16 @@ def arithmetic_mean_coeff_merger(each_method_candidates: list[list[tuple[str, fl
     candidate_dict = {}
     for method in each_method_candidates :
         for candidate in method :
-            candidate_dict[candidate[0]] = candidate_dict.get(candidate[0], (0, 0)) + (candidate[1], 1)
+            prev = candidate_dict.get(candidate[0], (0, 0))
+            next = (prev[0] + candidate[1], prev[1] + 1)
+            candidate_dict[candidate[0]] = next
     merged_candidate_list = [(candidate, candidate_dict[candidate][0] / candidate_dict[candidate][1]) for candidate in
                              candidate_dict.keys()]
 
     def sorting_function(t) :
         return t[1]
 
-    merged_candidate_list = sorted(merged_candidate_list, key = sorting_function, reverse = False)
+    merged_candidate_list = sorted(merged_candidate_list, key = sorting_function, reverse = True)
     return merged_candidate_list
 
 
@@ -40,7 +42,7 @@ def geometric_mean_coeff_merger(each_method_candidates: list[list[tuple[str, flo
     def sorting_function(t) :
         return t[1]
 
-    merged_candidate_list = sorted(merged_candidate_list, key = sorting_function, reverse = False)
+    merged_candidate_list = sorted(merged_candidate_list, key = sorting_function, reverse = True)
     return merged_candidate_list
 
 
@@ -54,5 +56,5 @@ def worse_coeff_merger(each_method_candidates: list[list[tuple[str, float]]]) ->
     def sorting_function(t) :
         return t[1]
 
-    merged_candidate_list = sorted(merged_candidate_list, key = sorting_function, reverse = False)
+    merged_candidate_list = sorted(merged_candidate_list, key = sorting_function, reverse = True)
     return merged_candidate_list

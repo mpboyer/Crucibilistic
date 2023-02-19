@@ -135,11 +135,13 @@ def graph_creator(db: list[str]) :
     # Creation of a not oriented graph linking two words u and v with weight |documents containing both u and v|
     for i in db :
         i = i.lower()
+        i = re.sub("[^\w\s:À-ÿ]", "", i)
         Omega.add_vertex(Vertex(i))
         words_i = i.split(" ")
         words_i[-1] = re.sub(r"\n", "", words_i[-1])
 
         for word in words_i :
+            word = re.sub("[^\w\s:À-ÿ]" , "", word)
             x_w = Omega.get_edge(i, word)
             if x_w is None :
                 Omega.unoriented_add_edge(i, word, 1)
@@ -160,9 +162,9 @@ def graph_creator(db: list[str]) :
     # with weight log(|documents containing u|)-log(|documents in d containing u and v|)
     for vertex in Words.get_vertices() :
         for neighbour in vertex.neighbours :
-            vertex_key, neighbour_key = vertex.key, neighbour.key
+            vertex_key, neighbour_key = re.sub("[^\w\s:À-ÿ]", "", vertex.key), re.sub("[^\w\s:À-ÿ]", "", neighbour.key)
             number_of_common_documents_vertex_neighbour = Words.get_edge(vertex_key, neighbour_key) / 2
-            number_of_documents_vertex = len(Omega.get_vertex(vertex.key).get_connections())
+            number_of_documents_vertex = len(Omega.get_vertex(vertex_key).get_connections())
             weight_vertex_neighbour = -np.log(number_of_common_documents_vertex_neighbour / number_of_documents_vertex)
             Final.oriented_add_edge(vertex_key, neighbour_key, weight_vertex_neighbour)
     # |documents containing u| is the degree of u in Omega, which is not oriented
@@ -211,21 +213,25 @@ def dijkstra_gen(database: list[str], clue: str, length: int) :
     clue_terms = clue.lower().split(" ")
     distance_to_neighbours = {}
     for term in clue_terms :
+        term = re.sub("[^\w\s:À-ÿ]", "", term)
         distance_to_neighbours[term] = dijkstra(DB, term)
 
     distances = {}
     for w in DB.get_vertices() :
-        if w not in undesirable_words and len(w) == length:
+        w_key = re.sub("[^\w\s:À-ÿ]", "", w.key)
+        if w_key not in undesirable_words and len(w_key) == length:
             d = 0
             for term in clue_terms :
-                d += distance_to_neighbours[term].get(w.key, 0)
-            distances[w.key] = d
+                d += distance_to_neighbours[term].get(w_key, 0)
+            distances[w_key] = d
 
     def sorting_function(t) :
         return t[1]
 
-    res = sorted([(setup.clue_table[u], distances[u]) for u in distances.keys() if distances[u] != float("inf")],
-                 key = sorting_function)
+    res = sorted([(u, 1/distances[u]) for u in distances.keys() if distances[u] != float("inf")],
+                 key = sorting_function, reverse = False)
+    # The sorted list needs to be in ascending order, as we want the words that are closest to the clue
+
     return res
 
 # Change the way distances between documents are calculated so that two similar documents produce the same

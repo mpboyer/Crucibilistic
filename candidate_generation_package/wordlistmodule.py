@@ -24,7 +24,7 @@ def wordlist(length: int) -> list[tuple[str, float]]:
         for c in candidates:
             results.append((c, 1 / n))  # Gives each candidate a weight based on the number of candidates.
 
-    # results = sorted(results, key = lambda t : t[1])
+    # results = sorted(results, key = lambda t : t[1], reverse = True)
     # This line has been commented since it wouldn't do anything here.
     # It will remain in the code as it will be in each candidate generation module.
 
