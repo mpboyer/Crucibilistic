@@ -228,7 +228,7 @@ def dijkstra_gen(database: list[str], clue: str, length: int) :
     def sorting_function(t) :
         return t[1]
 
-    res = sorted([(u, 1/distances[u]) for u in distances.keys() if distances[u] != float("inf")],
+    res = sorted([(u, 1/(distances[u] + 1)) for u in distances.keys() if distances[u] != float("inf")],
                  key = sorting_function, reverse = False)
     # The sorted list needs to be in ascending order, as we want the words that are closest to the clue
 

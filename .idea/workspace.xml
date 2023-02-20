@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Made a few improvements to dijkstramodule.py and the interpolation function of partialmatchmodule.py, changed the name of dijkstracwdb.py. Added a candidate merging package filled for now of simple_mergers.py.">
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Modified a bit everything so it works again, no big changes except replaceing apostrophes and parentheses">
+      <change afterPath="$PROJECT_DIR$/all_results.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/initializermodule.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/solvermodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/candidate_generation_package/exactmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/exactmatchmodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/candidate_generation_package/wordlistmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/wordlistmodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/candidate_merging_package/simple_mergers.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_merging_package/simple_mergers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
@@ -56,6 +59,7 @@
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\" />
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\candidate_generator" />
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\Candidate Generation Modules" />
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\Candidate Generation Modules\" />
@@ -63,27 +67,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
-    <configuration name="OBS-dijkstracwdb (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Crucibilistic" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/candidate_generation_package" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/candidate_generation_package/OBS-dijkstracwdb.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="exactmatchmodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -118,6 +101,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="scratch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Crucibilistic" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -171,10 +175,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.scratch" />
         <item itemvalue="Python.exactmatchmodule" />
         <item itemvalue="Python.setup" />
         <item itemvalue="Python.scratch_1" />
-        <item itemvalue="Python.OBS-dijkstracwdb (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -348,7 +352,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676743788428</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Modified a bit everything so it works again, no big changes except replaceing apostrophes and parentheses">
+      <created>1676818123843</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1676818123843</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -383,6 +394,7 @@
     <MESSAGE value="Few improvements in the design of main.py and dijkstramainmodule.py. Nothing remarkable." />
     <MESSAGE value="Changed the architecture of the code. Regrouped all the candidate generation modules into a package. Placed old main.py into setup.py and turned main.py into a centralizer." />
     <MESSAGE value="Made a few improvements to dijkstramodule.py and the interpolation function of partialmatchmodule.py, changed the name of dijkstracwdb.py. Added a candidate merging package filled for now of simple_mergers.py." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made a few improvements to dijkstramodule.py and the interpolation function of partialmatchmodule.py, changed the name of dijkstracwdb.py. Added a candidate merging package filled for now of simple_mergers.py." />
+    <MESSAGE value="Modified a bit everything so it works again, no big changes except replaceing apostrophes and parentheses" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified a bit everything so it works again, no big changes except replaceing apostrophes and parentheses" />
   </component>
 </project>

@@ -149,7 +149,7 @@ def partial_match(db : list[str], clue : str, length : int) :
     :type length: int
     :param db: Database of all documents used to
     :type db:list[str]
-    :param str clue: Clue that is solved for
+    :param str clue: knownClue that is solved for
     :return: weighted list of words that could match the clue
     :rtype: list[tuple[str, int]]
     """
@@ -169,6 +169,7 @@ def partial_match(db : list[str], clue : str, length : int) :
             result_clues.append((setup.clue_table[v], weight))
     result_clues.sort(key = lambda t : t[1], reverse = True)
     return result_clues
+
 
 """
 CWDB = [c.Clue for c in setup.CWDB]

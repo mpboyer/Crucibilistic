@@ -7,9 +7,9 @@ from collections import Counter
 def exactmatch(length, clue):
     """
     :param int length: length of the wanted word
-    :param Clue clue: actual clue we want to solve
+    :param knownClue clue: actual clue we want to solve
     :return: weighted list of words that have clue for their clue in the CWDB
-    :rtype: tuple(Clue, float) list
+    :rtype: tuple(knownClue, float) list
     """
     clue = clue.lower()
     clue = re.sub("[^\w\s:À-ÿ]", "", clue)

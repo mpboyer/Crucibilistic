@@ -1,4 +1,5 @@
 import setup
+import pickle
 import candidate_generation_package.dijkstramodule as dijkstra
 from candidate_generation_package.exactmatchmodule import exactmatch
 from candidate_generation_package.partialmatchmodule import partial_match
@@ -12,7 +13,7 @@ clue, length = "Express indirectly", 5
 
 cwdb_wo_words = [c.Clue.lower() for c in setup.CWDB]
 cwdb_with_words = [c.Clue.lower() + " " + c.Word.lower() for c in setup.CWDB]
-dijkstra_results = dijkstra.dijkstra_gen(cwdb_with_words, clue, length)
+"""dijkstra_results = dijkstra.dijkstra_gen(cwdb_with_words, clue, length)
 exactmatch_results = exactmatch(length, clue)
 partialmatch_results = partial_match(cwdb_wo_words, clue, length)
 wordlist_results = wordlist(length)
@@ -22,6 +23,14 @@ raw_results = [dijkstra_results, exactmatch_results, partialmatch_results, wordl
 full_results = [("dijkstra", dijkstra_results[:10]), ("exact_match", exactmatch_results[:10]),
                 ("partial_match", partialmatch_results[:10]), ("word_list", wordlist_results[:10])]
 
+with open("all_results.txt", "wb") as f :
+    pickle.Pickler(f).dump(raw_results)
+
+"""
+
+with open("all_results.txt", "rb") as f :
+    raw_results = pickle.Unpickler(f).load()
+
 # Candidate Merging Part :
 better_results = cmp_sm.better_coeff_merger(raw_results)
 arithmetic_mean_results = cmp_sm.arithmetic_mean_coeff_merger(raw_results)
@@ -30,7 +39,8 @@ worse_results = cmp_sm.worse_coeff_merger(raw_results)
 
 
 all_results = [better_results, arithmetic_mean_results, geometric_mean_results, worse_results]
-"""presentable_results = {}
+"""
+presentable_results = {}
 for res in all_results:
     for i in range(10):
         candidate_word, weight = res[i]

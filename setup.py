@@ -2,13 +2,13 @@ import re
 import random
 
 
-class Clue:  # Representation of a clue
+class knownClue:  # Representation of a clue
     def __init__(self, clue: str, answer: str):
         self.Clue = clue  # Real Clue
         self.Word = answer  # Solution Word
 
 
-def ramette(c: Clue) -> tuple[int, str]:
+def ramette(c: knownClue) -> tuple[int, str]:
     return len(c.Word), c.Word
 
 
@@ -16,10 +16,10 @@ def list_creator_obsolete():
     """
     :return: lists containing all the clues in the CWDB and all the words in the CWDB and a dictionary as well as a
     list of 10 test clues
-    :rtype: tuple[list[Clue], dict[str, int]]
+    :rtype: tuple[list[knownClue], dict[str, int]]
     """
     # Generation of a list of all clues with their answers in CWDB
-    database: list[Clue] = []
+    database: list[knownClue] = []
 
     with open(r'C:\Users\mb692\PycharmProjects\Crucibilistic\cwdb.txt', encoding = "utf-8") as f:
         lines = f.readlines()
@@ -31,7 +31,7 @@ def list_creator_obsolete():
 
     for clue in clues:
         if "crosswordgiant" not in clue[0] and "crosswordgiant" not in clue[1]:
-            database.append(Clue(clue[0], clue[1]))
+            database.append(knownClue(clue[0], clue[1]))
     database.sort(key = ramette)
     # CWDB_ = [(CWDB[i].Clue, CWDB[i].Word) for i in range(len(CWDB))]  # For presentation purpose
 
@@ -55,7 +55,7 @@ def list_creator_obsolete():
         for w in li2:
             allwords[w] = allwords.get(w, 0) + 1
 
-    test_set: list[Clue] = []
+    test_set: list[knownClue] = []
     for i in range(10):
         n = len(database)
         test_set.append(database.pop(random.randint(0, n-1)))
@@ -66,101 +66,36 @@ def list_creator_obsolete():
 # CWDB, words, test_clues = list_creator_obsolete()
 
 
-def main():
+def setup_main():
     with open(r'C:\Users\mb692\PycharmProjects\Crucibilistic\cwdb.txt', encoding = "utf-8") as f :
         CWDB_raw = f.readlines()
 
-    words = {}
+    all_words = {}
     CWDB_dict = {}
     CWDB_clue_list = []
     for line in CWDB_raw:
         line_ = (line.lower()).split("\t")
         CWDB_dict[line_[2]] = line_[3]
-        CWDB_clue_list.append(Clue(line_[2], line_[3]))
+        CWDB_clue_list.append(knownClue(line_[2], line_[3]))
         for word in line_[2].split(" "):
-            words[word] = words.get(word, 0) + 1
-        words[line_[3]] = words.get(line_[3], 0) + 1
+            all_words[word] = all_words.get(word, 0) + 1
+        all_words[line_[3]] = all_words.get(line_[3], 0) + 1
 
     with open(r'C:\Users\mb692\PycharmProjects\Crucibilistic\dictionnaire.txt', encoding = "utf-8") as f:
         dictionary_raw = f.readlines()
 
     for word in dictionary_raw :
         word = re.sub(r"\n", '', word)
-        words[word] = words.get(word, 0) + 1
+        all_words[word] = all_words.get(word, 0) + 1
 
-    test_clue = CWDB_clue_list.pop(random.randint(0, len(CWDB_clue_list) - 1))
-
-    return CWDB_dict, CWDB_clue_list, words, test_clue
+    return CWDB_dict, CWDB_clue_list, all_words
 
 
-clue_table, CWDB, words, test_clue = main()
+clue_table, CWDB, words = setup_main()
+
 # print(clue_table.__str__())
 # print('inits.' in clue_table)
 
 
-a = "across"
-d = "down"
 
 
-class Tile:
-    def __init__(self, i, j, aclue = None, dclue = None, block = False):
-        """
-        :rtype: Tile
-        :type block: bool
-        :type dclue: Clue
-        :type aclue: Clue
-        :type j: int
-        :type i: int
-        """
-        self.value = (i, j)  # Position of the tile in the grid
-        self.isBlank = True  # Initialise as empty
-        self.isBlock = block  # Is not a black tile at first
-        self.char = ''  # Initialises as empty
-        self.AClue = aclue  # Clue going right from this tile : Is None if not the beginning of a
-        # word across
-        self.DClue = dclue  # Same as with across but with down instead
-
-    def modify(self, char = '', block = False):
-        """
-        :param char: optional : specifies the letter that is placed in the tile. Default is ''. If block is True
-        should be false.
-        :type char: str
-        :param block: optional : specifies if a letter can be placed in the tile. Default is False.
-        :type block:
-        """
-        self.isBlock = self.isBlock or block
-        if not self.isBlock:
-            self.char = char
-
-
-class Grid:  # Representation of a grid
-    def __init__(self, p, q, aclues, dclues):
-        """
-        :param p: height of the grid
-        :type p: int
-        :param q: width of the grid
-        :type q: int
-        :param aclues: list of the across clues of the grid and the tile they start from, starting with the clue
-        :type aclues: list[tuple[Clue, int]]
-        :param dclues: list of the down clues of the grid
-        :type dclues: list[tuple[Clue, int]]
-        """
-        self.Size = (p, q)
-        self.Grid = [[Tile(i, j) for j in range(q)] for i in range(p)]  # Initialises as empty
-        self.AClues = aclues
-        self.DClues = dclues
-
-        for clue in self.AClues:
-            (i, j) = clue[1]
-            self.Grid[i][j].AClue = clue[0]
-
-        for clue in self.DClues:
-            (i, j) = clue[1]
-            self.Grid[i][j].DClue = clue[0]
-
-    def copy(self):
-        p, q = self.Size
-        aclues = [c for c in self.AClues]
-        dclues = [c for c in self.DClues]
-
-        return Grid.__init__(self, p, q, aclues, dclues)
