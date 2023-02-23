@@ -1,8 +1,7 @@
-import re
-import numpy as np
 import heapq
+import re
 
-import setup
+import numpy as np
 
 
 class Vertex :
