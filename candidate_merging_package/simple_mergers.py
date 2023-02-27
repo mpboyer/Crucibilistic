@@ -58,3 +58,7 @@ def worse_coeff_merger(each_method_candidates: list[list[tuple[str, float]]]) ->
 
     merged_candidate_list = sorted(merged_candidate_list, key = sorting_function, reverse = True)
     return merged_candidate_list
+
+
+all_simple_mergers = [better_coeff_merger, arithmetic_mean_coeff_merger, geometric_mean_coeff_merger,
+                      worse_coeff_merger]

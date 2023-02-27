@@ -15,7 +15,7 @@ funny business  6  12  7
 fanciful notion  6  0  0
 dandy like  7  0  2
 store for the future  5  0  4
-endurance power 7  0  8
+endurance power  7  0  8
 accept with pleasure  5  0  10
 note of who said what at a meeting  6  0  12
 loyal  9  2  6

@@ -8,9 +8,10 @@ class findClue:
     def __init__(self, Clue : str, word_length : int):
         self.Clue = Clue
         self.Length = word_length
+        self.isSolved = False
 
     def __str__(self):
-        print(self.Clue, self.Length)
+        return f"{self.Clue}, {self.Length}"
 
 
 class Tile :
@@ -41,17 +42,19 @@ class Tile :
         """
         self.isBlock = self.isBlock or block
         if not self.isBlock :
-            self.char = char
+            if not self.char == ' ' :
+                self.char = char
             if aclue is not None :
                 self.AClue = aclue
             if dclue is not None :
                 self.DClue = dclue
+            self.isBlank = self.char == ' '
 
     def __str__(self):
         if self.isBlock:
-            print("#", end = "")
+            return "#"
         else :
-            print(self.char, end = "")
+            return self.char
 
 
 class Grid :  # Representation of a grid
@@ -92,30 +95,82 @@ class Grid :  # Representation of a grid
 
         return Grid.__init__(self, p, q, aclues_list, dclues_list)
 
-    def __str__(self, clues = True) :
-        print(self.Size)
-        if clues :
-            print("Across Clues :")
-            for c in self.AClues:
-                c.__str__()
-
-            print("Down Clues :")
-            for c in self.DClues:
-                c.__str__()
-
-        p,q = self.Size
+    def isSolved(self):
+        p, q = self.Size
         for i in range(p):
-            print("|", end = "")
             for j in range(q):
+                if self.Grid[i][j].isBlank :
+                    return False
+        return True
+
+    def __str__(self, clues = True) :
+        grid_string = f"{self.Size} \n"
+
+        p, q = self.Size
+        across_str = []
+        down_str = []
+        for i in range(p) :
+            grid_string += "|"
+            for j in range(q) :
                 tile = self.Grid[i][j]
-                tile.__str__()
-                if j != q - 1:
-                    print("|", end = "")
+                grid_string += tile.__str__()
+                if tile.AClue is not None:
+                    across_str.append((tile.AClue, i, j))
+                if tile.DClue is not None:
+                    down_str.append((tile.DClue, i, j))
+                if j != q - 1 :
+                    grid_string += "|"
                 else :
-                    print("|", end = "\n")
+                    grid_string += "| \n"
+
+        if clues :
+            grid_string += f"Across Clues : \n"
+            for c in across_str:
+                grid_string += (c[0].__str__() + f", {c[1]}, {c[2]}\n")
+
+            grid_string += f"Down Clues : \n"
+            for c in down_str:
+                grid_string += (c[0].__str__() + f", {c[1]}, {c[2]}\n")
+
+        return grid_string[:-1]
+
+    def fill_word(self, direction, row, column, word):
+        wordLength = len(word)
+
+        if direction == a:
+            for k in range(wordLength):
+                tile = self.Grid[row][column + k]
+                if tile.isBlock:
+                    return False
+                if not tile.isBlank:
+                    if tile.char != word[k]:
+                        return False
+
+            grid_copy = self.copy()
+            for k in range(wordLength):
+                tile = grid_copy.Grid[row][column + k]
+                tile.modify(char = word[k])
+
+        else :
+            for k in range(wordLength) :
+                tile = self.Grid[row + k][column]
+                if tile.isBlock :
+                    return False
+                if not tile.isBlank :
+                    if tile.char != word[k] :
+                        return False
+
+            grid_copy = self.copy()
+            for k in range(wordLength) :
+                tile = grid_copy.Grid[row + k][column]
+                tile.modify(char = word[k])
+
+        c = grid_copy.Grid[row][column].AClue if direction == "a" else grid_copy.Grid[row][column].DClue
+        c.isSolved = True
+        return grid_copy
 
 
-with open("grid.txt", "r") as f :
+with open(f"grid.txt", "r") as f :
     auqlue = f.readlines()
     l1 = auqlue[0]
     l1 = re.sub("\n", "", l1)
@@ -138,7 +193,7 @@ with open("grid.txt", "r") as f :
         d_clue = d_clue.split("  ")
         d_clue[-1] = re.sub("\n", "", d_clue[-1])
         clue, length = d_clue[0], int(d_clue[1])
-        coords = (int(a_clue[2]), int(a_clue[3]))
+        coords = (int(d_clue[2]), int(d_clue[3]))
         dclues.append((findClue(clue, length), coords))
 
     lines = auqlue[1 + alen + dlen :]
