@@ -42,7 +42,7 @@ class Vector :
 def base(db) :
     basis = {}
     for document in db :
-        document = re.sub("[^\w\s:À-ÿ]", "", document)
+        document = re.sub("[^\w\s:À-ÿ:&]", "", document)
         doc = document.split(" ")
         doc1 = {}
         for term in doc :
@@ -58,8 +58,10 @@ class Vector_Space :
         self.dimension = len(self.basis)
         self.vectors = {}
         for document in db :
-            document = re.sub("[^\w\s:À-ÿ]", "", document)
-            self.vectors[document] = Vector(document)
+            document_ = re.sub("[^\w\s:À-ÿ:&]", "", document)
+            if document_ == "like sh":
+                print(document)
+            self.vectors[document_] = Vector(document_)
         self.db_size = len(db)
 
         def update_coordinates() :
@@ -156,10 +158,13 @@ def partial_match(db : list[str], clue : str, length : int) :
     VS = initialize(db)
     VS.add_vector(clue)
 
+    print("like sh" in VS.vectors)
+
     result_clues = []
     for v in VS.vectors.keys() :
         k = 0
-        if v != clue and len(v) == length:
+        # print(v)
+        if len(v) == length:
             k = VS.vectors[v].dot(VS.vectors[clue])
             # Calculates the dot product between the clue and any clue in the CWBD
         if k != 0 :
@@ -171,7 +176,5 @@ def partial_match(db : list[str], clue : str, length : int) :
     return result_clues
 
 
-"""
 CWDB = [c.Clue for c in setup.CWDB]
-print(setup.test_clue.Clue, setup.test_clue.Word, partial_match(CWDB, setup.test_clue.Clue)[:10])
-"""
+print(partial_match(CWDB, "dandy like", 7))

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Modified initializermodule.py, added a printing method for the grids.&#10;Added grid.txt, representing the Guardian's crosswords from last Friday.">
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Modified the solver package, on track. Added a list containing all mergers in simple_mergers.py. Modified a few bits in initializermodule.py and worked on solvermodule.py. Rest Hasn't really moved.">
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_0_0_a.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Solver Modules/bruteforcermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/Solver Modules (Obsolete)/bruteforcermodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/candidate_merging_package/simple_mergers.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_merging_package/simple_mergers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solving_package/grid.txt" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/grid.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solving_package/initializermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/initializermodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solving_package/solvermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/solvermodule.py" afterDir="false" />
     </list>
@@ -66,8 +66,8 @@
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\Candidate Generation Modules\IR Modules" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.scratch">
-    <configuration name="exactmatchmodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.partialmatchmodule">
+    <configuration name="dijkstramodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -79,7 +79,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/candidate_generation_package/exactmatchmodule.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -109,7 +109,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="partialmatchmodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Crucibilistic" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/candidate_generation_package" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="setup" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -121,28 +142,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="scratch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Crucibilistic" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/setup.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -174,11 +174,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.scratch" />
+        <item itemvalue="Python.partialmatchmodule" />
         <item itemvalue="Python.solvermodule" />
+        <item itemvalue="Python.setup" />
+        <item itemvalue="Python.dijkstramodule" />
         <item itemvalue="Python.initializermodule" />
-        <item itemvalue="Python.main" />
-        <item itemvalue="Python.exactmatchmodule" />
       </list>
     </recent_temporary>
   </component>
@@ -373,7 +373,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677161499326</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Modified the solver package, on track. Added a list containing all mergers in simple_mergers.py. Modified a few bits in initializermodule.py and worked on solvermodule.py. Rest Hasn't really moved.">
+      <created>1677508099782</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1677508099782</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -411,6 +418,7 @@
     <MESSAGE value="Modified a bit everything so it works again, no big changes except replaceing apostrophes and parentheses" />
     <MESSAGE value="Big changes, starting on the real solving. Finally found a way of saving the results from the candidate generation to a file and not recomputing each damn time" />
     <MESSAGE value="Modified initializermodule.py, added a printing method for the grids.&#10;Added grid.txt, representing the Guardian's crosswords from last Friday." />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified initializermodule.py, added a printing method for the grids.&#10;Added grid.txt, representing the Guardian's crosswords from last Friday." />
+    <MESSAGE value="Modified the solver package, on track. Added a list containing all mergers in simple_mergers.py. Modified a few bits in initializermodule.py and worked on solvermodule.py. Rest Hasn't really moved." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified the solver package, on track. Added a list containing all mergers in simple_mergers.py. Modified a few bits in initializermodule.py and worked on solvermodule.py. Rest Hasn't really moved." />
   </component>
 </project>

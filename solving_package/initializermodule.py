@@ -205,3 +205,4 @@ with open(f"grid.txt", "r") as f :
             if lines[i][j] == '#' :
                 grid.Grid[i][j].modify(block = True)
 
+print(grid)

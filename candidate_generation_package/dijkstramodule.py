@@ -1,6 +1,7 @@
 import heapq
 import re
-
+import dill
+import os
 import numpy as np
 
 
@@ -118,8 +119,10 @@ def words(db) :
     return w
 
 
-def graph_creator(db: list[str]) :
+def graph_creator(db: list[str], db_name: str) :
     """
+    :param db_name: name of the file to save in
+    :type db_name: str
     :param db: Database containing all documents
     :type db: list[str]
     :return: Graph linking a document to its terms
@@ -140,7 +143,7 @@ def graph_creator(db: list[str]) :
         words_i[-1] = re.sub(r"\n", "", words_i[-1])
 
         for word in words_i :
-            word = re.sub("[^\w\s:À-ÿ]" , "", word)
+            word = re.sub("[^\w\s:À-ÿ]", "", word)
             x_w = Omega.get_edge(i, word)
             if x_w is None :
                 Omega.unoriented_add_edge(i, word, 1)
@@ -168,6 +171,14 @@ def graph_creator(db: list[str]) :
             Final.oriented_add_edge(vertex_key, neighbour_key, weight_vertex_neighbour)
     # |documents containing u| is the degree of u in Omega, which is not oriented
     # |documents containing t and u| is the weight of (t,u) in Words, which is not oriented
+
+    """with open(f"{db_name}_omega_graph.txt", "wb") as f :
+        dill.dump(Omega, file = f)
+
+    with open(f"{db_name}_DB_graph.txt", "wb") as f :
+        dill.dump(Final, file = f)"""
+
+    # Need to find a better way to make these graphs persistent.
 
     return Omega, Final
 
@@ -207,8 +218,15 @@ def dijkstra(graph: Graph, vertex) :
 undesirable_words = ["and", "or", "for", "to", "than", "on", "at", "of", "from", "into"]
 
 
-def dijkstra_gen(database: list[str], clue: str, length: int) :
-    Omega, DB = graph_creator(database)
+def dijkstra_gen(database: list[str], clue: str, length: int, db_name: str) :
+    """if os.path.isfile(f"{db_name}_DB_graph.txt") and os.path.isfile(f"{db_name}_omega_graph.txt") :
+        with open(f"{db_name}_DB_graph.txt", "rb") as f :
+            DB = dill.load(f)
+        with open(f"{db_name}_omega_graph.txt", "rb") as f :
+            Omega = dill.load(f)
+    else :"""
+    Omega, DB = graph_creator(database, db_name)
+
     clue_terms = clue.lower().split(" ")
     distance_to_neighbours = {}
     for term in clue_terms :
@@ -218,7 +236,7 @@ def dijkstra_gen(database: list[str], clue: str, length: int) :
     distances = {}
     for w in DB.get_vertices() :
         w_key = re.sub("[^\w\s:À-ÿ]", "", w.key)
-        if w_key not in undesirable_words and len(w_key) == length:
+        if w_key not in undesirable_words and len(w_key) == length :
             d = 0
             for term in clue_terms :
                 d += distance_to_neighbours[term].get(w_key, 0)
@@ -227,7 +245,7 @@ def dijkstra_gen(database: list[str], clue: str, length: int) :
     def sorting_function(t) :
         return t[1]
 
-    res = sorted([(u, 1/(distances[u] + 1)) for u in distances.keys() if distances[u] != float("inf")],
+    res = sorted([(u, 1 / (distances[u] + 1)) for u in distances.keys() if distances[u] != float("inf")],
                  key = sorting_function, reverse = False)
     # The sorted list needs to be in ascending order, as we want the words that are closest to the clue
 
