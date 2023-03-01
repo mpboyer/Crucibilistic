@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Modified the solver package, on track. Added a list containing all mergers in simple_mergers.py. Modified a few bits in initializermodule.py and worked on solvermodule.py. Rest Hasn't really moved.">
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_0_0_a.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solving_package/initializermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/initializermodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solving_package/solvermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/solvermodule.py" afterDir="false" />
-    </list>
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Modified a bit solvermodule.py and initializermodule.py to fix the bug causing an infinite 'while' loop. Modified dijkstramodule.py and partialmatchmodule.py so they now work with '&amp;' in clues." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -380,7 +373,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677508099782</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Modified a bit solvermodule.py and initializermodule.py to fix the bug causing an infinite 'while' loop. Modified dijkstramodule.py and partialmatchmodule.py so they now work with '&amp;' in clues.">
+      <created>1677703992619</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1677703992619</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -419,6 +419,7 @@
     <MESSAGE value="Big changes, starting on the real solving. Finally found a way of saving the results from the candidate generation to a file and not recomputing each damn time" />
     <MESSAGE value="Modified initializermodule.py, added a printing method for the grids.&#10;Added grid.txt, representing the Guardian's crosswords from last Friday." />
     <MESSAGE value="Modified the solver package, on track. Added a list containing all mergers in simple_mergers.py. Modified a few bits in initializermodule.py and worked on solvermodule.py. Rest Hasn't really moved." />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified the solver package, on track. Added a list containing all mergers in simple_mergers.py. Modified a few bits in initializermodule.py and worked on solvermodule.py. Rest Hasn't really moved." />
+    <MESSAGE value="Modified a bit solvermodule.py and initializermodule.py to fix the bug causing an infinite 'while' loop. Modified dijkstramodule.py and partialmatchmodule.py so they now work with '&amp;' in clues." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified a bit solvermodule.py and initializermodule.py to fix the bug causing an infinite 'while' loop. Modified dijkstramodule.py and partialmatchmodule.py so they now work with '&amp;' in clues." />
   </component>
 </project>
