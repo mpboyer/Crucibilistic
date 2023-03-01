@@ -48,8 +48,8 @@ def clue_solver(Grid, i: int, j: int, path: str, direction = "a") :
         dill.dump(all_results, file = f)
 
 
-def all_clue_solver(Grid) :
-    path = os.path.join(f"{gridname}")
+def all_clue_solver(Grid, save_directory) :
+    path = os.path.join(f"{save_directory}")
     print(path)
     created = False
     i = 0
@@ -79,7 +79,7 @@ def all_clue_solver(Grid) :
                 clue_solver(Grid, row, column, path, "d")
 
 
-all_clue_solver(grid_18_02_2023_Guardian)
+all_clue_solver(grid_18_02_2023_Guardian, gridname)
 
 
 def grid_solver(Grid) :
