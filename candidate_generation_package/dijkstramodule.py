@@ -1,7 +1,6 @@
 import heapq
 import re
-import dill
-import os
+
 import numpy as np
 
 
@@ -136,14 +135,11 @@ def graph_creator(db: list[str], db_name: str) :
     Words = Graph()
     # Creation of a not oriented graph linking two words u and v with weight |documents containing both u and v|
     for i in db :
-        i = i.lower()
-        i = re.sub("[^\w\s:À-ÿ:&]", "", i)
         Omega.add_vertex(Vertex(i))
         words_i = i.split(" ")
         words_i[-1] = re.sub(r"\n", "", words_i[-1])
 
         for word in words_i :
-            word = re.sub("[^\w\s:À-ÿ:&]", "", word)
             x_w = Omega.get_edge(i, word)
             if x_w is None :
                 Omega.unoriented_add_edge(i, word, 1)
@@ -164,7 +160,7 @@ def graph_creator(db: list[str], db_name: str) :
     # with weight log(|documents containing u|)-log(|documents in d containing u and v|)
     for vertex in Words.get_vertices() :
         for neighbour in vertex.neighbours :
-            vertex_key, neighbour_key = re.sub("[^\w\s:À-ÿ:&]", "", vertex.key), re.sub("[^\w\s:À-ÿ:&]", "", neighbour.key)
+            vertex_key, neighbour_key = vertex.key, neighbour.key
             number_of_common_documents_vertex_neighbour = Words.get_edge(vertex_key, neighbour_key) / 2
             number_of_documents_vertex = len(Omega.get_vertex(vertex_key).get_connections())
             weight_vertex_neighbour = -np.log(number_of_common_documents_vertex_neighbour / number_of_documents_vertex)
@@ -230,12 +226,11 @@ def dijkstra_gen(database: list[str], clue: str, length: int, db_name: str) :
     clue_terms = clue.lower().split(" ")
     distance_to_neighbours = {}
     for term in clue_terms :
-        term = re.sub("[^\w\s:À-ÿ:&]", "", term)
         distance_to_neighbours[term] = dijkstra(DB, term)
 
     distances = {}
     for w in DB.get_vertices() :
-        w_key = re.sub("[^\w\s:À-ÿ:&]", "", w.key)
+        w_key = w.key
         if w_key not in undesirable_words and len(w_key) == length :
             d = 0
             for term in clue_terms :

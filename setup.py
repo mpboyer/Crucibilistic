@@ -73,12 +73,14 @@ def setup_main():
     all_words = {}
     CWDB_dict = {}
     CWDB_clue_list = []
-    for line in CWDB_raw:
-        line_ = (line.lower()).split("\t")
-        print(line_)
+    for line in CWDB_raw :
+        line_ = (line.lower())
+        line_ = re.sub('[^\w\s:À-ÿ&"]', '', line_)
+        line_ = line_.split()
+
         CWDB_dict[line_[2]] = line_[3]
         CWDB_clue_list.append(knownClue(line_[2], line_[3]))
-        for word in line_[2].split(" "):
+        for word in line_[2].split(" ") :
             all_words[word] = all_words.get(word, 0) + 1
         all_words[line_[3]] = all_words.get(line_[3], 0) + 1
 

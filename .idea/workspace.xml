@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Modified a bit solvermodule.py and initializermodule.py to fix the bug causing an infinite 'while' loop. Modified dijkstramodule.py and partialmatchmodule.py so they now work with '&amp;' in clues.">
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Modified a bit of everything to repair the github oopsie that happened earlier">
+      <change afterPath="$PROJECT_DIR$/cwdb.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
@@ -64,7 +66,7 @@
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\Candidate Generation Modules\IR Modules" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.setup">
+  <component name="RunManager" selected="Python.partialmatchmodule">
     <configuration name="dijkstramodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -172,8 +174,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.setup" />
         <item itemvalue="Python.partialmatchmodule" />
+        <item itemvalue="Python.setup" />
         <item itemvalue="Python.scratch" />
         <item itemvalue="Python.solvermodule" />
         <item itemvalue="Python.dijkstramodule" />
@@ -392,7 +394,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677704743016</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Modified a bit of everything to repair the github oopsie that happened earlier">
+      <created>1677705150704</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1677705150704</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -432,7 +441,8 @@
     <MESSAGE value="Modified initializermodule.py, added a printing method for the grids.&#10;Added grid.txt, representing the Guardian's crosswords from last Friday." />
     <MESSAGE value="Modified the solver package, on track. Added a list containing all mergers in simple_mergers.py. Modified a few bits in initializermodule.py and worked on solvermodule.py. Rest Hasn't really moved." />
     <MESSAGE value="Modified a bit solvermodule.py and initializermodule.py to fix the bug causing an infinite 'while' loop. Modified dijkstramodule.py and partialmatchmodule.py so they now work with '&amp;' in clues." />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified a bit solvermodule.py and initializermodule.py to fix the bug causing an infinite 'while' loop. Modified dijkstramodule.py and partialmatchmodule.py so they now work with '&amp;' in clues." />
+    <MESSAGE value="Modified a bit of everything to repair the github oopsie that happened earlier" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified a bit of everything to repair the github oopsie that happened earlier" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

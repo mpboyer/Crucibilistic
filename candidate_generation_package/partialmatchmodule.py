@@ -44,7 +44,7 @@ class Vector :
 def base(db) :
     basis = {}
     for document in db :
-        document = re.sub("[^\w\s:À-ÿ:&]", "", document)
+        document = re.sub('[^\w\s:À-ÿ&"]', '', document)
         doc = document.split(" ")
         doc1 = {}
         for term in doc :
@@ -60,10 +60,7 @@ class Vector_Space :
         self.dimension = len(self.basis)
         self.vectors = {}
         for document in db :
-            document_ = re.sub("[^\w\s:À-ÿ:&]", "", document)
-            if document_ != document :
-                print(document)
-            self.vectors[document_] = Vector(document_)
+            self.vectors[document] = Vector(document)
         self.db_size = len(db)
 
         def update_coordinates() :
@@ -159,21 +156,20 @@ def partial_match(db : list[str], clue : str, length : int) :
     """
     VS = initialize(db)
     VS.add_vector(clue)
-
-    print("like sh" in VS.vectors)
+    power = 15
 
     result_clues = []
     for v in VS.vectors.keys() :
         k = 0
-        # print(v)
-        if len(v) == length:
-            k = VS.vectors[v].dot(VS.vectors[clue])
-            # Calculates the dot product between the clue and any clue in the CWBD
+        if v != clue and len(setup.clue_table[v]) == length :
+            k = VS.vectors[v].dot(
+                VS.vectors[clue])  # print(k)  # Calculates the dot product between the clue and any clue in the CWBD
         if k != 0 :
-            power = 15
             weight = 1 - pow((1 - k), power)  # Interpolates the weight between the dot product and the inverse of the
             # number of all known words
             result_clues.append((setup.clue_table[v], weight))
+    if clue in setup.clue_table :
+        result_clues.append((setup.clue_table[clue], (1 - pow(1 - 0.9, 15))))
     result_clues.sort(key = lambda t : t[1], reverse = True)
     return result_clues
 
