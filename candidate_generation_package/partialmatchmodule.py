@@ -1,6 +1,8 @@
-import setup
-import numpy as np
 import re
+
+import numpy as np
+
+import setup
 
 
 def freq(name: str) :
@@ -59,7 +61,7 @@ class Vector_Space :
         self.vectors = {}
         for document in db :
             document_ = re.sub("[^\w\s:À-ÿ:&]", "", document)
-            if document_ == "like sh":
+            if document_ != document :
                 print(document)
             self.vectors[document_] = Vector(document_)
         self.db_size = len(db)

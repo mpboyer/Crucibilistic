@@ -1,5 +1,5 @@
-import re
 import random
+import re
 
 
 class knownClue:  # Representation of a clue
@@ -75,6 +75,7 @@ def setup_main():
     CWDB_clue_list = []
     for line in CWDB_raw:
         line_ = (line.lower()).split("\t")
+        print(line_)
         CWDB_dict[line_[2]] = line_[3]
         CWDB_clue_list.append(knownClue(line_[2], line_[3]))
         for word in line_[2].split(" "):
