@@ -3,6 +3,8 @@ import re
 
 import numpy as np
 
+import setup
+
 
 class Vertex :
     def __init__(self, key) :
@@ -181,6 +183,7 @@ def graph_creator(db: list[str], db_name: str) :
 
 def dijkstra(graph: Graph, vertex) :
     if graph.get_vertex(vertex) is None :
+        print(vertex)
         return f"{vertex} is not in G"
 
     priority_queue = []
@@ -223,19 +226,24 @@ def dijkstra_gen(database: list[str], clue: str, length: int, db_name: str) :
     else :"""
     Omega, DB = graph_creator(database, db_name)
 
-    clue_terms = clue.lower().split(" ")
+    clue_terms = clue.lower()
+    clue_terms = re.sub('[^\w\s:À-ÿ&"]', '', clue_terms)
+    clue_terms = clue_terms.split(" ")
     distance_to_neighbours = {}
     for term in clue_terms :
-        distance_to_neighbours[term] = dijkstra(DB, term)
+        k = dijkstra(DB, term)
+        if type(k) == float :
+            distance_to_neighbours[term] = dijkstra(DB, term)
 
     distances = {}
-    for w in DB.get_vertices() :
-        w_key = w.key
-        if w_key not in undesirable_words and len(w_key) == length :
-            d = 0
-            for term in clue_terms :
-                d += distance_to_neighbours[term].get(w_key, 0)
-            distances[w_key] = d
+    for document in database :
+        if len(setup.clue_table[document]) == length :
+            d_words = (re.sub('[^\w\s:À-ÿ&"]', '', document.lower())).split()
+            for w_key in d_words :
+                d_weight = 0
+                for term in clue_terms :
+                    d_weight += distance_to_neighbours[term].get(w_key, 0)
+                distances[document] = d_weight + distances.get(document, 0)
 
     def sorting_function(t) :
         return t[1]

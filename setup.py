@@ -76,7 +76,7 @@ def setup_main():
     for line in CWDB_raw :
         line_ = (line.lower())
         line_ = re.sub('[^\w\s:À-ÿ&"]', '', line_)
-        line_ = line_.split()
+        line_ = line_.split('\t')
 
         CWDB_dict[line_[2]] = line_[3]
         CWDB_clue_list.append(knownClue(line_[2], line_[3]))

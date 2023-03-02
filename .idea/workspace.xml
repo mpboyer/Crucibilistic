@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Modified a bit of everything to repair the github oopsie that happened earlier">
-      <change afterPath="$PROJECT_DIR$/cwdb.txt" afterDir="false" />
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Modified partialmatchmodule.py so it works again, as well as dijkstramodule.py and setup.py in prevision for similar bugs.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solving_package/solvermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/solvermodule.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +65,7 @@
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\Candidate Generation Modules\IR Modules" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.partialmatchmodule">
+  <component name="RunManager" selected="Python.solvermodule">
     <configuration name="dijkstramodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -174,10 +173,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.solvermodule" />
         <item itemvalue="Python.partialmatchmodule" />
         <item itemvalue="Python.setup" />
         <item itemvalue="Python.scratch" />
-        <item itemvalue="Python.solvermodule" />
         <item itemvalue="Python.dijkstramodule" />
       </list>
     </recent_temporary>
@@ -401,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677705150704</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Modified partialmatchmodule.py so it works again, as well as dijkstramodule.py and setup.py in prevision for similar bugs.">
+      <created>1677706405830</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1677706405830</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -442,7 +448,8 @@
     <MESSAGE value="Modified the solver package, on track. Added a list containing all mergers in simple_mergers.py. Modified a few bits in initializermodule.py and worked on solvermodule.py. Rest Hasn't really moved." />
     <MESSAGE value="Modified a bit solvermodule.py and initializermodule.py to fix the bug causing an infinite 'while' loop. Modified dijkstramodule.py and partialmatchmodule.py so they now work with '&amp;' in clues." />
     <MESSAGE value="Modified a bit of everything to repair the github oopsie that happened earlier" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified a bit of everything to repair the github oopsie that happened earlier" />
+    <MESSAGE value="Modified partialmatchmodule.py so it works again, as well as dijkstramodule.py and setup.py in prevision for similar bugs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified partialmatchmodule.py so it works again, as well as dijkstramodule.py and setup.py in prevision for similar bugs." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

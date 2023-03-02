@@ -1,14 +1,14 @@
-import candidate_generation_package.dijkstramodule as dijkstra
-from candidate_generation_package.exactmatchmodule import exactmatch
-from candidate_generation_package.partialmatchmodule import partial_match
-from candidate_generation_package.wordlistmodule import wordlist
+import os
 
+import dill
+
+import candidate_generation_package.dijkstramodule as dijkstra
 import candidate_merging_package.simple_mergers as cmp_sm
 import initializermodule
 import setup
-import os
-import dill
-
+from candidate_generation_package.exactmatchmodule import exactmatch
+from candidate_generation_package.partialmatchmodule import partial_match
+from candidate_generation_package.wordlistmodule import wordlist
 
 grid_18_02_2023_Guardian = initializermodule.grid
 gridname = "grid_18_02_2023_Guardian"
@@ -82,9 +82,9 @@ def all_clue_solver(Grid, save_directory) :
 all_clue_solver(grid_18_02_2023_Guardian, gridname)
 
 
-def grid_solver(Grid) :
-    all_clue_solver(Grid)  # The previous all_clue_solver is created for debug purposes only, in reality it will not
-    # be run besides this function
+def grid_solver(Grid, save_directory) :
+    all_clue_solver(Grid, save_directory)  # The previous all_clue_solver is created for debug (and spltting runtime)
+    # purposes only, in reality it will not be run apart from this call this function
 
     # anyways, I started blasting. This won't be pretty : SAY HELLO TO MY LITTLE FRIEND
     candidate_grids = []
