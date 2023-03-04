@@ -44,7 +44,7 @@ class Vector :
 def base(db) :
     basis = {}
     for document in db :
-        document = re.sub('[^\w\s:À-ÿ&"]', '', document)
+        document = re.sub("[-']", "", document)
         doc = document.split(" ")
         doc1 = {}
         for term in doc :
@@ -174,5 +174,7 @@ def partial_match(db : list[str], clue : str, length : int) :
     return result_clues
 
 
+"""
 CWDB = [c.Clue for c in setup.CWDB]
-print(partial_match(CWDB, "dandy like", 7))
+print(partial_match(CWDB, "pointless talk", 6))
+"""

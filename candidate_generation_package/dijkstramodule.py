@@ -120,7 +120,7 @@ def words(db) :
     return w
 
 
-def graph_creator(db: list[str], db_name: str) :
+def graph_creator(db: list[str]) :
     """
     :param db_name: name of the file to save in
     :type db_name: str
@@ -217,28 +217,50 @@ def dijkstra(graph: Graph, vertex) :
 undesirable_words = ["and", "or", "for", "to", "than", "on", "at", "of", "from", "into"]
 
 
-def dijkstra_gen(database: list[str], clue: str, length: int, db_name: str) :
+def dijkstra_gen(database: list[str], clue: str, length: int) :
+    """
+    :param database:
+    :type database:
+    :param clue:
+    :type clue:
+    :param length:
+    :type length:
+    :return:
+    :rtype:
+    """
+
     """if os.path.isfile(f"{db_name}_DB_graph.txt") and os.path.isfile(f"{db_name}_omega_graph.txt") :
         with open(f"{db_name}_DB_graph.txt", "rb") as f :
             DB = dill.load(f)
         with open(f"{db_name}_omega_graph.txt", "rb") as f :
             Omega = dill.load(f)
     else :"""
-    Omega, DB = graph_creator(database, db_name)
+    Omega, DB = graph_creator(database)
 
     clue_terms = clue.lower()
-    clue_terms = re.sub('[^\w\s:À-ÿ&"]', '', clue_terms)
+    clue_terms = re.sub("[-'?.!()]", "", clue_terms)
     clue_terms = clue_terms.split(" ")
+    # print(clue_terms)
     distance_to_neighbours = {}
     for term in clue_terms :
         k = dijkstra(DB, term)
-        if type(k) == float :
-            distance_to_neighbours[term] = dijkstra(DB, term)
+        # print(k)
+        if type(k) != str :
+            distance_to_neighbours[term] = k
+        else :
+            distance_to_neighbours[term] = {}
 
     distances = {}
     for document in database :
+        d_words = document.lower()
+        d_words = re.sub("[-'?.!()]", "", d_words)
+        d_words = d_words.split(" ")
+        d_words = d_words[:-1]
+        document = ""
+        for w in d_words :
+            document += (w + " ")
+        document = document[:-1]
         if len(setup.clue_table[document]) == length :
-            d_words = (re.sub('[^\w\s:À-ÿ&"]', '', document.lower())).split()
             for w_key in d_words :
                 d_weight = 0
                 for term in clue_terms :
@@ -254,8 +276,14 @@ def dijkstra_gen(database: list[str], clue: str, length: int, db_name: str) :
 
     return res
 
+
 # Change the way distances between documents are calculated so that two similar documents produce the same
 # list of candidates ? Calculate the distance between two documents answers included and calculate the distance
 # between the clue without answer and the rest ? Calculate the distance between two clues ?
 
 # Nothing worrying tho, results to be expected according to Keim, Littman, Shazeer
+"""
+clue = "pointless talk"
+length = 6
+cwdb_with_words = [c.Clue.lower() + " " + c.Word.lower() for c in setup.CWDB]
+print(dijkstra_gen(cwdb_with_words, clue, length))"""

@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Modified partialmatchmodule.py so it works again, as well as dijkstramodule.py and setup.py in prevision for similar bugs.">
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Tried to fix dijkstramodule.py cause for some reason it didn't work anymore, reimplemented split cases in setup.py so it works again.">
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_0_10_d.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_0_12_d.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_0_4_d.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_0_7_a.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_0_8_d.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_2_0_a.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_2_6_a.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_2_6_d.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solving_package/solvermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/solvermodule.py" afterDir="false" />
     </list>
@@ -175,9 +184,9 @@
       <list>
         <item itemvalue="Python.solvermodule" />
         <item itemvalue="Python.partialmatchmodule" />
+        <item itemvalue="Python.dijkstramodule" />
         <item itemvalue="Python.setup" />
         <item itemvalue="Python.scratch" />
-        <item itemvalue="Python.dijkstramodule" />
       </list>
     </recent_temporary>
   </component>
@@ -407,7 +416,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677706405830</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Tried to fix dijkstramodule.py cause for some reason it didn't work anymore, reimplemented split cases in setup.py so it works again.">
+      <created>1677740657012</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1677740657012</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -424,7 +440,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Update to README.md, added cwbd_readme.txt to complete it." />
     <MESSAGE value="Update to definitions of classes in main.py, change in the shape of the CWDB in main.py and small adjustments to exactmatch.py and wordlistmodule.py. bruteforcermodule.py needs to be revamped." />
     <MESSAGE value="Updates to dico.py. Deletion of cwdb.py to be recreated in main.py. Addition of the weighing function to exactmatch.py. Fixed wordlistmodule.py." />
     <MESSAGE value="Updates to main.py and the CWDB. Visualisation." />
@@ -449,7 +464,8 @@
     <MESSAGE value="Modified a bit solvermodule.py and initializermodule.py to fix the bug causing an infinite 'while' loop. Modified dijkstramodule.py and partialmatchmodule.py so they now work with '&amp;' in clues." />
     <MESSAGE value="Modified a bit of everything to repair the github oopsie that happened earlier" />
     <MESSAGE value="Modified partialmatchmodule.py so it works again, as well as dijkstramodule.py and setup.py in prevision for similar bugs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified partialmatchmodule.py so it works again, as well as dijkstramodule.py and setup.py in prevision for similar bugs." />
+    <MESSAGE value="Tried to fix dijkstramodule.py cause for some reason it didn't work anymore, reimplemented split cases in setup.py so it works again." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tried to fix dijkstramodule.py cause for some reason it didn't work anymore, reimplemented split cases in setup.py so it works again." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

@@ -75,7 +75,7 @@ def setup_main():
     CWDB_clue_list = []
     for line in CWDB_raw :
         line_ = (line.lower())
-        line_ = re.sub('[^\w\s:À-ÿ&"]', '', line_)
+        line_ = re.sub("[-'?.!()]", "", line_)
         line_ = line_.split('\t')
 
         CWDB_dict[line_[2]] = line_[3]
@@ -96,9 +96,5 @@ def setup_main():
 
 clue_table, CWDB, words = setup_main()
 
-# print(clue_table.__str__())
-# print('inits.' in clue_table)
-
-
-
-
+"""print(clue_table.__str__())"""
+"""print('auto org' in clue_table)"""
