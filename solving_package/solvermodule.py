@@ -12,12 +12,13 @@ from candidate_generation_package.wordlistmodule import wordlist
 
 grid_18_02_2023_Guardian = initializermodule.grid
 gridname = "grid_18_02_2023_Guardian"
+directions = {'a' : 'across', 'd' : 'down'}
 
 
-def clue_solver(Grid, i: int, j: int, path: str, direction = "a") :
+def clue_solver(Grid, i: int, j: int, save_path: str, direction = "a") :
     """
-    :param path:
-    :type path: str
+    :param save_path:
+    :type save_path: str
     :param Grid: the grid in which the clue solved for is
     :type Grid: Grid
     :param i: Row Number
@@ -43,19 +44,19 @@ def clue_solver(Grid, i: int, j: int, path: str, direction = "a") :
     raw_results = [dijkstra_cwdb_results, exactmatch_results, partialmatch_results, wordlist_results]
     all_results = [f(raw_results) for f in cmp_sm.all_simple_mergers]
 
-    save_string = f"{path}" + r"\all" + f"_results_{i}_{j}_{direction}.txt"
+    save_string = f"{save_path}" + r"\all" + f"_results_{i}_{j}_{direction}.txt"
     with open(save_string, "wb") as f :
         dill.dump(all_results, file = f)
 
 
 def all_clue_solver(Grid, save_directory) :
-    path = os.path.join(f"{save_directory}")
-    print(path)
+    directory = os.path.join(f"{save_directory}")
+    print(directory)
     created = False
     i = 0
-    path_ = path
+    path_ = directory
     while not created :
-        path_ = path + f"({i})" if i != 0 else path
+        path_ = directory + f"({i})" if i != 0 else directory
         try :
             os.mkdir(path_)
             created = True
@@ -64,28 +65,49 @@ def all_clue_solver(Grid, save_directory) :
             pass
             """i += 1"""
 
-    path = path_
+    global directory
+    directory = path_
 
     p, q = Grid.Size
     for row in range(p) :
         for column in range(q) :
             if Grid.Grid[row][column].AClue and not os.path.isfile(
-                    f"{path}" + r"\all" + f"_results_{row}_{column}_{'a'}.txt"):
+                    f"{directory}" + r"\all" + f"_results_{row}_{column}_{'a'}.txt") :
                 print(row, column, "a")
-                clue_solver(Grid, row, column, path, "a")
+                clue_solver(Grid, row, column, directory, "a")
             if Grid.Grid[row][column].DClue and not os.path.isfile(
-                    f"{path}" + r"\all" + f"_results_{row}_{column}_{'d'}.txt") :
+                    f"{directory}" + r"\all" + f"_results_{row}_{column}_{'d'}.txt") :
                 print(row, column, "d")
-                clue_solver(Grid, row, column, path, "d")
+                clue_solver(Grid, row, column, directory, "d")
 
 
-all_clue_solver(grid_18_02_2023_Guardian, gridname)
-
-
-def grid_solver(Grid, save_directory) :
-    all_clue_solver(Grid, save_directory)  # The previous all_clue_solver is created for debug (and spltting runtime)
+def grid_solver(Grid, save_directory, k) :
+    all_clue_solver(Grid, save_directory)
+    # The previous all_clue_solver is created for debug (and spltting runtime)
     # purposes only, in reality it will not be run apart from this call this function
 
-    # anyways, I started blasting. This won't be pretty : SAY HELLO TO MY LITTLE FRIEND
-    candidate_grids = []
+    candidate_grids = set()
+    cur_grids = set(Grid)
     p, q = Grid.Size
+    range_size = k
+    for row in range(p) :
+        for column in range(q) :
+            for wae in directions.keys() :
+                save_string = f"{directory}" + r"\all" + f"_results_{row}_{column}_{wae}.txt"
+                next_grids = set()
+                boolean = Grid.Grid[row][column].AClue if wae == 'a' else Grid.Grid[row][column].DClue
+                if boolean :
+                    with open(save_string, "rb") as f :
+                        results = dill.load(f)
+
+                    for g in cur_grids :
+                        for method in results :
+                            for essai in range(range_size) :
+                                r = g.fill_word(method[essai], directions[wae], row, column)
+                                if type(r) != bool and r not in next_grids :
+                                    if not r.isSolved :
+                                        next_grids.add(r)
+                                    else :
+                                        candidate_grids.add(r)
+                    cur_grids = next_grids
+    return candidate_grids

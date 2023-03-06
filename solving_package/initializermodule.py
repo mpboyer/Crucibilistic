@@ -5,13 +5,21 @@ d = "down"
 
 
 class findClue:
-    def __init__(self, Clue : str, word_length : int):
+    def __init__(self, Clue: str, word_length: int) :
+        """
+        :rtype: findClue
+        :type word_length: int
+        :type Clue: str
+        """
         self.Clue = Clue
         self.Length = word_length
         self.isSolved = False
 
-    def __str__(self):
+    def __str__(self) :
         return f"{self.Clue}, {self.Length}"
+
+    def __bool__(self) :
+        return self.isSolved
 
 
 class Tile :
@@ -31,18 +39,23 @@ class Tile :
         self.AClue = aclue  # Clue going right from this tile : Is None if not the beginning of a
         # word across
         self.DClue = dclue  # Same as with across but with down instead
+        self.isSolved = self.isBlock or (not self.isBlank and self.AClue and self.DClue)
 
     def modify(self, char = ' ', block = False, aclue = None, dclue = None) :
         """
+        :param dclue: optional : clue going down from the tile. Default is None
+        :type dclue: findClue
+        :param aclue: optional : clue going right from the tile. Default is None
+        :type aclue: findClue
         :param char: optional : specifies the letter that is placed in the tile. Default is ''. If block is True
         should be false.
         :type char: str
         :param block: optional : specifies if a letter can be placed in the tile. Default is False.
-        :type block:
+        :type block: bool
         """
         self.isBlock = self.isBlock or block
         if not self.isBlock :
-            if not self.char == ' ' :
+            if not char == ' ' :
                 self.char = char
             if aclue is not None :
                 self.AClue = aclue
@@ -50,11 +63,20 @@ class Tile :
                 self.DClue = dclue
             self.isBlank = self.char == ' '
 
-    def __str__(self):
-        if self.isBlock:
+    def __str__(self) :
+        if self.isBlock :
             return "#"
         else :
             return self.char
+
+    def __eq__(self, other) :
+        # The implementation is partial as not all attributes will need to be checked here, and only grids
+        # representing the same crossword will be compared
+        if not isinstance(other, type(self)) : return NotImplemented
+        return (self.char == other.char or self.isBlank == other.isBlank) and self.isBlock == other.isBlock
+
+    def __hash__(self) :
+        return hash((self.char, self.isBlock, self.isBlank, self.DClue.Clue, self.AClue.Clue))
 
 
 class Grid :  # Representation of a grid
@@ -95,15 +117,19 @@ class Grid :  # Representation of a grid
 
         return Grid.__init__(self, p, q, aclues_list, dclues_list)
 
-    def isSolved(self):
+    def isSolved(self) :
         p, q = self.Size
-        for i in range(p):
-            for j in range(q):
+        for i in range(p) :
+            for j in range(q) :
                 if self.Grid[i][j].isBlank :
                     return False
         return True
 
-    def __str__(self, clues = True) :
+    def __str__(self, clues: bool = True) :
+        """
+        :param clues: specifies if the method should add the clues to the returned str
+        :type clues: bool
+        """
         grid_string = f"{self.Size} \n"
 
         p, q = self.Size
@@ -125,25 +151,35 @@ class Grid :  # Representation of a grid
 
         if clues :
             grid_string += f"Across Clues : \n"
-            for c in across_str:
+            for c in across_str :
                 grid_string += (c[0].__str__() + f", {c[1]}, {c[2]}\n")
 
             grid_string += f"Down Clues : \n"
-            for c in down_str:
+            for c in down_str :
                 grid_string += (c[0].__str__() + f", {c[1]}, {c[2]}\n")
 
         return grid_string[:-1]
 
-    def fill_word(self, direction, row, column, word):
+    def fill_word(self, word: str, direction: str, row: int, column: int) :
+        """
+        :param column: column number of the tile, starting from 0
+        :type column: int
+        :param row: row number of the tile, starting from 0.
+        :type row: int
+        :param word: word to be added
+        :type word: str
+        :param direction: specifies if the word should go right from the tile, or down
+        :type direction: str
+        """
         wordLength = len(word)
 
-        if direction == a:
-            for k in range(wordLength):
+        if direction == a :
+            for k in range(wordLength) :
                 tile = self.Grid[row][column + k]
-                if tile.isBlock:
+                if tile.isBlock :
                     return False
-                if not tile.isBlank:
-                    if tile.char != word[k]:
+                if not tile.isBlank :
+                    if tile.char != word[k] :
                         return False
 
             grid_copy = self.copy()
@@ -168,6 +204,13 @@ class Grid :  # Representation of a grid
         c = grid_copy.Grid[row][column].AClue if direction == "a" else grid_copy.Grid[row][column].DClue
         c.isSolved = True
         return grid_copy
+
+    def __eq__(self, other) :
+        if not isinstance(other, type(self)) : return NotImplemented
+        return self.Grid == other.Grid
+
+    def __hash__(self) :
+        return hash((tuple(self.Grid)))
 
 
 with open(f"grid.txt", "r") as f :
@@ -204,5 +247,3 @@ with open(f"grid.txt", "r") as f :
         for j in range(len(lines[0])) :
             if lines[i][j] == '#' :
                 grid.Grid[i][j].modify(block = True)
-
-print(grid)
