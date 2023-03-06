@@ -86,6 +86,12 @@ def grid_solver(Grid, save_directory, k) :
     # The previous all_clue_solver is created for debug (and spltting runtime)
     # purposes only, in reality it will not be run apart from this call this function
 
+    test = os.path.join(directory, "solver_step_grids")
+    try :
+        os.mkdir(test)
+    except OSError :
+        pass
+
     candidate_grids = set()
     cur_grids = set(Grid)
     p, q = Grid.Size
@@ -109,5 +115,6 @@ def grid_solver(Grid, save_directory, k) :
                                         next_grids.add(r)
                                     else :
                                         candidate_grids.add(r)
+
                     cur_grids = next_grids
     return candidate_grids

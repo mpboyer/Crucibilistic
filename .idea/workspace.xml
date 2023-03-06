@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="OOOOOOOOOOOOOOOOO">
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Added grid_solver in solvermodule.py, and hash functions to classes in initializermodule.py to make sets work. Should be good to go. (and not 2good2go)">
       <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_10_0_a.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_10_8_a.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_12_0_a.txt" afterDir="false" />
@@ -14,7 +14,6 @@
       <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_8_6_a.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_8_8_d.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solving_package/initializermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/initializermodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solving_package/solvermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/solvermodule.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,28 +74,7 @@
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\Candidate Generation Modules\IR Modules" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.initializermodule">
-    <configuration name="dijkstramodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Crucibilistic" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/candidate_generation_package" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.test">
     <configuration name="initializermodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -139,7 +117,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="setup" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="scratch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -147,11 +125,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/setup.py" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -181,13 +159,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Crucibilistic" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/solving_package" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/solving_package/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.scratch" />
         <item itemvalue="Python.initializermodule" />
         <item itemvalue="Python.solvermodule" />
         <item itemvalue="Python.partialmatchmodule" />
-        <item itemvalue="Python.dijkstramodule" />
-        <item itemvalue="Python.setup" />
       </list>
     </recent_temporary>
   </component>
@@ -438,7 +437,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678014827299</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Added grid_solver in solvermodule.py, and hash functions to classes in initializermodule.py to make sets work. Should be good to go. (and not 2good2go)">
+      <created>1678111438882</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1678111438882</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -455,7 +461,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Updates to main.py and the CWDB. Visualisation." />
     <MESSAGE value="Modifications to exact match" />
     <MESSAGE value="Modifications to exact match using levenshtein distance" />
     <MESSAGE value="Changed the file for a_tad_less_exactmatch to a separate one. Levenshtein distance is not realistically calculable." />
@@ -480,7 +485,8 @@
     <MESSAGE value="Tried to fix dijkstramodule.py cause for some reason it didn't work anymore, reimplemented split cases in setup.py so it works again." />
     <MESSAGE value="Fixed everything, progress is being made. (or so it should)" />
     <MESSAGE value="OOOOOOOOOOOOOOOOO" />
-    <option name="LAST_COMMIT_MESSAGE" value="OOOOOOOOOOOOOOOOO" />
+    <MESSAGE value="Added grid_solver in solvermodule.py, and hash functions to classes in initializermodule.py to make sets work. Should be good to go. (and not 2good2go)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added grid_solver in solvermodule.py, and hash functions to classes in initializermodule.py to make sets work. Should be good to go. (and not 2good2go)" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
