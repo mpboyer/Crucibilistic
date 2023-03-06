@@ -86,21 +86,21 @@ def grid_solver(Grid, save_directory, k) :
     # The previous all_clue_solver is created for debug (and spltting runtime)
     # purposes only, in reality it will not be run apart from this call this function
 
-    test = os.path.join(directory, "solver_step_grids")
+    save_sub_directory = os.path.join(directory, "solver_step_grids")
     try :
-        os.mkdir(test)
+        os.mkdir(save_sub_directory)
     except OSError :
         pass
 
-    candidate_grids = set()
-    cur_grids = set(Grid)
+    candidate_grids = []
+    cur_grids = [Grid]
     p, q = Grid.Size
     range_size = k
     for row in range(p) :
         for column in range(q) :
             for wae in directions.keys() :
                 save_string = f"{directory}" + r"\all" + f"_results_{row}_{column}_{wae}.txt"
-                next_grids = set()
+                next_grids = []
                 boolean = Grid.Grid[row][column].AClue if wae == 'a' else Grid.Grid[row][column].DClue
                 if boolean :
                     with open(save_string, "rb") as f :
@@ -109,12 +109,14 @@ def grid_solver(Grid, save_directory, k) :
                     for g in cur_grids :
                         for method in results :
                             for essai in range(range_size) :
-                                r = g.fill_word(method[essai], directions[wae], row, column)
-                                if type(r) != bool and r not in next_grids :
-                                    if not r.isSolved :
-                                        next_grids.add(r)
+                                word, weight = method[essai]
+                                r = g.fill_word(word, weight, directions[wae], row, column)
+                                if type(r) != bool :
+                                    if r.isSolved :
+                                        candidate_grids.append(r)
                                     else :
-                                        candidate_grids.add(r)
-
+                                        next_grids.append(r)
                     cur_grids = next_grids
+
+    candidate_grids = candidate_grids.sort()
     return candidate_grids

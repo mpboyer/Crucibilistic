@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Added grid_solver in solvermodule.py, and hash functions to classes in initializermodule.py to make sets work. Should be good to go. (and not 2good2go)">
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_10_0_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_10_8_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_12_0_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_12_7_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_6_10_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_7_0_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_7_12_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_8_0_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_8_2_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_8_6_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_18_02_2023_Guardian/all_results_8_8_d.txt" afterDir="false" />
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Added a detail to grid_solver to allow for it to run in two to three times.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solving_package/initializermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/initializermodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solving_package/solvermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/solvermodule.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -444,7 +434,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678111438882</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Added a detail to grid_solver to allow for it to run in two to three times.">
+      <created>1678112404112</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1678112404112</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -461,7 +458,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Modifications to exact match" />
     <MESSAGE value="Modifications to exact match using levenshtein distance" />
     <MESSAGE value="Changed the file for a_tad_less_exactmatch to a separate one. Levenshtein distance is not realistically calculable." />
     <MESSAGE value="A few modifications in main and exactmatch.py, addition of new partialmatchmodule.py" />
@@ -486,7 +482,8 @@
     <MESSAGE value="Fixed everything, progress is being made. (or so it should)" />
     <MESSAGE value="OOOOOOOOOOOOOOOOO" />
     <MESSAGE value="Added grid_solver in solvermodule.py, and hash functions to classes in initializermodule.py to make sets work. Should be good to go. (and not 2good2go)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added grid_solver in solvermodule.py, and hash functions to classes in initializermodule.py to make sets work. Should be good to go. (and not 2good2go)" />
+    <MESSAGE value="Added a detail to grid_solver to allow for it to run in two to three times." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a detail to grid_solver to allow for it to run in two to three times." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

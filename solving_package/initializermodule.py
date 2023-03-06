@@ -4,7 +4,7 @@ a = "across"
 d = "down"
 
 
-class findClue:
+class findClue :
     def __init__(self, Clue: str, word_length: int) :
         """
         :rtype: findClue
@@ -75,6 +75,10 @@ class Tile :
         if not isinstance(other, type(self)) : return NotImplemented
         return (self.char == other.char or self.isBlank == other.isBlank) and self.isBlock == other.isBlock
 
+    def __ne__(self, other) :
+        if not isinstance(other, type(self)) : return NotImplemented
+        return not (self.char == other.char or self.isBlank == other.isBlank) or not (self.isBlock == other.isBlock)
+
     def __hash__(self) :
         return hash((self.char, self.isBlock, self.isBlank, self.DClue.Clue, self.AClue.Clue))
 
@@ -95,11 +99,12 @@ class Grid :  # Representation of a grid
         self.Grid = [[Tile(i, j) for j in range(q)] for i in range(p)]  # Initialises as empty
         self.AClues = {}
         self.DClues = {}
+        self.Weight = 0
 
-        for c in aclues_list:
+        for c in aclues_list :
             self.AClues[c[0]] = c[1]
 
-        for c in dclues_list:
+        for c in dclues_list :
             self.DClues[c[0]] = c[1]
 
         for c in self.AClues :
@@ -140,9 +145,9 @@ class Grid :  # Representation of a grid
             for j in range(q) :
                 tile = self.Grid[i][j]
                 grid_string += tile.__str__()
-                if tile.AClue is not None:
+                if tile.AClue is not None :
                     across_str.append((tile.AClue, i, j))
-                if tile.DClue is not None:
+                if tile.DClue is not None :
                     down_str.append((tile.DClue, i, j))
                 if j != q - 1 :
                     grid_string += "|"
@@ -158,10 +163,13 @@ class Grid :  # Representation of a grid
             for c in down_str :
                 grid_string += (c[0].__str__() + f", {c[1]}, {c[2]}\n")
 
-        return grid_string[:-1]
+        grid_string += f"{self.Weight}"
+        return grid_string
 
-    def fill_word(self, word: str, direction: str, row: int, column: int) :
+    def fill_word(self, word: str, weight: float, direction: str, row: int, column: int) :
         """
+        :param weight: weight of the word to be added to the grid
+        :type weight: float
         :param column: column number of the tile, starting from 0
         :type column: int
         :param row: row number of the tile, starting from 0.
@@ -183,7 +191,7 @@ class Grid :  # Representation of a grid
                         return False
 
             grid_copy = self.copy()
-            for k in range(wordLength):
+            for k in range(wordLength) :
                 tile = grid_copy.Grid[row][column + k]
                 tile.modify(char = word[k])
 
@@ -201,6 +209,8 @@ class Grid :  # Representation of a grid
                 tile = grid_copy.Grid[row + k][column]
                 tile.modify(char = word[k])
 
+            grid_copy.Weight += weight
+
         c = grid_copy.Grid[row][column].AClue if direction == "a" else grid_copy.Grid[row][column].DClue
         c.isSolved = True
         return grid_copy
@@ -209,8 +219,24 @@ class Grid :  # Representation of a grid
         if not isinstance(other, type(self)) : return NotImplemented
         return self.Grid == other.Grid
 
+    def __ne__(self, other) :
+        if not isinstance(other, type(self)) : return NotImplemented
+        return self.Grid != other.Grid
+
     def __hash__(self) :
         return hash((tuple(self.Grid)))
+
+    def __le__(self, other) :
+        return self.Weight <= other.Weight
+
+    def __ge__(self, other) :
+        return self.Weight >= other.Weight
+
+    def __lt__(self, other) :
+        return self.Weight < other.Weight
+
+    def __gt__(self, other) :
+        return self.Weight > other.Weight
 
 
 with open(f"grid.txt", "r") as f :
