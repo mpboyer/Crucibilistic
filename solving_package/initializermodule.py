@@ -15,11 +15,11 @@ class findClue :
         self.Length = word_length
         self.isSolved = False
 
+    def solved(self, boolean) :
+        self.isSolved = boolean
+
     def __str__(self) :
         return f"{self.Clue}, {self.Length}"
-
-    def __bool__(self) :
-        return self.isSolved
 
 
 class Tile :
@@ -27,19 +27,25 @@ class Tile :
         """
         :rtype: Tile
         :type block: bool
-        :type dclue: knownClue
-        :type aclue: knownClue
+        :type dclue: findClue
+        :type aclue: findClue
         :type column: int
         :type row: int
         """
         self.value = (row, column)  # Position of the tile in the grid
-        self.isBlank = True  # Initialise as empty
         self.isBlock = block  # Is not a black tile at first
         self.char = ' '  # Initialises as empty
         self.AClue = aclue  # Clue going right from this tile : Is None if not the beginning of a
         # word across
         self.DClue = dclue  # Same as with across but with down instead
-        self.isSolved = self.isBlock or (not self.isBlank and self.AClue and self.DClue)
+        boolean = self.isBlock
+        temp_bool = not self.char == ' '
+        if self.AClue is not None :
+            temp_bool = temp_bool and self.AClue.isSolved
+        if self.DClue is not None :
+            temp_bool = temp_bool and self.DClue.isSolved
+        boolean = boolean or temp_bool
+        self.isSolved = boolean
 
     def modify(self, char = ' ', block = False, aclue = None, dclue = None) :
         """
@@ -61,7 +67,13 @@ class Tile :
                 self.AClue = aclue
             if dclue is not None :
                 self.DClue = dclue
-            self.isBlank = self.char == ' '
+
+    def solve(self, direction) :
+        self.isSolved = True
+        if direction == a :
+            self.AClue.solved(True)
+        else :
+            self.DClue.solved(True)
 
     def __str__(self) :
         if self.isBlock :
@@ -73,18 +85,18 @@ class Tile :
         # The implementation is partial as not all attributes will need to be checked here, and only grids
         # representing the same crossword will be compared
         if not isinstance(other, type(self)) : return NotImplemented
-        return (self.char == other.char or self.isBlank == other.isBlank) and self.isBlock == other.isBlock
+        return (self.char == other.char) and self.isBlock == other.isBlock
 
     def __ne__(self, other) :
         if not isinstance(other, type(self)) : return NotImplemented
-        return not (self.char == other.char or self.isBlank == other.isBlank) or not (self.isBlock == other.isBlock)
+        return not (self.char == other.char) or not (self.isBlock == other.isBlock)
 
     def __hash__(self) :
-        return hash((self.char, self.isBlock, self.isBlank, self.DClue.Clue, self.AClue.Clue))
+        return hash((self.char, self.isBlock, self.DClue.Clue, self.AClue.Clue))
 
 
 class Grid :  # Representation of a grid
-    def __init__(self, p, q, aclues_list, dclues_list) :
+    def __init__(self, p, q, aclues_list, dclues_list, weight = 1) :
         """
         :param p: height of the grid
         :type p: int
@@ -99,7 +111,7 @@ class Grid :  # Representation of a grid
         self.Grid = [[Tile(i, j) for j in range(q)] for i in range(p)]  # Initialises as empty
         self.AClues = {}
         self.DClues = {}
-        self.Weight = 0
+        self.Weight = weight
 
         for c in aclues_list :
             self.AClues[c[0]] = c[1]
@@ -120,13 +132,13 @@ class Grid :  # Representation of a grid
         aclues_list = [(c, self.AClues[c]) for c in self.AClues]
         dclues_list = [(c, self.DClues[c]) for c in self.DClues]
 
-        return Grid.__init__(self, p, q, aclues_list, dclues_list)
+        return Grid(p, q, aclues_list, dclues_list, self.Weight)
 
     def isSolved(self) :
         p, q = self.Size
         for i in range(p) :
             for j in range(q) :
-                if self.Grid[i][j].isBlank :
+                if not self.Grid[i][j].isSolved :
                     return False
         return True
 
@@ -180,13 +192,16 @@ class Grid :  # Representation of a grid
         :type direction: str
         """
         wordLength = len(word)
+        p, q = self.Size
 
         if direction == a :
+            if column + wordLength >= q :
+                return False
             for k in range(wordLength) :
                 tile = self.Grid[row][column + k]
                 if tile.isBlock :
                     return False
-                if not tile.isBlank :
+                if not tile.char == ' ' :
                     if tile.char != word[k] :
                         return False
 
@@ -196,11 +211,13 @@ class Grid :  # Representation of a grid
                 tile.modify(char = word[k])
 
         else :
+            if row + wordLength >= p :
+                return False
             for k in range(wordLength) :
                 tile = self.Grid[row + k][column]
                 if tile.isBlock :
                     return False
-                if not tile.isBlank :
+                if not tile.char == ' ' :
                     if tile.char != word[k] :
                         return False
 
@@ -209,10 +226,10 @@ class Grid :  # Representation of a grid
                 tile = grid_copy.Grid[row + k][column]
                 tile.modify(char = word[k])
 
-            grid_copy.Weight += weight
+            grid_copy.Weight *= weight
 
-        c = grid_copy.Grid[row][column].AClue if direction == "a" else grid_copy.Grid[row][column].DClue
-        c.isSolved = True
+        c = self.Grid[row][column]
+        c.solve(direction)
         return grid_copy
 
     def __eq__(self, other) :
@@ -239,7 +256,7 @@ class Grid :  # Representation of a grid
         return self.Weight > other.Weight
 
 
-with open(f"grid.txt", "r") as f :
+with open(f"grid_13_03_2023_MiniNYT\grid.txt", "r") as f :
     auqlue = f.readlines()
     l1 = auqlue[0]
     l1 = re.sub("\n", "", l1)
