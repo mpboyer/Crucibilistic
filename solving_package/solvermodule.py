@@ -11,7 +11,7 @@ from candidate_generation_package.partialmatchmodule import partial_match
 from candidate_generation_package.wordlistmodule import wordlist
 
 grid_18_02_2023_Guardian = initializermodule.grid
-gridname = "grid_13_03_2023_MiniNYT"
+gridname = "grid_14_03_2023_MiniNYT"
 directions = {'a' : 'across', 'd' : 'down'}
 
 

@@ -256,7 +256,7 @@ class Grid :  # Representation of a grid
         return self.Weight > other.Weight
 
 
-with open(f"grid_13_03_2023_MiniNYT\grid.txt", "r") as f :
+with open(f"grid_14_03_2023_MiniNYT\grid.txt", "r") as f :
     auqlue = f.readlines()
     l1 = auqlue[0]
     l1 = re.sub("\n", "", l1)

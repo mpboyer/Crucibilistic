@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Added a detail to grid_solver to allow for it to run in two to three times.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solving_package/initializermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/initializermodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solving_package/solvermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/solvermodule.py" afterDir="false" />
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Modified a bit things, everything is working in theory, not so much in reality, difficulty might be a bit too high.">
+      <change beforePath="$PROJECT_DIR$/solving_package/grid_13_03_2023_MiniNYT/all_results_0_0_a.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/solving_package/grid_13_03_2023_MiniNYT/grid.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,14 +56,14 @@
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\solving_package" />
+      <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\solving_package\grid_18_02_2023_Guardian" />
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\" />
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\candidate_generator" />
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\Candidate Generation Modules" />
-      <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\Candidate Generation Modules\" />
-      <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\Candidate Generation Modules\IR Modules" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.solvermodule">
     <configuration name="initializermodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -135,9 +134,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\mb692\PycharmProjects\venv1\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/solving_package" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/solving_package/solvermodule.py" />
@@ -172,10 +171,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.solvermodule" />
+        <item itemvalue="Python.initializermodule" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.scratch" />
-        <item itemvalue="Python.initializermodule" />
-        <item itemvalue="Python.solvermodule" />
         <item itemvalue="Python.partialmatchmodule" />
       </list>
     </recent_temporary>
@@ -441,7 +440,21 @@
       <option name="project" value="LOCAL" />
       <updated>1678112404112</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Goin'in after a few tweaks to help sorting the candidate grids.">
+      <created>1678132405362</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1678132405362</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Modified a bit things, everything is working in theory, not so much in reality, difficulty might be a bit too high.">
+      <created>1678717574634</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1678717574634</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -458,8 +471,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Modifications to exact match using levenshtein distance" />
-    <MESSAGE value="Changed the file for a_tad_less_exactmatch to a separate one. Levenshtein distance is not realistically calculable." />
     <MESSAGE value="A few modifications in main and exactmatch.py, addition of new partialmatchmodule.py" />
     <MESSAGE value="Modifications to partialmatchmodule.py so it doesn't divide by 0 anymore. Still doesn't give pretty results tho. Need to modify line 66's weighing function." />
     <MESSAGE value="Added many things that work given one or two millenia" />
@@ -483,7 +494,9 @@
     <MESSAGE value="OOOOOOOOOOOOOOOOO" />
     <MESSAGE value="Added grid_solver in solvermodule.py, and hash functions to classes in initializermodule.py to make sets work. Should be good to go. (and not 2good2go)" />
     <MESSAGE value="Added a detail to grid_solver to allow for it to run in two to three times." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a detail to grid_solver to allow for it to run in two to three times." />
+    <MESSAGE value="Goin'in after a few tweaks to help sorting the candidate grids." />
+    <MESSAGE value="Modified a bit things, everything is working in theory, not so much in reality, difficulty might be a bit too high." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified a bit things, everything is working in theory, not so much in reality, difficulty might be a bit too high." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
