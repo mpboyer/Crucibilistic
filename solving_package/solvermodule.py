@@ -10,8 +10,8 @@ from candidate_generation_package.exactmatchmodule import exactmatch
 from candidate_generation_package.partialmatchmodule import partial_match
 from candidate_generation_package.wordlistmodule import wordlist
 
-grid_18_02_2023_Guardian = initializermodule.grid
-gridname = "grid_14_03_2023_MiniNYT"
+grid_16_03_2023_MiniNYT = initializermodule.grid
+gridname = "grid_16_03_2023_MiniNYT"
 directions = {'a' : 'across', 'd' : 'down'}
 
 
@@ -131,7 +131,7 @@ def grid_solver(Grid, save_directory, k) :
                             results = dill.load(f)
                             print("Loaded")
                         method = results[0]
-                        print(len(method))
+                        print(f"{len(method)} answers to study")
                         for g in cur_grids :
                             # for method in results :
                             for essai in range(range_size) :
@@ -167,7 +167,7 @@ def grid_solver(Grid, save_directory, k) :
     return candidate_grids
 
 
-print([c.Weight for c in grid_solver(grid_18_02_2023_Guardian, gridname, 1000)])
+print([c.Weight for c in grid_solver(grid_16_03_2023_MiniNYT, gridname, 1000)])
 
 """
 with open(f"{save_dir}" + r"\solved_candidate_grids.txt", "rb") as f :

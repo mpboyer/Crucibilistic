@@ -195,7 +195,7 @@ def dijkstra(graph: Graph, vertex) :
 
     while priority_queue :
         dist, current_vertex = heapq.heappop(priority_queue)
-        if distance[current_vertex] == float("inf") :
+        if distance[current_vertex] > dist :
             distance[current_vertex] = dist
             for neighbour in graph.get_vertex(current_vertex).neighbours :
                 next_vertex = neighbour.key
