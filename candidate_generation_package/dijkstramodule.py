@@ -195,7 +195,9 @@ def dijkstra(graph: Graph, vertex) :
 
     while priority_queue :
         dist, current_vertex = heapq.heappop(priority_queue)
-        if distance[current_vertex] > dist :
+        # if distance[current_vertex] > dist :  # Though this is the real way to Dijkstra, this kills computer.
+        # We're fine with a small approximation since what we have here is a distance.
+        if distance[current_vertex] == float("inf") :
             distance[current_vertex] = dist
             for neighbour in graph.get_vertex(current_vertex).neighbours :
                 next_vertex = neighbour.key
@@ -282,8 +284,8 @@ def dijkstra_gen(database: list[str], clue: str, length: int) :
 # between the clue without answer and the rest ? Calculate the distance between two clues ?
 
 # Nothing worrying tho, results to be expected according to Keim, Littman, Shazeer
-"""
+
 clue = "pointless talk"
 length = 6
 cwdb_with_words = [c.Clue.lower() + " " + c.Word.lower() for c in setup.CWDB]
-print(dijkstra_gen(cwdb_with_words, clue, length))"""
+print(dijkstra_gen(cwdb_with_words, clue, length))

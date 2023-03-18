@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Re Added a grid, changed a few bits to fix a github mistake.">
-      <change afterPath="$PROJECT_DIR$/cwdb.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solving_package/grid_14_03_2023_MiniNYT/grid.txt" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/grid_14_03_2023_MiniNYT/grid.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/grid.txt" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/grid.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solving_package/initializermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/initializermodule.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -464,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678814571867</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Re Added a grid, changed a few bits to fix a github mistake.">
+      <created>1678970841052</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1678970841052</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
