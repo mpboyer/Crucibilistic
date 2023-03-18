@@ -66,32 +66,31 @@ def all_clue_solver(Grid, save_directory) :
     global directory
     directory = os.path.join(f"{save_directory}")
     print(directory)
-    created = False
-    i = 0
-    path_ = directory
-    while not created :
-        path_ = directory + f"({i})" if i != 0 else directory
-        try :
-            os.mkdir(path_)
-            created = True
-        except OSError :
-            created = True
-            pass
-            """i += 1"""
+    try :
+        os.mkdir(directory)
+        print("General Directory Created")
+    except OSError :
+        pass
 
-    directory = path_
+    global clue_dir
+    clue_dir = directory + r"\clue_solver_results"
+    try :
+        os.mkdir(clue_dir)
+        print("Clue Directory Created")
+    except OSError :
+        pass
 
     p, q = Grid.Size
     for row in range(p) :
         for column in range(q) :
             if Grid.Grid[row][column].AClue and not os.path.isfile(
-                    f"{directory}" + r"\all" + f"_results_{row}_{column}_{'a'}.txt") :
+                    f"{clue_dir}" + r"\all" + f"_results_{row}_{column}_{'a'}.txt") :
                 print(row, column, "a")
-                clue_solver(Grid, row, column, directory, "a")
+                clue_solver(Grid, row, column, clue_dir, "a")
             if Grid.Grid[row][column].DClue and not os.path.isfile(
-                    f"{directory}" + r"\all" + f"_results_{row}_{column}_{'d'}.txt") :
+                    f"{clue_dir}" + r"\all" + f"_results_{row}_{column}_{'d'}.txt") :
                 print(row, column, "d")
-                clue_solver(Grid, row, column, directory, "d")
+                clue_solver(Grid, row, column, clue_dir, "d")
 
 
 def grid_solver(Grid, save_directory, k) :
@@ -103,10 +102,10 @@ def grid_solver(Grid, save_directory, k) :
     cur_grids = [Grid]
     p, q = Grid.Size
     range_size = k
-    global save_dir
-    save_dir = os.path.join(directory, "solved_candidate_grids")
+    global grid_dir
+    grid_dir = os.path.join(directory, "solved_candidate_grids")
     try :
-        os.mkdir(save_dir)
+        os.mkdir(grid_dir)
         print("Directory Created \n")
     except OSError :
         pass
@@ -114,8 +113,8 @@ def grid_solver(Grid, save_directory, k) :
     for row in range(p) :
         for column in range(q) :
             for wae in directions.keys() :
-                save_string_clues = f"{directory}" + r"\all" + f"_results_{row}_{column}_{wae}.txt"
-                save_string_grids = f"{save_dir}" + r"\candidate" + f"_grids_{row}_{column}_{wae}.txt"
+                save_string_clues = f"{clue_dir}" + r"\all" + f"_results_{row}_{column}_{wae}.txt"
+                save_string_grids = f"{grid_dir}" + r"\candidate" + f"_grids_{row}_{column}_{wae}.txt"
                 if os.path.isfile(save_string_grids) :
                     with open(save_string_grids, "rb") as f :
                         next_grids = dill.load(f)
@@ -145,7 +144,7 @@ def grid_solver(Grid, save_directory, k) :
                                         next_grids.append(r)
 
                     next_grids.sort()
-                    next_grids = next_grids[:100]
+                    next_grids = next_grids[:1000]
 
                     with open(save_string_grids, "wb") as f :
                         if next_grids :
@@ -161,17 +160,12 @@ def grid_solver(Grid, save_directory, k) :
 
     candidate_grids.sort(reverse = True)
 
-    with open(f"{save_dir}" + r"\solved_candidate_grids.txt", "wb") as f :
+    with open(f"{grid_dir}" + r"\solved_candidate_grids.txt", "wb") as f :
         dill.dump(candidate_grids, f)
 
     return candidate_grids
 
 
-print([c.Weight for c in grid_solver(grid_16_03_2023_MiniNYT, gridname, 1000)])
-
-"""
-with open(f"{save_dir}" + r"\solved_candidate_grids.txt", "rb") as f :
-    candidate_grids = dill.load(f)
-    for i in range(10):
-        print(candidate_grids[i].__str__(clues = False))
-"""
+with open("grid_16_03_2023_MiniNYT/clue_solver_results/all_results_0_1_a.txt", "rb") as f :
+    results = dill.load(f)
+print(results[:100])
