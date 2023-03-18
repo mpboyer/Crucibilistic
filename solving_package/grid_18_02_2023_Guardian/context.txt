@@ -1,0 +1,8 @@
+This Guardian 13x13 Quick Crosswords Grid produced no valid solutions in an acceptable duration nor using acceptable space.
+This is mainly due to computer constraints as well as Python's run speed.
+If anyone wants to go ahead and run it, I have not put on github the results from each step of the solving process, but I still have them.
+The process was still kept running for demonstration purpose.
+
+The focus has now switched to smaller, 5x5, MiniNYT-type grids.
+
+
