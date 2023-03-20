@@ -1,5 +1,8 @@
 import re
 
+import matplotlib.patches
+import matplotlib.pyplot as plt
+
 a = "across"
 d = "down"
 
@@ -96,7 +99,7 @@ class Tile :
 
 
 class Grid :  # Representation of a grid
-    def __init__(self, p, q, aclues_list, dclues_list, weight = 1) :
+    def __init__(self, p, q, aclues_list, dclues_list, weight = 1, name = None) :
         """
         :param p: height of the grid
         :type p: int
@@ -112,6 +115,7 @@ class Grid :  # Representation of a grid
         self.AClues = {}
         self.DClues = {}
         self.Weight = weight
+        self.Name = name
 
         for c in aclues_list :
             self.AClues[c[0]] = c[1]
@@ -255,8 +259,28 @@ class Grid :  # Representation of a grid
     def __gt__(self, other) :
         return self.Weight > other.Weight
 
+    def display(self, save_string) :
+        p, q = self.Size
+        fig = plt.figure()
+        ax = fig.add_subplot()
+        plt.xticks([_ for _ in range(p + 1)])
+        plt.yticks([_ for _ in range(q + 1)])
+        ax.invert_yaxis()
+        for row in range(p) :
+            for column in range(q) :
+                if self.Grid[row][column].isBlock :
+                    ax.add_patch(matplotlib.patches.Rectangle((row, column), 1, 1, fill = True, facecolor = 'black'))
+                else :
+                    char = self.Grid[row][column].char
+                    if char == " " :
+                        pass
+                    ax.text(column + 4 / 11, row + 8 / 12, self.Grid[row][column].char.upper(), size = 30)
+        plt.grid(True, linewidth = 4, color = 'black')
+        plt.savefig(save_string)
 
-with open(f"grid_16_03_2023_MiniNYT\grid.txt", "r") as f :
+
+grid_string = "grid_16_03_2023_MiniNYT"
+with open(f"{grid_string}\grid.txt", "r") as f :
     auqlue = f.readlines()
     l1 = auqlue[0]
     l1 = re.sub("\n", "", l1)
@@ -284,9 +308,11 @@ with open(f"grid_16_03_2023_MiniNYT\grid.txt", "r") as f :
 
     lines = auqlue[1 + alen + dlen :]
     lines = [re.sub("\n", "", line) for line in lines]
-    grid = Grid(len(lines), len(lines[0]), aclues_list = aclues, dclues_list = dclues)
+    grid = Grid(len(lines), len(lines[0]), aclues_list = aclues, dclues_list = dclues, name = grid_string)
 
     for i in range(len(lines)) :
         for j in range(len(lines[0])) :
             if lines[i][j] == '#' :
                 grid.Grid[i][j].modify(block = True)
+            elif lines[i][j] != '0' :
+                grid.Grid[i][j].modify(char = lines[i][j])

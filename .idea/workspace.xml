@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Something is not working properly as Clues (and not their answers) are being added to the results of candidate_generation_package">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Crucibilistic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Crucibilistic.iml" afterDir="false" />
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="If it works, fixed the blunder of clues being added to dijkstramodule.py results.">
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/grid_16_03_2023_MiniNYT.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/grid.txt" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/grid.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solving_package/initializermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/initializermodule.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +65,7 @@
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\candidate_generator" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.dijkstramodule">
+  <component name="RunManager" selected="Python.initializermodule">
     <configuration name="dijkstramodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -174,9 +173,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.initializermodule" />
         <item itemvalue="Python.dijkstramodule" />
         <item itemvalue="Python.solvermodule" />
-        <item itemvalue="Python.initializermodule" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.scratch" />
       </list>
@@ -499,7 +498,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679147376146</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="If it works, fixed the blunder of clues being added to dijkstramodule.py results.">
+      <created>1679307388927</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1679307388927</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -516,7 +522,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed the implementation for graph_creator in dijkstramainmodule.py, working on the actual dijkstra." />
     <MESSAGE value="Finished all of dijkstramainmodule.py. Graph generator, weighing function for a clue and a word, and candidate generator." />
     <MESSAGE value="Re-addition of everything that was modified." />
     <MESSAGE value="Modifications on partialmatchmodule.py and dijkstramainmodule.py to reflect on the few changes in the approach. Added specificdbmodule.py as an empty file, no progress made there." />
@@ -541,7 +546,8 @@
     <MESSAGE value="Reverted changes to dijkstramodule.py since they caused a too large use of RAM that caused BSODs..." />
     <MESSAGE value="Added a few files about the first solving try." />
     <MESSAGE value="Something is not working properly as Clues (and not their answers) are being added to the results of candidate_generation_package" />
-    <option name="LAST_COMMIT_MESSAGE" value="Something is not working properly as Clues (and not their answers) are being added to the results of candidate_generation_package" />
+    <MESSAGE value="If it works, fixed the blunder of clues being added to dijkstramodule.py results." />
+    <option name="LAST_COMMIT_MESSAGE" value="If it works, fixed the blunder of clues being added to dijkstramodule.py results." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
