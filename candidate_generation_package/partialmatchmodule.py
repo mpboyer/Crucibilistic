@@ -32,13 +32,13 @@ class Vector :
         self.coordinates = coords
         self.magnitude = magnitude(self.coordinates)
 
-    def dot(self, v) :
-        if self.coordinates == {} or v.coordinates == {} :
+    def dot(self, other) :
+        if self.coordinates == {} or other.coordinates == {} :
             return 0
         c1 = self.coordinates
-        c2 = v.coordinates
+        c2 = other.coordinates
         res = sum([c1[i] * c2.get(i, 0) for i in c1.keys()])
-        return res/(self.magnitude * v.magnitude)
+        return res / (self.magnitude * other.magnitude)
 
 
 def base(db) :
@@ -158,7 +158,7 @@ def partial_match(db : list[str], clue : str, length : int) :
     VS.add_vector(clue)
     power = 15
 
-    result_clues = []
+    result_words = []
     for v in VS.vectors.keys() :
         k = 0
         if v != clue and len(setup.clue_table[v]) == length :
@@ -167,11 +167,11 @@ def partial_match(db : list[str], clue : str, length : int) :
         if k != 0 :
             weight = 1 - pow((1 - k), power)  # Interpolates the weight between the dot product and the inverse of the
             # number of all known words
-            result_clues.append((setup.clue_table[v], weight))
+            result_words.append((setup.clue_table[v], weight))
     if clue in setup.clue_table :
-        result_clues.append((setup.clue_table[clue], (1 - pow(1 - 0.9, 15))))
-    result_clues.sort(key = lambda t : t[1], reverse = True)
-    return result_clues
+        result_words.append((setup.clue_table[clue], (1 - pow(1 - 0.9, 15))))
+    result_words.sort(key = lambda t : t[1], reverse = True)
+    return result_words
 
 
 """

@@ -1,60 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Added a few files about the first solving try.">
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/clue_solver_results/all_results_0_1_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/clue_solver_results/all_results_0_1_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/clue_solver_results/all_results_0_2_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/clue_solver_results/all_results_0_3_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/clue_solver_results/all_results_0_4_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/clue_solver_results/all_results_1_0_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/clue_solver_results/all_results_1_0_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/clue_solver_results/all_results_2_0_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/clue_solver_results/all_results_3_0_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/clue_solver_results/all_results_4_0_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_0_0_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_0_0_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_0_1_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_0_1_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_0_2_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_0_2_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_0_3_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_0_3_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_0_4_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_0_4_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_1_0_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_1_0_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_1_1_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_1_1_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_1_2_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_1_2_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_1_3_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_1_3_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_1_4_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_1_4_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_2_0_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_2_0_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_2_1_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_2_1_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_2_2_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_2_2_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_2_3_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_2_3_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_2_4_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_2_4_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_3_0_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_3_0_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_3_1_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_3_1_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_3_2_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_3_2_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_3_3_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_3_3_d.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_3_4_a.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids/candidate_grids_3_4_d.txt" afterDir="false" />
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Something is not working properly as Clues (and not their answers) are being added to the results of candidate_generation_package">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Crucibilistic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Crucibilistic.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solving_package/solvermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/solvermodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/partialmatchmodule.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +66,7 @@
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\candidate_generator" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.solvermodule">
+  <component name="RunManager" selected="Python.dijkstramodule">
     <configuration name="dijkstramodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -222,8 +174,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.solvermodule" />
         <item itemvalue="Python.dijkstramodule" />
+        <item itemvalue="Python.solvermodule" />
         <item itemvalue="Python.initializermodule" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.scratch" />
@@ -533,7 +485,21 @@
       <option name="project" value="LOCAL" />
       <updated>1679138280269</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Something is not working properly as Clues (and not their answers) are being added to the results of candidate_generation_package">
+      <created>1679147153062</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1679147153062</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Something is not working properly as Clues (and not their answers) are being added to the results of candidate_generation_package">
+      <created>1679147376146</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1679147376146</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -550,7 +516,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added documentation to most of the useful functions as well as a few complexity improvements on atadlessexactmatch.py and dijkstramainmodule.py. Still doesn't run in a capable time." />
     <MESSAGE value="Fixed the implementation for graph_creator in dijkstramainmodule.py, working on the actual dijkstra." />
     <MESSAGE value="Finished all of dijkstramainmodule.py. Graph generator, weighing function for a clue and a word, and candidate generator." />
     <MESSAGE value="Re-addition of everything that was modified." />
@@ -575,7 +540,8 @@
     <MESSAGE value="Re Added a grid, changed a few bits to fix a github mistake." />
     <MESSAGE value="Reverted changes to dijkstramodule.py since they caused a too large use of RAM that caused BSODs..." />
     <MESSAGE value="Added a few files about the first solving try." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a few files about the first solving try." />
+    <MESSAGE value="Something is not working properly as Clues (and not their answers) are being added to the results of candidate_generation_package" />
+    <option name="LAST_COMMIT_MESSAGE" value="Something is not working properly as Clues (and not their answers) are being added to the results of candidate_generation_package" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

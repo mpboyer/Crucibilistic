@@ -272,8 +272,9 @@ def dijkstra_gen(database: list[str], clue: str, length: int) :
     def sorting_function(t) :
         return t[1]
 
-    res = sorted([(u, 1 / (distances[u] + 1)) for u in distances.keys() if distances[u] != float("inf")],
-                 key = sorting_function, reverse = False)
+    res = sorted(
+        [(setup.clue_table[u], 1 / (distances[u] + 1)) for u in distances.keys() if distances[u] != float("inf")],
+        key = sorting_function, reverse = False)
     # The sorted list needs to be in ascending order, as we want the words that are closest to the clue
 
     return res
@@ -284,9 +285,8 @@ def dijkstra_gen(database: list[str], clue: str, length: int) :
 # between the clue without answer and the rest ? Calculate the distance between two clues ?
 
 # Nothing worrying tho, results to be expected according to Keim, Littman, Shazeer
-"""
+
 clue = "pointless talk"
 length = 6
 cwdb_with_words = [c.Clue.lower() + " " + c.Word.lower() for c in setup.CWDB]
 print(dijkstra_gen(cwdb_with_words, clue, length))
-"""
