@@ -285,8 +285,9 @@ def dijkstra_gen(database: list[str], clue: str, length: int) :
 # between the clue without answer and the rest ? Calculate the distance between two clues ?
 
 # Nothing worrying tho, results to be expected according to Keim, Littman, Shazeer
-
+"""
 clue = "pointless talk"
 length = 6
 cwdb_with_words = [c.Clue.lower() + " " + c.Word.lower() for c in setup.CWDB]
 print(dijkstra_gen(cwdb_with_words, clue, length))
+"""

@@ -13,6 +13,9 @@ from candidate_generation_package.wordlistmodule import wordlist
 grid_16_03_2023_MiniNYT = initializermodule.grid
 gridname = "grid_16_03_2023_MiniNYT"
 directions = {'a' : 'across', 'd' : 'down'}
+directory = os.path.join(f"{gridname}")
+clue_dir = os.path.join(directory, "clue_solver_results")
+grid_dir = os.path.join(directory, "solved_candidate_grids")
 
 
 def sort_add(list, e) :
@@ -62,9 +65,7 @@ def clue_solver(Grid, i: int, j: int, save_path: str, direction = "a") :
         dill.dump(all_results, file = f)
 
 
-def all_clue_solver(Grid, save_directory) :
-    global directory
-    directory = os.path.join(f"{save_directory}")
+def all_clue_solver(Grid) :
     print(directory)
     try :
         os.mkdir(directory)
@@ -72,8 +73,6 @@ def all_clue_solver(Grid, save_directory) :
     except OSError :
         pass
 
-    global clue_dir
-    clue_dir = directory + r"\clue_solver_results"
     try :
         os.mkdir(clue_dir)
         print("Clue Directory Created")
@@ -93,17 +92,14 @@ def all_clue_solver(Grid, save_directory) :
                 clue_solver(Grid, row, column, clue_dir, "d")
 
 
-def grid_solver(Grid, save_directory, k) :
-    all_clue_solver(Grid, save_directory)
+def grid_solver(Grid, range_size) :
+    all_clue_solver(Grid)
     # The previous all_clue_solver is created for debug (and spltting runtime)
     # purposes only, in reality it will not be run apart from this call this function
 
     candidate_grids = []
     cur_grids = [Grid]
     p, q = Grid.Size
-    range_size = k
-    global grid_dir
-    grid_dir = os.path.join(directory, "solved_candidate_grids")
     try :
         os.mkdir(grid_dir)
         print("Directory Created \n")
@@ -113,6 +109,7 @@ def grid_solver(Grid, save_directory, k) :
     for row in range(p) :
         for column in range(q) :
             for wae in directions.keys() :
+                boolean = False
                 save_string_clues = f"{clue_dir}" + r"\all" + f"_results_{row}_{column}_{wae}.txt"
                 save_string_grids = f"{grid_dir}" + r"\candidate" + f"_grids_{row}_{column}_{wae}.txt"
                 if os.path.isfile(save_string_grids) :
@@ -121,10 +118,10 @@ def grid_solver(Grid, save_directory, k) :
                     print(f"Grids Loaded for {row} {column} {wae}")
                 else :
                     next_grids = []
-                    print(f"{row} {column} {wae} \t {len(cur_grids)}")
+                    print(f"{row} {column} {wae}\nCurrent Number of Candidate Grids : {len(cur_grids)}")
                     boolean = (not Grid.Grid[row][column].AClue is None) if wae == 'a' else (
                         not Grid.Grid[row][column].DClue is None)
-                    print(boolean)
+                    print("No Clue To Be Solved" if not boolean else "Beginning Solving")
                     if boolean :
                         with open(save_string_clues, "rb") as f :
                             results = dill.load(f)
@@ -133,7 +130,7 @@ def grid_solver(Grid, save_directory, k) :
                         print(f"{len(method)} answers to study")
                         for g in cur_grids :
                             # for method in results :
-                            for essai in range(range_size) :
+                            for essai in range(len(method)) :
                                 word, weight = method[essai]
 
                                 r = g.fill_word(word, weight, directions[wae], row, column)
@@ -144,15 +141,18 @@ def grid_solver(Grid, save_directory, k) :
                                         next_grids.append(r)
 
                     next_grids.sort()
-                    next_grids = next_grids[:1000]
+                    next_grids = next_grids
 
-                    with open(save_string_grids, "wb") as f :
-                        if next_grids :
-                            dill.dump(next_grids, f)
-                            print("Dumped new Grids")
-                        else :
-                            dill.dump(cur_grids, f)
-                            print("Dumped No Changes")
+                    if boolean :
+                        with open(save_string_grids, "wb") as f :
+                            if next_grids :
+                                dill.dump(next_grids, f)
+                                print("Dumped new Grids")
+                            else :
+                                dill.dump(cur_grids, f)
+                                print("Dumped No Changes")
+                    else :
+                        print("Dumped No Changes")
 
                 cur_grids = next_grids if next_grids else cur_grids
                 cur_grids.sort(reverse = True)
@@ -166,6 +166,10 @@ def grid_solver(Grid, save_directory, k) :
     return candidate_grids
 
 
-with open("grid_16_03_2023_MiniNYT/clue_solver_results/all_results_0_1_a.txt", "rb") as f :
-    results = dill.load(f)
-print(results[:100])
+# grid_solver(grid_16_03_2023_MiniNYT, 1)
+
+
+"""with open(f"{grid_dir}" + r"\solved_candidate_grids.txt", "rb") as f :
+    candidate_grids = dill.load(f)
+
+print(len(candidate_grids))"""

@@ -99,7 +99,7 @@ class Tile :
 
 
 class Grid :  # Representation of a grid
-    def __init__(self, p, q, aclues_list, dclues_list, weight = 1, name = None) :
+    def __init__(self, p, q, aclues_list, dclues_list, weight = 1, name = None, words = None, QWeight = 0) :
         """
         :param p: height of the grid
         :type p: int
@@ -110,12 +110,16 @@ class Grid :  # Representation of a grid
         :param dclues_list: list of the down clues of the grid
         :type dclues_list: list[tuple[findClue, tuple[int, int]]]
         """
+        if words is None :
+            words = []
         self.Size = (p, q)
         self.Grid = [[Tile(i, j) for j in range(q)] for i in range(p)]  # Initialises as empty
         self.AClues = {}
         self.DClues = {}
         self.Weight = weight
         self.Name = name
+        self.Words = words if words is not None else []
+        self.QWeight = QWeight
 
         for c in aclues_list :
             self.AClues[c[0]] = c[1]
@@ -136,7 +140,7 @@ class Grid :  # Representation of a grid
         aclues_list = [(c, self.AClues[c]) for c in self.AClues]
         dclues_list = [(c, self.DClues[c]) for c in self.DClues]
 
-        return Grid(p, q, aclues_list, dclues_list, self.Weight)
+        return Grid(p, q, aclues_list, dclues_list, self.Weight, self.Name, self.Words.copy(), self.QWeight)
 
     def isSolved(self) :
         p, q = self.Size
@@ -182,6 +186,14 @@ class Grid :  # Representation of a grid
         grid_string += f"{self.Weight}"
         return grid_string
 
+    def is_complete(self) :
+        r = True
+        p, q = self.Size
+        for row in range(p) :
+            for column in range(q) :
+                r = r and self.Grid[i][j].char == " "
+        return r
+
     def fill_word(self, word: str, weight: float, direction: str, row: int, column: int) :
         """
         :param weight: weight of the word to be added to the grid
@@ -198,23 +210,17 @@ class Grid :  # Representation of a grid
         wordLength = len(word)
         p, q = self.Size
 
-        if direction == a :
-            if column + wordLength >= q :
-                return False
-            for k in range(wordLength) :
-                tile = self.Grid[row][column + k]
-                if tile.isBlock :
+        if self.is_complete() :
+            if direction == a :
+                if column + wordLength >= q :
                     return False
-                if not tile.char == ' ' :
-                    if tile.char != word[k] :
+                for k in range(wordLength) :
+                    tile = self.Grid[row][column + k]
+                    if tile.isBlock :
                         return False
-
-            grid_copy = self.copy()
-            for k in range(wordLength) :
-                tile = grid_copy.Grid[row][column + k]
-                tile.modify(char = word[k])
-
-        else :
+                    if not tile.char == ' ' :
+                        if tile.char != word[k] :
+                            return False
             if row + wordLength >= p :
                 return False
             for k in range(wordLength) :
@@ -224,17 +230,47 @@ class Grid :  # Representation of a grid
                 if not tile.char == ' ' :
                     if tile.char != word[k] :
                         return False
+            return self.copy()
 
-            grid_copy = self.copy()
-            for k in range(wordLength) :
-                tile = grid_copy.Grid[row + k][column]
-                tile.modify(char = word[k])
+        else :
+            if direction == a :
+                if column + wordLength >= q :
+                    return False
+                for k in range(wordLength) :
+                    tile = self.Grid[row][column + k]
+                    if tile.isBlock :
+                        return False
+                    if not tile.char == ' ' :
+                        if tile.char != word[k] :
+                            return False
 
-            grid_copy.Weight *= weight
+                grid_copy = self.copy()
+                for k in range(wordLength) :
+                    tile = grid_copy.Grid[row][column + k]
+                    tile.modify(char = word[k])
 
-        c = self.Grid[row][column]
-        c.solve(direction)
-        return grid_copy
+            else :
+                if row + wordLength >= p :
+                    return False
+                for k in range(wordLength) :
+                    tile = self.Grid[row + k][column]
+                    if tile.isBlock :
+                        return False
+                    if not tile.char == ' ' :
+                        if tile.char != word[k] :
+                            return False
+
+                grid_copy = self.copy()
+                for k in range(wordLength) :
+                    tile = grid_copy.Grid[row + k][column]
+                    tile.modify(char = word[k])
+
+                grid_copy.Weight *= weight
+
+            c = self.Grid[row][column]
+            c.solve(direction)
+            grid_copy.Words.append(word)
+            return grid_copy
 
     def __eq__(self, other) :
         if not isinstance(other, type(self)) : return NotImplemented
