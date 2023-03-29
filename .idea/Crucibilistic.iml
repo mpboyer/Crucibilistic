@@ -4,6 +4,8 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/solving_package/grid_18_02_2023_Guardian/clue_solver_results" />
       <excludeFolder url="file://$MODULE_DIR$/solving_package/grid_18_02_2023_Guardian/solved_candidate_grids" />
+      <excludeFolder url="file://$MODULE_DIR$/solving_package/grid_16_03_2023_MiniNYT/clue_solver_results" />
+      <excludeFolder url="file://$MODULE_DIR$/solving_package/grid_16_03_2023_MiniNYT/solved_candidate_grids" />
     </content>
     <orderEntry type="jdk" jdkName="Usual Virtual Environment" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

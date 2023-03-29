@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Added a nice graphic function.">
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/grid_16_03_2023_MiniNYT_empty.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniNYT/grid.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/weighingmodule.py" afterDir="false" />
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="still no useable results. Gotta check it all again, will do it later.">
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/clue_solver_results/all_results_0_0_a.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/clue_solver_results/all_results_0_0_d.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/clue_solver_results/all_results_0_1_d.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/clue_solver_results/all_results_0_2_d.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/clue_solver_results/all_results_0_3_d.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/clue_solver_results/all_results_0_4_d.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/clue_solver_results/all_results_1_0_a.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/clue_solver_results/all_results_2_0_a.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/clue_solver_results/all_results_3_0_a.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/clue_solver_results/all_results_4_0_a.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/grid.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/solved_candidate_grids/candidate_grids_0_0_a.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/solved_candidate_grids/candidate_grids_0_0_d.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/solved_candidate_grids/candidate_grids_0_1_d.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/solved_candidate_grids/candidate_grids_0_2_d.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/solved_candidate_grids/candidate_grids_0_3_d.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/solved_candidate_grids/candidate_grids_0_4_d.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solving_package/grid_16_03_2023_MiniNYT/grid_16_03_2023_MiniNYT.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/solving_package/initializermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/initializermodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solving_package/solvermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/solvermodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solving_package/weighingmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/weighingmodule.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,14 +76,14 @@
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\solving_package\grid_18_02_2023_Guardian\clue_solver_results" />
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\solving_package" />
+      <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\solving_package\grid_18_02_2023_Guardian\clue_solver_results" />
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\solving_package\grid_18_02_2023_Guardian" />
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\" />
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\candidate_generator" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.solvermodule">
+  <component name="RunManager" selected="Python.weighingmodule">
     <configuration name="dijkstramodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -154,7 +168,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="weighingmodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -166,7 +180,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/solving_package/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/solving_package/weighingmodule.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -177,11 +191,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.weighingmodule" />
         <item itemvalue="Python.solvermodule" />
         <item itemvalue="Python.scratch" />
         <item itemvalue="Python.initializermodule" />
         <item itemvalue="Python.dijkstramodule" />
-        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -516,7 +530,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679310015060</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="still no useable results. Gotta check it all again, will do it later.">
+      <created>1679923635753</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1679923635753</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -533,7 +554,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Re-addition of everything that was modified." />
     <MESSAGE value="Modifications on partialmatchmodule.py and dijkstramainmodule.py to reflect on the few changes in the approach. Added specificdbmodule.py as an empty file, no progress made there." />
     <MESSAGE value="Few improvements in the design of main.py and dijkstramainmodule.py. Nothing remarkable." />
     <MESSAGE value="Changed the architecture of the code. Regrouped all the candidate generation modules into a package. Placed old main.py into setup.py and turned main.py into a centralizer." />
@@ -558,7 +578,8 @@
     <MESSAGE value="Something is not working properly as Clues (and not their answers) are being added to the results of candidate_generation_package" />
     <MESSAGE value="If it works, fixed the blunder of clues being added to dijkstramodule.py results." />
     <MESSAGE value="Added a nice graphic function." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a nice graphic function." />
+    <MESSAGE value="still no useable results. Gotta check it all again, will do it later." />
+    <option name="LAST_COMMIT_MESSAGE" value="still no useable results. Gotta check it all again, will do it later." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

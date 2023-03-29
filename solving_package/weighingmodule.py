@@ -1,3 +1,6 @@
+import re
+
+
 class Vertex :
     def __init__(self, key) :
         """
@@ -100,6 +103,15 @@ class Tree :
     def add_child(self, obj) :
         self.Children.append(obj)
 
+    def __str__(self, depth = 0) :
+        tree_str = f"{self.Tag}"
+        for child in self.Children :
+            tree_str += f"\n\t"
+            child_str = f"{child}"
+            child_str = re.sub("\n", "\n\t", child_str)
+            tree_str += child_str
+        return tree_str
+
 
 def natural_distribution(candidates) :
     candidates.sort()
@@ -134,39 +146,18 @@ def dfs_tree(G: Graph, depth: int, x, prev_vertex = None) :
     cur_vertex = x
     if depth > 0 :
         for v in G.vertices[cur_vertex].neighbours :
-            if not v == prev_vertex :
-                res_tree.add_child(dfs_tree(G, depth - 1, v, prev_vertex = x))
+            if not v.key == prev_vertex :
+                res_tree.add_child(dfs_tree(G, depth - 1, v.key, prev_vertex = x))
     return res_tree
 
 
-def match(tile1, d1, w1, tile2, d2, w2) :
-    """
-    :param tile1:
-    :type tile1:
-    :param d1:
-    :type d1:
-    :param w1:
-    :type w1:
-    :param tile2:
-    :type tile2:
-    :param d2:
-    :type d2:
-    :param w2:
-    :type w2:
-    :return True if words w1 and w2 placed in directions d1 and d2 starting from tile1 and tile 2 do not violate any constraint
-    """
-    res = True
-    if d1 == d2 :
-        if d1 == "a" :
-            temp = tile1[0] != tile2[0]
-            temp = temp or tile1[1] + len(w1) < tile2[1]
-            temp = temp or tile2[1] + len(w2) < tile1[1]
-            return temp
-        if d1 == "d" :
-            temp = tile1[1] != tile2[1]
-            temp = temp or tile1[0] + len(w1) < tile2[0]
-            temp = temp or tile2[0] + len(w2) < tile1[0]
-            return temp
-    else :
-        if d1 == "a" :
-            temp =
+g = Graph()
+for i in range(5) :
+    g.add_vertex(Vertex(i))
+
+for i in range(5) :
+    for j in range(i, 5) :
+        if i != j :
+            g.unoriented_add_edge(i, j)
+
+print(dfs_tree(g, 3, 0))

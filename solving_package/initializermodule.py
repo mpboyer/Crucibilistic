@@ -1,3 +1,4 @@
+import os
 import re
 
 import matplotlib.patches
@@ -315,8 +316,11 @@ class Grid :  # Representation of a grid
         plt.savefig(save_string)
 
 
-grid_string = "grid_16_03_2023_MiniNYT"
-with open(f"{grid_string}\grid.txt", "r") as f :
+gridname = "grid_20_03_2023_MiniTWP"
+directory = os.path.join(f"{gridname}")
+grid_path = os.path.join(directory, "grid.txt")
+
+with open(grid_path) as f :
     auqlue = f.readlines()
     l1 = auqlue[0]
     l1 = re.sub("\n", "", l1)
@@ -344,7 +348,7 @@ with open(f"{grid_string}\grid.txt", "r") as f :
 
     lines = auqlue[1 + alen + dlen :]
     lines = [re.sub("\n", "", line) for line in lines]
-    grid = Grid(len(lines), len(lines[0]), aclues_list = aclues, dclues_list = dclues, name = grid_string)
+    grid = Grid(len(lines), len(lines[0]), aclues_list = aclues, dclues_list = dclues, name = gridname)
 
     for i in range(len(lines)) :
         for j in range(len(lines[0])) :

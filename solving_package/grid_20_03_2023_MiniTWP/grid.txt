@@ -1,0 +1,16 @@
+5  5
+Crock-pot meals  5  0  0
+Memory storage  5  1  0
+Lightning-fast Bolt  5  2  0
+Part of TCBY  4  3  0
+Tennis V.I.P. Arthur  4  4  0
+Swim with the fishes  5  0  0
+Shocks with a device  5  0  1
+PayPal money  5  0  2
+Color of a navy bean  5  0  3
+D.C. figure  3  0  4
+00000
+00000
+00000
+0000#
+0000#

@@ -10,25 +10,10 @@ from candidate_generation_package.exactmatchmodule import exactmatch
 from candidate_generation_package.partialmatchmodule import partial_match
 from candidate_generation_package.wordlistmodule import wordlist
 
-grid_16_03_2023_MiniNYT = initializermodule.grid
-gridname = "grid_16_03_2023_MiniNYT"
+grid = initializermodule.grid
 directions = {'a' : 'across', 'd' : 'down'}
-directory = os.path.join(f"{gridname}")
-clue_dir = os.path.join(directory, "clue_solver_results")
-grid_dir = os.path.join(directory, "solved_candidate_grids")
-
-
-def sort_add(list, e) :
-    if not list :
-        return [e]
-    else :
-        i = 0
-        while i < len(list) :
-            if e < list[i] :
-                i += 1
-            else :
-                return list[:i - 1] + [e] + list[i - 1 :]
-        return list + [e]
+clue_dir = os.path.join(initializermodule.directory, "clue_solver_results")
+grid_dir = os.path.join(initializermodule.directory, "solved_candidate_grids")
 
 
 def clue_solver(Grid, i: int, j: int, save_path: str, direction = "a") :
@@ -66,9 +51,9 @@ def clue_solver(Grid, i: int, j: int, save_path: str, direction = "a") :
 
 
 def all_clue_solver(Grid) :
-    print(directory)
+    print(initializermodule.directory)
     try :
-        os.mkdir(directory)
+        os.mkdir(initializermodule.directory)
         print("General Directory Created")
     except OSError :
         pass
@@ -92,7 +77,7 @@ def all_clue_solver(Grid) :
                 clue_solver(Grid, row, column, clue_dir, "d")
 
 
-def grid_solver(Grid, range_size) :
+def grid_solver(Grid) :
     all_clue_solver(Grid)
     # The previous all_clue_solver is created for debug (and spltting runtime)
     # purposes only, in reality it will not be run apart from this call this function
@@ -166,7 +151,7 @@ def grid_solver(Grid, range_size) :
     return candidate_grids
 
 
-# grid_solver(grid_16_03_2023_MiniNYT, 1)
+grid_solver(grid)
 
 
 """with open(f"{grid_dir}" + r"\solved_candidate_grids.txt", "rb") as f :
