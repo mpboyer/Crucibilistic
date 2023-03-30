@@ -79,7 +79,7 @@ def all_clue_solver(Grid) :
 
 def grid_solver(Grid) :
     all_clue_solver(Grid)
-    # The previous all_clue_solver is created for debug (and spltting runtime)
+    # The previous all_clue_solver is created for debug (and splitting runtime)
     # purposes only, in reality it will not be run apart from this call this function
 
     candidate_grids = []
@@ -100,29 +100,29 @@ def grid_solver(Grid) :
                 if os.path.isfile(save_string_grids) :
                     with open(save_string_grids, "rb") as f :
                         next_grids = dill.load(f)
-                    print(f"Grids Loaded for {row} {column} {wae}")
+                    print(f"Grids Loaded for {row} {column} {directions[wae]}")
                 else :
                     next_grids = []
-                    print(f"{row} {column} {wae}\nCurrent Number of Candidate Grids : {len(cur_grids)}")
+                    print(f"{row} {column} {directions[wae]}\nCurrent Number of Candidate Grids : {len(cur_grids)}")
                     boolean = (not Grid.Grid[row][column].AClue is None) if wae == 'a' else (
                         not Grid.Grid[row][column].DClue is None)
                     print("No Clue To Be Solved" if not boolean else "Beginning Solving")
                     if boolean :
                         with open(save_string_clues, "rb") as f :
-                            results = dill.load(f)
-                            print("Loaded")
-                        method = results[0]
-                        print(f"{len(method)} answers to study")
+                            clue_results = dill.load(f)
+                            print("Loaded Candidate Words")
+                        sorting_method = clue_results[0]
+                        print(f"{len(sorting_method)} answers to study")
                         for g in cur_grids :
-                            # for method in results :
-                            for essai in range(len(method)) :
-                                word, weight = method[essai]
-
+                            # for sorting_method in clue_results :
+                            for candidate_word in range(len(sorting_method)) :
+                                word, weight = sorting_method[candidate_word]
                                 r = g.fill_word(word, weight, directions[wae], row, column)
+                                print(r)
                                 if type(r) != bool :
                                     if r.isSolved() :
                                         candidate_grids.append(r)
-                                    else :
+                                    elif not r.Weight == 0 :
                                         next_grids.append(r)
 
                     next_grids.sort()
@@ -151,10 +151,7 @@ def grid_solver(Grid) :
     return candidate_grids
 
 
-grid_solver(grid)
+grid_solver(grid)  # with open(f"{grid_dir}" + r"\solved_candidate_grids.txt", "rb") as f :
+#     candidate_grids = dill.load(f)
 
-
-"""with open(f"{grid_dir}" + r"\solved_candidate_grids.txt", "rb") as f :
-    candidate_grids = dill.load(f)
-
-print(len(candidate_grids))"""
+# print(len(candidate_grids))

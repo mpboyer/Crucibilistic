@@ -136,19 +136,20 @@ def graph_creator(db: list[str]) :
     # weight |{occurrences of w in d}|
     Words = Graph()
     # Creation of a not oriented graph linking two words u and v with weight |documents containing both u and v|
-    for i in db :
-        Omega.add_vertex(Vertex(i))
-        words_i = i.split(" ")
-        words_i[-1] = re.sub(r"\n", "", words_i[-1])
+    for document in db :
+        document = re.sub(r"\n", "", document)
+        document = re.sub("[^\w\s:À-ÿ]", "", document)
+        Omega.add_vertex(Vertex(document))
+        words_document = document.split(" ")
 
-        for word in words_i :
-            x_w = Omega.get_edge(i, word)
+        for word in words_document :
+            x_w = Omega.get_edge(document, word)
             if x_w is None :
-                Omega.unoriented_add_edge(i, word, 1)
+                Omega.unoriented_add_edge(document, word, 1)
             else :
-                Omega.unoriented_modify_edge(i, word, x_w + 1)
+                Omega.unoriented_modify_edge(document, word, x_w + 1)
             Words.add_vertex(Vertex(word))
-            for j in words_i :
+            for j in words_document :
                 if j != word :
                     x_w_j = Words.get_edge(word, j)
                     if x_w_j is None :
@@ -240,7 +241,8 @@ def dijkstra_gen(database: list[str], clue: str, length: int) :
     Omega, DB = graph_creator(database)
 
     clue_terms = clue.lower()
-    clue_terms = re.sub("[-'?.!()]", "", clue_terms)
+    clue_terms = re.sub(r'\n', '', clue_terms)
+    clue_terms = re.sub("[^\w\s:À-ÿ]", "", clue_terms)
     clue_terms = clue_terms.split(" ")
     # print(clue_terms)
     distance_to_neighbours = {}
@@ -254,9 +256,9 @@ def dijkstra_gen(database: list[str], clue: str, length: int) :
 
     distances = {}
     for document in database :
+        document = re.sub(r"\n", "", document)
+        document = re.sub("[^\w\s:À-ÿ]", "", document)
         d_words = document.lower()
-        d_words = re.sub("[-'?.!()]", "", d_words)
-        d_words = d_words.split(" ")
         d_words = d_words[:-1]
         document = ""
         for w in d_words :
@@ -269,12 +271,9 @@ def dijkstra_gen(database: list[str], clue: str, length: int) :
                     d_weight += distance_to_neighbours[term].get(w_key, 0)
                 distances[document] = d_weight + distances.get(document, 0)
 
-    def sorting_function(t) :
-        return t[1]
-
     res = sorted(
         [(setup.clue_table[u], 1 / (distances[u] + 1)) for u in distances.keys() if distances[u] != float("inf")],
-        key = sorting_function, reverse = False)
+        key = lambda t : t[1], reverse = False)
     # The sorted list needs to be in ascending order, as we want the words that are closest to the clue
 
     return res

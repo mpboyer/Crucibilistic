@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 a = "across"
 d = "down"
+directions = {'a' : 'across', 'd' : 'down'}
 
 
 class findClue :
@@ -63,7 +64,7 @@ class Tile :
         :param block: optional : specifies if a letter can be placed in the tile. Default is False.
         :type block: bool
         """
-        self.isBlock = self.isBlock or block
+        self.isBlock = self.isBlock or block or char == '#'
         if not self.isBlock :
             if not char == ' ' :
                 self.char = char
@@ -100,7 +101,16 @@ class Tile :
 
 
 class Grid :  # Representation of a grid
-    def __init__(self, p, q, aclues_list, dclues_list, weight = 1, name = None, words = None, QWeight = 0) :
+    def __init__(self,
+            p,
+            q,
+            aclues_list,
+            dclues_list,
+            grid = None,
+            weight = 1,
+            name = None,
+            words = None,
+            QWeight = 0) :
         """
         :param p: height of the grid
         :type p: int
@@ -114,7 +124,7 @@ class Grid :  # Representation of a grid
         if words is None :
             words = []
         self.Size = (p, q)
-        self.Grid = [[Tile(i, j) for j in range(q)] for i in range(p)]  # Initialises as empty
+        self.Grid = [[Tile(i, j) for j in range(q)] for i in range(p)] if grid is None else grid  # Initialises as empty
         self.AClues = {}
         self.DClues = {}
         self.Weight = weight
@@ -140,8 +150,8 @@ class Grid :  # Representation of a grid
         p, q = self.Size
         aclues_list = [(c, self.AClues[c]) for c in self.AClues]
         dclues_list = [(c, self.DClues[c]) for c in self.DClues]
-
-        return Grid(p, q, aclues_list, dclues_list, self.Weight, self.Name, self.Words.copy(), self.QWeight)
+        return Grid(p, q, aclues_list, dclues_list, grid = self.Grid, weight = self.Weight, name = self.Name,
+                    words = self.Words.copy(), QWeight = self.QWeight)
 
     def isSolved(self) :
         p, q = self.Size
@@ -192,7 +202,7 @@ class Grid :  # Representation of a grid
         p, q = self.Size
         for row in range(p) :
             for column in range(q) :
-                r = r and self.Grid[i][j].char == " "
+                r = r and self.Grid[i][j].char != " "
         return r
 
     def fill_word(self, word: str, weight: float, direction: str, row: int, column: int) :
@@ -210,11 +220,13 @@ class Grid :  # Representation of a grid
         """
         wordLength = len(word)
         p, q = self.Size
+        if direction == a :
+            if wordLength != self.Grid[row][column].AClue.Length : return False
+        else :
+            if wordLength != self.Grid[row][column].AClue.Length : return False
 
         if self.is_complete() :
             if direction == a :
-                if column + wordLength >= q :
-                    return False
                 for k in range(wordLength) :
                     tile = self.Grid[row][column + k]
                     if tile.isBlock :
@@ -222,8 +234,6 @@ class Grid :  # Representation of a grid
                     if not tile.char == ' ' :
                         if tile.char != word[k] :
                             return False
-            if row + wordLength >= p :
-                return False
             for k in range(wordLength) :
                 tile = self.Grid[row + k][column]
                 if tile.isBlock :
@@ -233,45 +243,40 @@ class Grid :  # Representation of a grid
                         return False
             return self.copy()
 
+        if direction == a :
+            for k in range(wordLength) :
+                tile = self.Grid[row][column + k]
+                if tile.isBlock :
+                    return False
+                if not tile.char == ' ' :
+                    if tile.char != word[k] :
+                        return False
+
+            grid_copy = self.copy()
+            for k in range(wordLength) :
+                tile = grid_copy.Grid[row][column + k]
+                tile.modify(char = word[k])
+                print(row + k, column)
+
         else :
-            if direction == a :
-                if column + wordLength >= q :
+            for k in range(wordLength) :
+                tile = self.Grid[row + k][column]
+                if tile.isBlock :
                     return False
-                for k in range(wordLength) :
-                    tile = self.Grid[row][column + k]
-                    if tile.isBlock :
+                if tile.char != ' ' :
+                    if tile.char != word[k] :
                         return False
-                    if not tile.char == ' ' :
-                        if tile.char != word[k] :
-                            return False
 
-                grid_copy = self.copy()
-                for k in range(wordLength) :
-                    tile = grid_copy.Grid[row][column + k]
-                    tile.modify(char = word[k])
+            grid_copy = self.copy()
+            for k in range(wordLength) :
+                tile = grid_copy.Grid[row + k][column]
+                tile.modify(char = word[k])
 
-            else :
-                if row + wordLength >= p :
-                    return False
-                for k in range(wordLength) :
-                    tile = self.Grid[row + k][column]
-                    if tile.isBlock :
-                        return False
-                    if not tile.char == ' ' :
-                        if tile.char != word[k] :
-                            return False
-
-                grid_copy = self.copy()
-                for k in range(wordLength) :
-                    tile = grid_copy.Grid[row + k][column]
-                    tile.modify(char = word[k])
-
-                grid_copy.Weight *= weight
-
-            c = self.Grid[row][column]
-            c.solve(direction)
-            grid_copy.Words.append(word)
-            return grid_copy
+        grid_copy.Weight *= weight
+        c = grid_copy.Grid[row][column]
+        c.solve(direction)
+        grid_copy.Words.append(word)
+        return grid_copy
 
     def __eq__(self, other) :
         if not isinstance(other, type(self)) : return NotImplemented
@@ -300,18 +305,25 @@ class Grid :  # Representation of a grid
         p, q = self.Size
         fig = plt.figure()
         ax = fig.add_subplot()
-        plt.xticks([_ for _ in range(p + 1)])
-        plt.yticks([_ for _ in range(q + 1)])
+        plt.xticks([_ for _ in range(q + 1)])
+        plt.yticks([_ for _ in range(p + 1)])
         ax.invert_yaxis()
+        clue_counter = 1
+
         for row in range(p) :
             for column in range(q) :
-                if self.Grid[row][column].isBlock :
+                tile = self.Grid[row][column]
+                if tile.isBlock :
                     ax.add_patch(matplotlib.patches.Rectangle((row, column), 1, 1, fill = True, facecolor = 'black'))
                 else :
-                    char = self.Grid[row][column].char
-                    if char == " " :
-                        pass
-                    ax.text(column + 4 / 11, row + 8 / 12, self.Grid[row][column].char.upper(), size = 30)
+                    char = tile.char
+                    if char != " " :
+                        ax.text(column + 4 / 11, row + 8 / 12, char.upper(), size = 30)
+
+                if tile.AClue is not None or tile.DClue is not None :
+                    ax.text(column + 1 / 11, row + 9 / 40, f"{clue_counter}", size = 10)
+                    clue_counter += 1
+
         plt.grid(True, linewidth = 4, color = 'black')
         plt.savefig(save_string)
 
@@ -348,7 +360,8 @@ with open(grid_path) as f :
 
     lines = auqlue[1 + alen + dlen :]
     lines = [re.sub("\n", "", line) for line in lines]
-    grid = Grid(len(lines), len(lines[0]), aclues_list = aclues, dclues_list = dclues, name = gridname)
+    grid = Grid(len(lines), len(lines[0]), aclues_list = aclues, dclues_list = dclues, name = gridname, weight = 1,
+                QWeight = 0)
 
     for i in range(len(lines)) :
         for j in range(len(lines[0])) :
@@ -356,3 +369,10 @@ with open(grid_path) as f :
                 grid.Grid[i][j].modify(block = True)
             elif lines[i][j] != '0' :
                 grid.Grid[i][j].modify(char = lines[i][j])
+
+grid.display(f"{directory}\empty_grid.png")
+
+"""word, weight = "stews", 1.0
+print(word, weight)
+(grid.fill_word(word, weight, "across", 0, 0)).display("test.png")
+"""

@@ -75,7 +75,8 @@ def setup_main():
     CWDB_clue_list = []
     for line in CWDB_raw :
         line_ = (line.lower())
-        line_ = re.sub("[-'?.!()]", "", line_)
+        line_ = re.sub(r"\n", "", line_)
+        line_ = re.sub("[^\w\s:À-ÿ]", "", line_)
         line_ = line_.split('\t')
 
         CWDB_dict[line_[2]] = line_[3]
@@ -89,6 +90,7 @@ def setup_main():
 
     for word in dictionary_raw :
         word = re.sub(r"\n", '', word)
+        word = re.sub("[^\w\s:À-ÿ]", "", word)
         all_words[word] = all_words.get(word, 0) + 1
 
     return CWDB_dict, CWDB_clue_list, all_words
