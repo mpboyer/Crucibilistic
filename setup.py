@@ -74,16 +74,17 @@ def setup_main():
     CWDB_dict = {}
     CWDB_clue_list = []
     for line in CWDB_raw :
-        line_ = (line.lower())
-        line_ = re.sub(r"\n", "", line_)
-        line_ = re.sub("[^\w\s:À-ÿ]", "", line_)
-        line_ = line_.split('\t')
+        line = (line.lower())
+        line = re.sub(r"\n", "", line)
+        line = re.sub("[^\w\s:À-ÿ]", "", line)
+        line = re.sub("[ ]{2,}", "", line)
+        line = line.split('\t')
 
-        CWDB_dict[line_[2]] = line_[3]
-        CWDB_clue_list.append(knownClue(line_[2], line_[3]))
-        for word in line_[2].split(" ") :
+        CWDB_dict[line[2]] = line[3]
+        CWDB_clue_list.append(knownClue(line[2], line[3]))
+        for word in line[2].split(" ") :
             all_words[word] = all_words.get(word, 0) + 1
-        all_words[line_[3]] = all_words.get(line_[3], 0) + 1
+        all_words[line[3]] = all_words.get(line[3], 0) + 1
 
     with open(r'C:\Users\mb692\PycharmProjects\Crucibilistic\dictionnaire.txt', encoding = "utf-8") as f:
         dictionary_raw = f.readlines()

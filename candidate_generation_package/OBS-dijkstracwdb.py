@@ -1,6 +1,5 @@
-import setup
 import dijkstramodule as dmm
-
+import setup
 
 cwdb = [c.Clue.lower() + " " + c.Word.lower() for c in setup.CWDB]
 print(setup.test_clue.Clue)
@@ -13,4 +12,3 @@ print([i[0] for i in res][:10])
 # in any other clue. Need to rework the weighing and dijkstra functions.
 
 # Results match previously obtained ones, with a bit less efficiency.
-

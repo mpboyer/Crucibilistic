@@ -1,10 +1,6 @@
 # Expert Module which searches an online encyclopedia to compute a distribution of terms close to the query term.
 # Later.
 
-import re
-import requests
-from bs4 import BeautifulSoup
-
 """alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 def encyclopedia_disco(query : str):
@@ -28,7 +24,3 @@ def encyclopedia_disco(query : str):
 
 
 encyclopedia_disco("Thelma_%26_Louise")"""
-
-
-
-

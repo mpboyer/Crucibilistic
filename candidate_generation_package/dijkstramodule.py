@@ -9,8 +9,8 @@ import setup
 class Vertex :
     def __init__(self, key) :
         """
-        :type key: depends on your mood UwU
-        """
+		:type key: depends on your mood UwU
+		"""
         self.key = key
         self.neighbours = {}
 
@@ -19,10 +19,10 @@ class Vertex :
 
     def unoriented_add_neighbour(self, neighbour, weight = None) :
         """
-        :param neighbour: Another vertex that is connected to this one in the graph.
-        :type neighbour: Vertex
-        :type weight: Technically anything that can be compared
-        """
+		:param neighbour: Another vertex that is connected to this one in the graph.
+		:type neighbour: Vertex
+		:type weight: Technically anything that can be compared
+		"""
         self.oriented_add_neighbour(neighbour, weight)
         neighbour.oriented_add_neighbour(self, weight)
 
@@ -34,8 +34,8 @@ class Vertex :
 
     def get_weight(self, neighbour) :
         """
-        :type neighbour: Vertex
-        """
+		:type neighbour: Vertex
+		"""
         return self.neighbours.get(neighbour, None)
 
     def oriented_modify_weight(self, neighbour, new_weight) :
@@ -101,11 +101,11 @@ class Graph :
 
 def words(db) :
     """
-    :param db: Database containing documents
-    :type db: list[str]
-    :return: Dictionary containing the number of occurences of a word and the documents it appears in.
-    :rtype: dict[tuple[int, list[list[str]]]
-    """
+	:param db: Database containing documents
+	:type db: list[str]
+	:return: Dictionary containing the number of occurences of a word and the documents it appears in.
+	:rtype: dict[tuple[int, list[list[str]]]
+	"""
     w = {}
     for i in db :
         c = i.split(" ")
@@ -122,14 +122,14 @@ def words(db) :
 
 def graph_creator(db: list[str]) :
     """
-    :param db_name: name of the file to save in
-    :type db_name: str
-    :param db: Database containing all documents
-    :type db: list[str]
-    :return: Graph linking a document to its terms
-    with weight number of occurrences and a graph linking two words with weight tf idf
-    :rtype: Graph, Graph
-    """
+	:param db_name: name of the file to save in
+	:type db_name: str
+	:param db: Database containing all documents
+	:type db: list[str]
+	:return: Graph linking a document to its terms
+	with weight number of occurrences and a graph linking two words with weight tf idf
+	:rtype: Graph, Graph
+	"""
 
     Omega = Graph()
     # Creation of a not oriented graph linking a document d in db to all the words w in it with
@@ -172,10 +172,10 @@ def graph_creator(db: list[str]) :
     # |documents containing t and u| is the weight of (t,u) in Words, which is not oriented
 
     """with open(f"{db_name}_omega_graph.txt", "wb") as f :
-        dill.dump(Omega, file = f)
+		dill.dump(Omega, file = f)
 
-    with open(f"{db_name}_DB_graph.txt", "wb") as f :
-        dill.dump(Final, file = f)"""
+	with open(f"{db_name}_DB_graph.txt", "wb") as f :
+		dill.dump(Final, file = f)"""
 
     # Need to find a better way to make these graphs persistent.
 
@@ -222,22 +222,22 @@ undesirable_words = ["and", "or", "for", "to", "than", "on", "at", "of", "from",
 
 def dijkstra_gen(database: list[str], clue: str, length: int) :
     """
-    :param database:
-    :type database:
-    :param clue:
-    :type clue:
-    :param length:
-    :type length:
-    :return:
-    :rtype:
-    """
+	:param database:
+	:type database:
+	:param clue:
+	:type clue:
+	:param length:
+	:type length:
+	:return:
+	:rtype:
+	"""
 
     """if os.path.isfile(f"{db_name}_DB_graph.txt") and os.path.isfile(f"{db_name}_omega_graph.txt") :
-        with open(f"{db_name}_DB_graph.txt", "rb") as f :
-            DB = dill.load(f)
-        with open(f"{db_name}_omega_graph.txt", "rb") as f :
-            Omega = dill.load(f)
-    else :"""
+		with open(f"{db_name}_DB_graph.txt", "rb") as f :
+			DB = dill.load(f)
+		with open(f"{db_name}_omega_graph.txt", "rb") as f :
+			Omega = dill.load(f)
+	else :"""
     Omega, DB = graph_creator(database)
 
     clue_terms = clue.lower()
@@ -258,13 +258,17 @@ def dijkstra_gen(database: list[str], clue: str, length: int) :
     for document in database :
         document = re.sub(r"\n", "", document)
         document = re.sub("[^\w\s:À-ÿ]", "", document)
-        d_words = document.lower()
+        d_words = (document.lower()).split()
         d_words = d_words[:-1]
         document = ""
         for w in d_words :
             document += (w + " ")
         document = document[:-1]
-        if len(setup.clue_table[document]) == length :
+
+        word = setup.clue_table.get(document, "")
+        if word == "" :
+            print(document)
+        if len(word) == length :
             for w_key in d_words :
                 d_weight = 0
                 for term in clue_terms :
