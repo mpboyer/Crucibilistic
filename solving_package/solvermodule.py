@@ -122,10 +122,10 @@ def grid_solver(Grid) :
 						print(f"{len(sorting_method)} answers to study")
 						for g in cur_grids :
 							# for sorting_method in clue_results :
-							for candidate_word in range(len(sorting_method)) :
+
+							for candidate_word in range(min(len(sorting_method), k)) :
 								word, weight = sorting_method[candidate_word]
 								r = g.fill_word(word, weight, directions[wae], row, column)
-								print(r)
 								if type(r) != bool :
 									if r.isSolved() :
 										candidate_grids.append(r)
@@ -157,6 +157,11 @@ def grid_solver(Grid) :
 
 	return candidate_grids
 
+
+with open(f"{clue_dir}" + r"\all_results_0_0_a.txt", "rb") as f :
+	c_results = (dill.load(f))[0]
+
+# print(c_results[:100])
 
 grid_solver(grid)  # with open(f"{grid_dir}" + r"\solved_candidate_grids.txt", "rb") as f :
 #    candidate_grids = dill.load(f)

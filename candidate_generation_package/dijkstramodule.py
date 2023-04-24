@@ -266,8 +266,8 @@ def dijkstra_gen(database: list[str], clue: str, length: int) :
         document = document[:-1]
 
         word = setup.clue_table.get(document, "")
-        if word == "" :
-            print(document)
+        """if word == "" :
+            print(document)"""
         if len(word) == length :
             for w_key in d_words :
                 d_weight = 0

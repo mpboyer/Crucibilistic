@@ -150,8 +150,16 @@ class Grid :  # Representation of a grid
 		p, q = self.Size
 		aclues_list = [(findClue(c.Clue, c.Length, c.isSolved), self.AClues[c]) for c in self.AClues]
 		dclues_list = [((findClue(c.Clue, c.Length, c.isSolved)), self.DClues[c]) for c in self.DClues]
-		return Grid(p, q, aclues_list, dclues_list, grid = self.Grid, weight = self.Weight, name = self.Name,
-					words = self.Words.copy(), QWeight = self.QWeight)
+		g = Grid(p, q, aclues_list, dclues_list, weight = self.Weight, name = self.Name, words = self.Words.copy(),
+				 QWeight = self.QWeight)
+		for i in range(p) :
+			for j in range(q) :
+				tile = self.Grid[i][j]
+				if tile.isBlock :
+					g.Grid[i][j].modify(block = True)
+				else :
+					g.Grid[i][j].modify(char = tile.char)
+		return g
 
 	def isSolved(self) :
 		p, q = self.Size
@@ -221,9 +229,11 @@ class Grid :  # Representation of a grid
 		wordLength = len(word)
 		p, q = self.Size
 		if direction == a :
-			if wordLength != self.Grid[row][column].AClue.Length : return False
+			if wordLength != self.Grid[row][column].AClue.Length :
+				return False
 		else :
-			if wordLength != self.Grid[row][column].AClue.Length : return False
+			if wordLength != self.Grid[row][column].DClue.Length :
+				return False
 
 		if self.is_complete() :
 			if direction == a :
@@ -245,6 +255,8 @@ class Grid :  # Representation of a grid
 
 		if direction == a :
 			for k in range(wordLength) :
+				if column + k >= q :
+					return False
 				tile = self.Grid[row][column + k]
 				if tile.isBlock :
 					return False
@@ -256,10 +268,11 @@ class Grid :  # Representation of a grid
 			for k in range(wordLength) :
 				tile = grid_copy.Grid[row][column + k]
 				tile.modify(char = word[k])
-				print(row + k, column)
 
 		else :
 			for k in range(wordLength) :
+				if row + k >= p :
+					return False
 				tile = self.Grid[row + k][column]
 				if tile.isBlock :
 					return False
