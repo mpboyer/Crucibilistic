@@ -1,5 +1,3 @@
-import networkx as nx
-
 import candidate_generation_package.dijkstramodule as dmm
 import setup
 import solving_package.initializermodule as inim
@@ -49,11 +47,12 @@ def partial_dijkstra_db_graph1() :
 				pass
 			G.add_edge(u, v, weight = w)
 
-	graph_show(G, own_structure = False)
+	graph_show(G, own_structure = False, save_string = "dijkstra_graph_example.png",
+			   title = "Part of the Graph used for Dijkstra around 'Absurd'")
 
 
 def constraint_network_graph() :
-	G = inim.grid.to_constraint_network()
+	G = inim.grid.constraint_network()
 	node_partition = [[nodes for nodes in G if nodes[0] == "A"], [nodes for nodes in G if nodes[0] == "D"]]
 	# In most cases, G is not a tree, since it is definitely not acyclic. It is however always connex.
 	graph_show(G, vertice_partition = node_partition, own_structure = False,

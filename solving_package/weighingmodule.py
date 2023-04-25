@@ -1,4 +1,4 @@
-import re
+from initializermodule import *
 
 
 class Vertex :
@@ -90,9 +90,11 @@ class Graph :
 		return iter(self.vertices.values())
 
 	def __str__(self) :
+		graph_string = ""
 		for u in self :
 			for v in u.get_connections() :
-				print("{} -> {} : {}".format(u.key, v.key, self.get_edge(u.key, v.key)))
+				graph_string += "{} -> {} : {}".format(u.key, v.key, self.get_edge(u.key, v.key)) + "\n"
+		return graph_string
 
 
 class Tree :
@@ -132,9 +134,36 @@ def exact_posterior_distribution(candidates) :
 
 
 def constraint_network(grid) :
+	p, q = grid.Size
+	clue_counter = 1
 	N = Graph()
-	for clue in grid.AClues :
-		N.add_vertex(Vertex((clue.Length, grid.AClues[clue])))
+	prev_clue_dict = {}
+
+	for row in range(p) :
+		for column in range(q) :
+			tile = grid.Grid[row][column]
+			if tile.AClue is not None or tile.DClue is not None :
+				if tile.AClue is not None :
+					N.add_vertex(Vertex(f"{clue_counter}A"))
+					tile_list = set([(row, column + k) for k in range(tile.AClue.Length)])
+					k = len(tile_list)
+					for node in [node for node in N.vertices.keys() if node != f"{clue_counter}A"] :
+						node_tiles = prev_clue_dict[node]
+						k2 = len(node_tiles)
+						if len(tile_list.union(node_tiles)) < k + k2 :
+							N.unoriented_add_edge(node, f"{clue_counter}A")
+					prev_clue_dict[f"{clue_counter}A"] = tile_list
+				if tile.DClue is not None :
+					N.add_vertex(Vertex(f"{clue_counter}D"))
+					tile_list = set([(row + k, column) for k in range(tile.DClue.Length)])
+					k = len(tile_list)
+					for node in [node for node in N.vertices.keys() if node != f"{clue_counter}D"] :
+						node_tiles = prev_clue_dict[node]
+						k2 = len(node_tiles)
+						if len(tile_list.union(node_tiles)) < k + k2 :
+							N.unoriented_add_edge(node, f"{clue_counter}D")
+					prev_clue_dict[f"{clue_counter}D"] = tile_list
+				clue_counter += 1
 	return N
 
 
@@ -151,13 +180,6 @@ def dfs_tree(G: Graph, depth: int, x, prev_vertex = None) :
 	return res_tree
 
 
-g = Graph()
-for i in range(5) :
-	g.add_vertex(Vertex(i))
-
-for i in range(5) :
-	for j in range(i, 5) :
-		if i != j :
-			g.unoriented_add_edge(i, j)
-
-print(dfs_tree(g, 3, 0))
+N = constraint_network(grid)
+print(N, end = "\n \n \n \n")
+print(dfs_tree(N, depth = 3, x = "1A"))

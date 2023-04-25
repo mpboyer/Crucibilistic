@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Added a lot of graphing functions">
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Fixed grid.display method and tweeked a bit the graphing_package">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphing_package/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing_package/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/empty_grid.png" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/empty_grid.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphing_package/examples.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing_package/examples.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphing_package/graph_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing_package/graph_classes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solving_package/initializermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/initializermodule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solving_package/weighingmodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/weighingmodule.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +70,7 @@
       <recent name="C:\Users\mb692\PycharmProjects\Crucibilistic\solving_package\grid_18_02_2023_Guardian" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.initializermodule">
+  <component name="RunManager" selected="Python.weighingmodule">
     <configuration name="examples" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -132,27 +134,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="scratch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Crucibilistic" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="solvermodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Crucibilistic" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -174,13 +155,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="weighingmodule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Crucibilistic" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/solving_package" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/solving_package/weighingmodule.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.weighingmodule" />
         <item itemvalue="Python.initializermodule" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.examples" />
         <item itemvalue="Python.solvermodule" />
-        <item itemvalue="Python.scratch" />
       </list>
     </recent_temporary>
   </component>
@@ -192,13 +194,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668947425420</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Updates to main.py and the CWDB. Visualisation.">
-      <created>1669040769979</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1669040769979</updated>
     </task>
     <task id="LOCAL-00005" summary="Modifications to exact match">
       <created>1669641520408</created>
@@ -536,7 +531,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682413262723</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Fixed grid.display method and tweeked a bit the graphing_package">
+      <created>1682414056659</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1682414056660</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -553,7 +555,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Big changes, starting on the real solving. Finally found a way of saving the results from the candidate generation to a file and not recomputing each damn time" />
     <MESSAGE value="Modified initializermodule.py, added a printing method for the grids.&#10;Added grid.txt, representing the Guardian's crosswords from last Friday." />
     <MESSAGE value="Modified the solver package, on track. Added a list containing all mergers in simple_mergers.py. Modified a few bits in initializermodule.py and worked on solvermodule.py. Rest Hasn't really moved." />
     <MESSAGE value="Modified a bit solvermodule.py and initializermodule.py to fix the bug causing an infinite 'while' loop. Modified dijkstramodule.py and partialmatchmodule.py so they now work with '&amp;' in clues." />
@@ -578,7 +579,8 @@
     <MESSAGE value="Refactored a bit of code, started to work on a graphing package for the presentation." />
     <MESSAGE value="AAAAAAAAAAAAAAAAAH FORGOR list.copy() FOR THE PAST 4 MONTHS GODDAMMIT" />
     <MESSAGE value="Added a lot of graphing functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a lot of graphing functions" />
+    <MESSAGE value="Fixed grid.display method and tweeked a bit the graphing_package" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed grid.display method and tweeked a bit the graphing_package" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

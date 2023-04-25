@@ -342,7 +342,7 @@ class Grid :  # Representation of a grid
 		plt.grid(True, linewidth = 3.7, color = 'black')
 		plt.savefig(save_string)
 
-	def to_constraint_network(self) :
+	def to_networkx_constraint_network(self) :
 		p, q = self.Size
 		clue_counter = 1
 		G = nx.Graph()
@@ -354,34 +354,34 @@ class Grid :  # Representation of a grid
 				if tile.AClue is not None or tile.DClue is not None :
 
 					if tile.AClue is not None :
-						G.add_node(f"A{clue_counter}")
+						G.add_node(f"{clue_counter}D")
 
 						tile_list = set([(row, column + k) for k in range(tile.AClue.Length)])
 						k = len(tile_list)
 
-						for node in [node for node in G.nodes if node != f"A{clue_counter}"] :
+						for node in [node for node in G.nodes if node != f"{clue_counter}A"] :
 							node_tiles = prev_clue_dict[node]
 							k2 = len(node_tiles)
 
 							if len(tile_list.union(node_tiles)) < k + k2 :
-								G.add_edge(node, f"A{clue_counter}")
+								G.add_edge(node, f"{clue_counter}A")
 
-						prev_clue_dict[f"A{clue_counter}"] = tile_list
+						prev_clue_dict[f"{clue_counter}A"] = tile_list
 
 					if tile.DClue is not None :
-						G.add_node(f"D{clue_counter}")
+						G.add_node(f"{clue_counter}D")
 
 						tile_list = set([(row + k, column) for k in range(tile.DClue.Length)])
 						k = len(tile_list)
 
-						for node in [node for node in G.nodes if node != f"D{clue_counter}"] :
+						for node in [node for node in G.nodes if node != f"{clue_counter}D"] :
 							node_tiles = prev_clue_dict[node]
 							k2 = len(node_tiles)
 
 							if len(tile_list.union(node_tiles)) < k + k2 :
-								G.add_edge(node, f"D{clue_counter}")
+								G.add_edge(node, f"{clue_counter}D")
 
-						prev_clue_dict[f"D{clue_counter}"] = tile_list
+						prev_clue_dict[f"{clue_counter}D"] = tile_list
 
 					clue_counter += 1
 
@@ -429,24 +429,3 @@ with open(grid_path) as f :
 				grid.Grid[i][j].modify(block = True)
 			elif lines[i][j] != '0' :
 				grid.Grid[i][j].modify(char = lines[i][j])
-
-print(grid)
-grid.display(os.path.join(directory, "empty_grid.png"))
-
-"""word, weight = "stews", 1.0
-print(word, weight)
-(grid.fill_word(word, weight, "across", 0, 0)).display("test.png")
-"""
-
-from graphing_package.main import graph_show
-
-
-def constraint_network_graph() :
-	G = grid.to_constraint_network()
-	node_partition = [[nodes for nodes in G if nodes[0] == "A"], [nodes for nodes in G if nodes[0] == "D"]]
-	# In most cases, G is not a tree, since it is definitely not acyclic. It is however always connex.
-	graph_show(G, vertice_partition = node_partition, own_structure = False,
-			   save_string = "constraint_network_graph_example.png", title = "Constraint Network Graph Example")
-
-
-constraint_network_graph()

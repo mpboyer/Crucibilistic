@@ -93,9 +93,11 @@ class Graph :
 		return iter(self.vertices.values())
 
 	def __str__(self) :
+		graph_string = ""
 		for u in self :
 			for v in u.get_connections() :
-				print("{} -> {} : {}".format(u.key, v.key, self.get_edge(u.key, v.key)))
+				graph_string += "{} -> {} : {}".format(u.key, v.key, self.get_edge(u.key, v.key)) + "\n"
+		return graph_string
 
 
 class Tree :
