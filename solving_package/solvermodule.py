@@ -120,9 +120,10 @@ def grid_solver(Grid) :
 							print("Loaded Candidate Words")
 						sorting_method = clue_results[0]
 						print(f"{len(sorting_method)} answers to study")
-						for g in cur_grids :
+						k = 1000
+						for i in range(min(k, len(cur_grids))) :
+							g = cur_grids[i]
 							# for sorting_method in clue_results :
-
 							for candidate_word in range(min(len(sorting_method), k)) :
 								word, weight = sorting_method[candidate_word]
 								r = g.fill_word(word, weight, directions[wae], row, column)
