@@ -102,7 +102,7 @@ def tree_show(te, scale_factor = 1, save_string = None) :
 	T = tree_to_networkx(te)
 	pos = hierarchy_layout(T, 0)
 	pos = nx.rescale_layout_dict(pos, scale_factor)
-	fig = plt.figure()
+	fig = plt.clf()
 	fig.set_figwidth(15)
 	fig.set_figheight(15)
 	nx.draw_networkx_nodes(T, pos)
@@ -126,12 +126,14 @@ def graph_show(g, vertice_partition = None, own_structure = True, save_string = 
 			G = graph_to_networkx(g)
 	else :
 		G = g
+
+	fig = plt.figure()
 	pos = nx.circular_layout(G)
+	colours = ["#de0c62", "#a2cffe", "#a2cffe", "#ceb301", "#b790d4", "#ffa756", "#ce5dae"]
+	# In order : Red, Blue, Green, Purple, Yellow, Orange, Pink
 	if vertice_partition is None :
 		nx.draw_networkx_nodes(G, pos, node_color = "White", node_shape = "s", linewidths = 1.0)
 	else :
-		colours = ["#de0c62", "#a2cffe", "#a2cffe", "#ceb301", "#b790d4", "#ffa756", "#ce5dae"]
-		# In order : Red, Blue, Green, Purple, Yellow, Orange, Pink
 		for i in range(len(vertice_partition)) :
 			j = i % len(colours)
 			nx.draw_networkx_nodes(G, pos, node_color = colours[j], alpha = .8, node_shape = "s", linewidths = 1.0,

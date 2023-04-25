@@ -328,7 +328,8 @@ class Grid :  # Representation of a grid
 			for column in range(q) :
 				tile = self.Grid[row][column]
 				if tile.isBlock :
-					ax.add_patch(matplotlib.patches.Rectangle((row, column), 1, 1, fill = True, facecolor = 'black'))
+					ax.add_patch(matplotlib.patches.Rectangle((column, row), 1, 1, fill = False, hatch = '///',
+															  facecolor = 'black'))
 				else :
 					char = tile.char
 					if char != " " :
@@ -338,7 +339,7 @@ class Grid :  # Representation of a grid
 					ax.text(column + 1 / 11, row + 9 / 40, f"{clue_counter}", size = 10)
 					clue_counter += 1
 
-		plt.grid(True, linewidth = 4, color = 'black')
+		plt.grid(True, linewidth = 3.7, color = 'black')
 		plt.savefig(save_string)
 
 	def to_constraint_network(self) :
@@ -429,7 +430,8 @@ with open(grid_path) as f :
 			elif lines[i][j] != '0' :
 				grid.Grid[i][j].modify(char = lines[i][j])
 
-# grid.display(os.path.join(directory, "empty_grid.png"))
+print(grid)
+grid.display(os.path.join(directory, "empty_grid.png"))
 
 """word, weight = "stews", 1.0
 print(word, weight)

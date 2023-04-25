@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="AAAAAAAAAAAAAAAAAH FORGOR list.copy() FOR THE PAST 4 MONTHS GODDAMMIT">
-      <change afterPath="$PROJECT_DIR$/graphing_package/constraint_network_graph_example.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphing_package/examples.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/solving_package/constraint_network_graph_example.png" afterDir="false" />
+    <list default="true" id="d273aeaa-4f93-4618-87d7-e04e98ed2226" name="Changes" comment="Added a lot of graphing functions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/candidate_generation_package/dijkstramodule.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphing_package/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/graphing_package/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/empty_grid.png" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/grid_20_03_2023_MiniTWP/empty_grid.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solving_package/initializermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/initializermodule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solving_package/solvermodule.py" beforeDir="false" afterPath="$PROJECT_DIR$/solving_package/solvermodule.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,13 +192,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668947425420</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Updates to dico.py. Deletion of cwdb.py to be recreated in main.py. Addition of the weighing function to exactmatch.py. Fixed wordlistmodule.py.">
-      <created>1669039641174</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1669039641174</updated>
     </task>
     <task id="LOCAL-00004" summary="Updates to main.py and the CWDB. Visualisation.">
       <created>1669040769979</created>
@@ -540,7 +529,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682338754632</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Added a lot of graphing functions">
+      <created>1682413262720</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1682413262723</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -557,7 +553,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Modified a bit everything so it works again, no big changes except replaceing apostrophes and parentheses" />
     <MESSAGE value="Big changes, starting on the real solving. Finally found a way of saving the results from the candidate generation to a file and not recomputing each damn time" />
     <MESSAGE value="Modified initializermodule.py, added a printing method for the grids.&#10;Added grid.txt, representing the Guardian's crosswords from last Friday." />
     <MESSAGE value="Modified the solver package, on track. Added a list containing all mergers in simple_mergers.py. Modified a few bits in initializermodule.py and worked on solvermodule.py. Rest Hasn't really moved." />
@@ -582,7 +577,8 @@
     <MESSAGE value="Changed the fact that copied grid wasn't given the previously filled tiles and thus wasn't complete..." />
     <MESSAGE value="Refactored a bit of code, started to work on a graphing package for the presentation." />
     <MESSAGE value="AAAAAAAAAAAAAAAAAH FORGOR list.copy() FOR THE PAST 4 MONTHS GODDAMMIT" />
-    <option name="LAST_COMMIT_MESSAGE" value="AAAAAAAAAAAAAAAAAH FORGOR list.copy() FOR THE PAST 4 MONTHS GODDAMMIT" />
+    <MESSAGE value="Added a lot of graphing functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a lot of graphing functions" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
