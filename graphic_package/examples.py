@@ -3,7 +3,7 @@ import setup
 import solving_package.initializermodule as inim
 from graph_classes import *
 from graphing_package.main import *
-
+import solving_package.weighingmodule as weim
 
 def example_tree() :
 	def binary_test_tree(depth, data, f) :
@@ -53,7 +53,16 @@ def partial_dijkstra_db_graph1() :
 
 def constraint_network_graph() :
 	G = inim.grid.constraint_network()
-	node_partition = [[nodes for nodes in G if nodes[0] == "A"], [nodes for nodes in G if nodes[0] == "D"]]
+	node_partition = [[nodes for nodes in G if nodes[-1] == "A"], [nodes for nodes in G if nodes[-1] == "D"]]
 	# In most cases, G is not a tree, since it is definitely not acyclic. It is however always connex.
 	graph_show(G, vertice_partition = node_partition, own_structure = False,
 			   save_string = "constraint_network_graph_example.png", title = "Constraint Network Graph Example")
+
+
+def constraint_tree_graph() :
+	G = weim.constraint_network(inim.grid)
+	T = weim.dfs_tree(G, 3, "1A")
+	tree_show(T, save_string = "constraint_tree_example.png", title = "Constraint Tree Around 1A, Depth = 3")
+
+
+constraint_tree_graph()

@@ -2,7 +2,7 @@ import random
 
 import matplotlib.pyplot as plt
 import networkx as nx
-
+from queue import *
 
 def graph_to_networkx(g) :
 	if g.is_oriented :
@@ -28,17 +28,22 @@ def digraph_to_networkx(g) :
 
 def tree_to_networkx(te) :
 	T = nx.Graph()
-
-	def aux(tree) :
-		T.add_node(tree.Tag, label = tree.Tag)
-		for c in tree.Children :
-			lab, w = c
-			aux(lab)
-			T.add_edge(tree.Tag, lab.Tag, weight = w)
-
-	aux(te)
-
-	return T
+	q = Queue()
+	labels = {}
+	T.add_node(0)
+	labels[0] = te.Tag
+	q.put((te, 0))
+	e = 1
+	while not q.empty() :
+		tree, f = q.get()
+		for child in tree.Children :
+			c, w = child
+			T.add_node(e)
+			labels[e] = c.Tag
+			T.add_edge(f, e, weight = w)
+			q.put((c, e))
+			e += 1
+	return T, labels
 
 
 def hierarchy_layout(G, root = None, width = 1., vert_gap = 0.2, vert_loc = 0, xcenter = 0.5) :
@@ -98,20 +103,20 @@ def hierarchy_layout(G, root = None, width = 1., vert_gap = 0.2, vert_loc = 0, x
 	return _hierarchy_pos(G, root, width, vert_gap, vert_loc, xcenter)
 
 
-def tree_show(te, scale_factor = 1, save_string = None) :
-	T = tree_to_networkx(te)
+def tree_show(te, scale_factor = 1, save_string = None, title = "") :
+	T, labels = tree_to_networkx(te)
 	pos = hierarchy_layout(T, 0)
 	pos = nx.rescale_layout_dict(pos, scale_factor)
-	fig = plt.clf()
+	fig = plt.figure()
 	fig.set_figwidth(15)
 	fig.set_figheight(15)
 	nx.draw_networkx_nodes(T, pos)
 	nx.draw_networkx_edges(T, pos)
-	nx.draw_networkx_labels(T, pos)
+	nx.draw_networkx_labels(T, pos, labels = labels)
 	edge_labels_ = nx.get_edge_attributes(T, "weight")
 	edge_labels = {n : w for n, w in edge_labels_.items() if w is not None}
 	nx.draw_networkx_edge_labels(T, pos, edge_labels)
-
+	plt.title(title)
 	if save_string is not None :
 		plt.savefig(save_string)
 	else :
@@ -132,11 +137,12 @@ def graph_show(g, vertice_partition = None, own_structure = True, save_string = 
 	colours = ["#de0c62", "#a2cffe", "#a2cffe", "#ceb301", "#b790d4", "#ffa756", "#ce5dae"]
 	# In order : Red, Blue, Green, Purple, Yellow, Orange, Pink
 	if vertice_partition is None :
-		nx.draw_networkx_nodes(G, pos, node_color = "White", node_shape = "s", linewidths = 1.0)
+		nx.draw_networkx_nodes(G, pos, node_color = "White", edgecolors = "gray", node_shape = "s", linewidths = 1.0)
+		nx.draw_networkx_labels(G, pos)
 	else :
 		for i in range(len(vertice_partition)) :
 			j = i % len(colours)
-			nx.draw_networkx_nodes(G, pos, node_color = colours[j], alpha = .8, node_shape = "s", linewidths = 1.0,
+			nx.draw_networkx_nodes(G, pos, node_color = colours[j], edgecolors = "gray", alpha = .8, node_shape = "s", linewidths = 1.0,
 								   nodelist = vertice_partition[i])
 			nx.draw_networkx_labels(G, pos, font_color = "Black", font_weight = 4, horizontalalignment = "center",
 									labels = {n : n for n in G if n in vertice_partition[i]})
@@ -145,8 +151,8 @@ def graph_show(g, vertice_partition = None, own_structure = True, save_string = 
 	edge_labels_ = nx.get_edge_attributes(G, "weight")
 	edge_labels = {n : w for n, w in edge_labels_.items() if w is not None}
 	nx.draw_networkx_edge_labels(G, pos, edge_labels)
+	plt.title(title)
 	if save_string is not None :
-		plt.title(title)
 		plt.savefig(save_string)
 	else :
 		plt.show()
