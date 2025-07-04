@@ -1,8 +1,13 @@
-# Crucibilistic : <br> <u> TIPE 2022-2023 </u>.
+# Crucibilistic : <br> <u> A crossword solver, maybe.</u>.
 
-####By Matthieu Pierre Boyer | MP* at Lycée La Martinière Monplaisir
+#### By Matthieu Pierre Boyer
 
-###Probabilistic attempt at crossword solving.
-This uses a database that is not included on the repository for size issues. The original readme for the database is however included, check cwdb_readme.txt
+### Probabilistic attempt at crossword solving.
+
+This is a new updated version of my TIPE project for the entrance contest of
+ENS.
+This is a passion project I work on during my free time.
+The version of the project I presented for my TIPE is available on the `tipe`
+branch, although I don't reckon anyone should look at whatever that is. 
 
 
